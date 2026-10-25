@@ -1,0 +1,1489 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="dark light">
+<title>Atti-MO, demo</title>
+<style>
+/* Tema scuro fisso, come l'app. I colori vengono da Palette (DesignSystem.swift). */
+
+    :root[data-tema="chiaro"] {
+      --navy-profondo: #F2F4F8;
+      --navy: #E4E8F0;
+      --navy-chiaro: #FFFFFF;
+      --arancione: #D96A00;
+      --oro: #B38E40;
+      --verde-assolto: #2B8A5E;
+      --rosso-blocco: #CC4A40;
+      --testo-chiaro: #1A2639;
+      --testo-tenue: #4A5B75;
+      color-scheme: light;
+    }
+    
+:root {
+  --navy-profondo: #0D1C33;
+  --navy: #14294A;
+  --navy-chiaro: #213B63;
+  --arancione: #E8801A;
+  --oro: #CCAD6B;
+  --verde-assolto: #40B07D;
+  --rosso-blocco: #E68078;
+  --testo-chiaro: #F0F2F7;
+  --testo-tenue: #ADB8C9;
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+*, *::before, *::after { box-sizing: inherit; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background-color: var(--navy-profondo);
+  background-image: linear-gradient(180deg, var(--navy-profondo), var(--navy));
+  background-attachment: fixed;
+  color: var(--testo-chiaro);
+  font: 1rem/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+button { font: inherit; color: inherit; }
+.pagina { max-width: 34rem; margin: 0 auto; padding: 1.75rem 1.25rem 2.5rem; }
+
+h1 { margin: 0; font-size: clamp(2.5rem, 11vw, 3.4rem); line-height: 1.05; font-weight: 750; letter-spacing: -0.02em; }
+.acronimo { margin: .35rem 0 0; font-size: 1.125rem; color: var(--testo-tenue); }
+.acronimo .iniziale { color: var(--arancione); font-weight: 700; }
+.lead { margin: 1.25rem 0 0; font-size: 1.0625rem; max-width: 30rem; }
+
+.avviso {
+  margin: 1.5rem 0 0; padding: .9rem 1rem; border-radius: 14px; font-size: .9375rem;
+  border: 1px solid var(--oro); background: var(--navy-chiaro);
+  border-color: color-mix(in srgb, var(--oro) 55%, transparent);
+  background: color-mix(in srgb, var(--oro) 10%, transparent);
+}
+.avviso strong { color: var(--oro); }
+.avviso.breve { margin-top: 0; padding: .55rem .85rem; font-size: .8125rem; }
+
+section { margin-top: 2rem; }
+#schermata-rilievo { margin-top: 1rem; }
+h2 { margin: 0; font-size: 1.25rem; font-weight: 650; }
+#titolo-tipi { margin-bottom: .75rem; }
+.elenco { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+
+.scheda {
+  display: block; padding: 1rem; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .08);
+  background: var(--navy-chiaro);
+  background: color-mix(in srgb, var(--navy-chiaro) 55%, transparent);
+}
+.scheda-tasto { width: 100%; text-align: left; cursor: pointer; }
+.scheda-tasto .titolo { display: block; font-size: 1.0625rem; font-weight: 650; }
+.scheda-tasto .descr { display: block; margin-top: .25rem; font-size: .9375rem; color: var(--testo-tenue); }
+.scheda-tasto .conta { display: block; margin-top: .6rem; font-size: .875rem; font-weight: 600; }
+@media (hover: hover) { .scheda-tasto:hover { border-color: var(--arancione); } }
+
+/* Rilievo */
+.barra-rilievo { display: flex; flex-direction: column; }
+.tasto-testo { align-self: flex-start; padding: .65rem 0; background: none; border: 0; color: var(--arancione); font-weight: 600; cursor: pointer; }
+.conferma {
+  margin: 0 0 .75rem; padding: .9rem 1rem; border-radius: 14px; border: 1px solid var(--rosso-blocco);
+  border-color: color-mix(in srgb, var(--rosso-blocco) 60%, transparent);
+  background: color-mix(in srgb, var(--rosso-blocco) 10%, transparent);
+}
+.conferma p { margin: 0 0 .7rem; font-size: .9375rem; }
+.azioni { display: flex; gap: .6rem; flex-wrap: wrap; }
+.tasto { padding: .6rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .18); background: transparent; font-weight: 600; cursor: pointer; }
+.tasto.primario { background: var(--arancione); border-color: var(--arancione); color: var(--navy-profondo); }
+.tasto.pericolo { background: var(--rosso-blocco); border-color: var(--rosso-blocco); color: var(--navy-profondo); }
+
+.intestazione-rilievo { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-top: .25rem; }
+.tipo-attivo { font-size: 1.375rem; line-height: 1.25; }
+.apertura { flex: none; text-align: right; }
+.apertura .piccolo { display: block; font-size: .75rem; color: var(--testo-tenue); }
+.apertura strong { font-size: .9375rem; font-variant-numeric: tabular-nums; }
+
+.schede { display: flex; gap: .5rem; margin: 1rem 0 1.25rem; overflow-x: auto; padding-bottom: .25rem; }
+.schede button {
+  flex: none; padding: .55rem 1rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .14);
+  background: transparent; color: var(--testo-tenue); font-weight: 600; font-size: .9375rem; cursor: pointer;
+}
+.schede button[aria-current="page"] { background: var(--arancione); border-color: var(--arancione); color: var(--navy-profondo); }
+
+.titolo-sez { font-size: 1.125rem; font-weight: 650; margin-bottom: .75rem; }
+.testa-sez { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+.testa-sez .titolo-sez { margin: 0; }
+.testa-sez .tasto-testo { padding: .4rem 0; }
+
+/* Adempimenti */
+.adempimento { display: flex; gap: .9rem; align-items: flex-start; cursor: pointer; }
+.adempimento input {
+  -webkit-appearance: none; appearance: none; flex: none; display: grid; place-content: center;
+  width: 1.5rem; height: 1.5rem; margin: .1rem 0 0; border: 2px solid var(--arancione); border-radius: 6px; background: transparent;
+}
+.adempimento input::after {
+  content: ""; width: .35rem; height: .7rem; border: solid var(--navy-profondo); border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg) translate(-1px, -1px); opacity: 0;
+}
+.adempimento input:checked { background: var(--verde-assolto); border-color: var(--verde-assolto); }
+.adempimento input:checked::after { opacity: 1; }
+.adempimento .testo { display: block; min-width: 0; }
+.adempimento .titolo { display: block; font-size: .9375rem; font-weight: 650; }
+.norma { display: block; margin-top: .25rem; font-size: .75rem; font-weight: 500; color: var(--oro); }
+.assolto { display: block; margin-top: .25rem; font-size: .75rem; color: var(--verde-assolto); }
+
+/* Cronologia */
+.vuoto { margin: 0; font-size: .875rem; color: var(--testo-tenue); }
+.riga-cron {
+  display: grid; grid-template-columns: 3.4rem 8px 1fr; gap: .75rem;
+  width: 100%; padding: .2rem 0; text-align: left; background: none; border: 0; color: inherit; cursor: pointer;
+}
+.orario { font: 600 .875rem ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; }
+.filo { display: flex; flex-direction: column; align-items: center; padding-top: .5rem; }
+.pallino { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--arancione); }
+.pallino.corretta { background: var(--oro); }
+.linea { flex: 1; width: 1px; margin-top: 3px; background: rgba(255, 255, 255, .15); }
+.descr-cron { display: block; padding-bottom: .9rem; min-width: 0; }
+.riga-cron.ultima .descr-cron { padding-bottom: 0; }
+.titolo-cron { display: block; font-size: .875rem; }
+.altri { margin: .6rem 0 0; font-size: .75rem; color: var(--testo-tenue); }
+.corretta-nota { display: block; margin-top: .25rem; font-size: .75rem; color: var(--oro); }
+.suggerimento { margin: .6rem 0 0; font-size: .75rem; color: var(--testo-tenue); }
+
+.editor-ora { margin: .5rem 0 .9rem; padding: .9rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .04); }
+.editor-ora label { display: block; margin-bottom: .35rem; font-size: .875rem; font-weight: 600; }
+.editor-ora input[type="time"] {
+  font: inherit; font-variant-numeric: tabular-nums; color-scheme: dark; min-width: 8rem;
+  padding: .5rem .7rem; border-radius: 10px; border: 1px solid rgba(255, 255, 255, .22);
+  background: var(--navy-profondo); color: var(--testo-chiaro);
+}
+.editor-ora input[aria-invalid="true"] { border-color: var(--rosso-blocco); }
+.editor-ora .aiuto { margin: .6rem 0 .8rem; font-size: .8125rem; color: var(--testo-tenue); }
+.editor-ora .errore { margin: .5rem 0 0; font-size: .8125rem; color: var(--rosso-blocco); }
+
+/* Soggetti */
+.tasto-testo.aggiungi::before { content: "+\00a0"; }
+.tasto-testo.pericolo-testo { color: var(--rosso-blocco); }
+.menu-ruoli { margin: .25rem 0 .5rem; }
+.riga-sogg { display: flex; gap: .9rem; align-items: stretch; }
+.barra { flex: none; width: 4px; border-radius: 3px; background: var(--verde-assolto); }
+.barra.da-completare { background: var(--arancione); }
+.corpo-sogg { display: block; min-width: 0; }
+.riga-nome { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.nome-sogg { font-size: 1rem; font-weight: 650; }
+.sigla { display: inline-block; padding: .1rem .5rem; border-radius: 999px; background: var(--oro); color: var(--navy-profondo); font-size: .75rem; font-weight: 650; }
+.ruolo { display: block; margin-top: .15rem; font-size: .8125rem; color: var(--testo-tenue); }
+.stato-sogg { display: block; margin-top: .25rem; font-size: .75rem; font-weight: 500; }
+.stato-sogg.mancano { color: var(--arancione); }
+.stato-sogg.oro, .minore { color: var(--oro); }
+.minore { display: block; margin-top: .25rem; font-size: .75rem; font-weight: 650; }
+
+.editor-sogg > * + * { margin-top: 1rem; }
+.riga-sigla { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; }
+.riga-sigla .etichetta { font-size: .75rem; color: var(--testo-tenue); }
+.pila { display: grid; gap: .9rem; }
+.campo { display: block; }
+.campo label, .segmentato legend { display: block; margin-bottom: .3rem; font-size: .8125rem; color: var(--testo-tenue); }
+.campo input[type="text"], .campo input[type="date"], .campo select {
+  width: 100%; min-height: 2.75rem; font: inherit; color-scheme: dark; padding: .6rem .75rem; border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .22); background: var(--navy-profondo); color: var(--testo-chiaro);
+}
+.riga-data { display: flex; align-items: center; gap: .75rem; }
+.riga-data input { flex: 1; min-width: 0; }
+.riga-data .tasto-testo { padding: .4rem 0; }
+.segmentato { margin: 0; padding: 0; border: 0; min-width: 0; }
+.segmentato .gruppo { display: flex; border: 1px solid rgba(255, 255, 255, .22); border-radius: 10px; overflow: hidden; }
+.segmentato label { position: relative; flex: 1; margin: 0; }
+.segmentato input { position: absolute; opacity: 0; pointer-events: none; }
+.segmentato span { display: block; padding: .6rem .3rem; text-align: center; font-size: .8125rem; color: var(--testo-tenue); cursor: pointer; }
+.segmentato input:checked + span { background: var(--arancione); color: var(--navy-profondo); font-weight: 650; }
+.segmentato input:focus-visible + span { outline: 2px solid var(--arancione); outline-offset: -2px; }
+
+.interruttore { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; cursor: pointer; }
+.testo-int { display: block; min-width: 0; }
+.titolo-int { display: block; font-size: .9375rem; font-weight: 600; }
+.sotto { display: block; margin-top: .15rem; font-size: .75rem; color: var(--testo-tenue); }
+.interruttore input {
+  -webkit-appearance: none; appearance: none; flex: none; position: relative; width: 2.75rem; height: 1.6rem; margin: 0;
+  border-radius: 999px; background: rgba(255, 255, 255, .22);
+}
+.interruttore input::after { content: ""; position: absolute; top: .2rem; left: .2rem; width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--testo-chiaro); }
+.interruttore input:checked { background: var(--arancione); }
+.interruttore input:checked::after { left: 1.35rem; }
+.interruttore input:focus-visible { outline: 2px solid var(--arancione); outline-offset: 3px; }
+
+.esito { margin: 0; padding: .6rem .8rem; border-radius: 10px; font-size: .8125rem; border-left: 4px solid; }
+.esito-rosso { border-color: var(--rosso-blocco); background: color-mix(in srgb, var(--rosso-blocco) 12%, transparent); }
+.esito-rosso strong { color: var(--rosso-blocco); }
+.esito-arancione { border-color: var(--arancione); background: color-mix(in srgb, var(--arancione) 12%, transparent); }
+.esito-arancione strong { color: var(--arancione); }
+.avviso-campo { margin: 0; font-size: .75rem; font-weight: 500; color: var(--arancione); }
+.tasto.ampio { width: 100%; }
+.azioni-fine { text-align: center; }
+
+/* Luogo, fatti, riepilogo */
+.titoli-rilievo { flex: 1; min-width: 0; }
+.luogo-attivo { margin: .15rem 0 0; font-size: .9375rem; color: var(--testo-tenue); overflow-wrap: anywhere; }
+.sez-sotto { margin-top: 1.5rem; }
+.campo-libero {
+  display: block; width: 100%; font: inherit; color-scheme: dark; padding: .6rem .75rem; border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .22); background: var(--navy-profondo); color: var(--testo-chiaro);
+}
+textarea.campo-libero { min-height: 8rem; resize: vertical; }
+.avvertenza { display: flex; gap: .7rem; margin-top: .75rem; }
+.filo-oro { flex: none; width: 4px; border-radius: 3px; background: var(--oro); }
+.avv-titolo { margin: 0; font-size: .8125rem; font-weight: 650; }
+.avv-corpo { margin: .15rem 0 0; font-size: .75rem; color: var(--testo-tenue); }
+
+.riga-orario { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 2.5rem; }
+.riga-orario + .riga-orario { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid rgba(255, 255, 255, .08); }
+.etichetta-or { font-size: .875rem; color: var(--testo-tenue); }
+.riga-orario strong { font-size: 1rem; font-variant-numeric: tabular-nums; }
+.dx-orario { display: flex; align-items: center; gap: .5rem; }
+.dx-orario input[type="time"] {
+  font: inherit; font-variant-numeric: tabular-nums; color-scheme: dark; padding: .4rem .6rem; border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .22); background: var(--navy-profondo); color: var(--testo-chiaro);
+}
+.dx-orario .tasto-testo { padding: .4rem .5rem; font-size: 1.125rem; line-height: 1; color: var(--testo-tenue); }
+.azioni-riep { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.diagnosi { margin: .4rem 0 0; font-size: .6875rem; color: var(--testo-tenue); overflow-wrap: anywhere; user-select: all; }
+.stato-copia { margin: .6rem 0 0; font-size: .875rem; color: var(--verde-assolto); }
+.stato-copia.attenzione { color: var(--arancione); }
+#testo-da-copiare { margin-top: .6rem; min-height: 10rem; font-size: .8125rem; }
+
+.documento {
+  margin-top: 1.25rem; padding: 1.25rem 1.1rem; border-radius: 6px; background: var(--testo-chiaro); color: var(--navy-profondo);
+  font: .9375rem/1.6 Georgia, "Times New Roman", serif;
+}
+.documento h3 { margin: 0; font-size: 1.25rem; line-height: 1.25; }
+.documento .doc-tipo { margin: .15rem 0 1rem; font-style: italic; }
+.documento h4 { margin: 1.1rem 0 .35rem; font-size: 1rem; }
+.documento p { margin: 0 0 .45rem; overflow-wrap: anywhere; }
+.documento .doc-nota { margin-top: 1.1rem; font-size: .8125rem; font-style: italic; }
+
+@media print {
+  
+    :root[data-tema="chiaro"] {
+      --navy-profondo: #F2F4F8;
+      --navy: #E4E8F0;
+      --navy-chiaro: #FFFFFF;
+      --arancione: #D96A00;
+      --oro: #B38E40;
+      --verde-assolto: #2B8A5E;
+      --rosso-blocco: #CC4A40;
+      --testo-chiaro: #1A2639;
+      --testo-tenue: #4A5B75;
+      color-scheme: light;
+    }
+    
+:root { padding: 0; }
+  body { background: #fff; color: #000; }
+  .pagina { max-width: none; padding: 0; }
+  #testata, #avviso-pieno, #avviso-breve, #schermata-scelta, footer, noscript,
+  .barra-rilievo, .intestazione-rilievo, .schede, .solo-schermo { display: none !important; }
+  #schermata-rilievo { margin: 0; }
+  .documento { margin: 0; padding: 0; border-radius: 0; background: #fff; color: #000; font-size: 11pt; }
+  .documento h4 { break-after: avoid; }
+  .documento p { orphans: 3; widows: 3; }
+}
+
+footer { margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, .08); font-size: .8125rem; line-height: 1.55; color: var(--testo-tenue); }
+footer p { margin: 0 0 .6rem; }
+:focus-visible { outline: 2px solid var(--arancione); outline-offset: 2px; }
+.adempimento input:focus-visible { outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
+</style>
+</head>
+<body>
+<main class="pagina">
+  <header id="testata">
+    <h1 id="nome">Atti-MO</h1>
+    <p class="acronimo" id="acronimo"></p>
+    <button id="toggle-tema" class="tasto" style="margin-top:1rem;font-size:0.8rem;">Alterna Tema (Sole/Luna)</button>
+    <p class="lead">Sul posto la persona ce l’hai davanti, in ufficio no. Atti-MO ti fa emergere le lacune finché sei ancora in tempo per colmarle.</p>
+  </header>
+
+  <p class="avviso" id="avviso-pieno" role="note"><strong>Demo con dati di fantasia.</strong> Nulla viene salvato o inviato: se ricarichi la pagina, tutto si cancella. Non inserire dati reali.</p>
+  <p class="avviso breve" id="avviso-breve" role="note" hidden><strong>Demo con dati di fantasia.</strong> Nulla viene salvato: se ricarichi, tutto si cancella.</p>
+  <noscript><p class="avviso">Per usare la demo serve JavaScript attivo.</p></noscript>
+
+  <section id="schermata-scelta" aria-labelledby="titolo-tipi">
+    <h2 id="titolo-tipi" tabindex="-1">Che intervento è?</h2>
+    <ul class="elenco" id="tipi"></ul>
+  </section>
+
+  <section id="schermata-rilievo" aria-labelledby="tipo-attivo" hidden>
+    <div class="barra-rilievo">
+      <button class="tasto-testo" id="cambia" type="button">Cambia intervento</button>
+      <button class="tasto-testo pericolo-testo" id="cancella-dati" type="button" style="margin-top:0.5rem; color:var(--rosso-blocco);">Chiudi e Cancella Dati</button>
+      <div class="conferma" id="conferma-cambio" role="alert" hidden>
+        <p>Se cambi intervento, perdi spunte, orari e persone di questo rilievo.</p>
+        <div class="azioni">
+          <button class="tasto pericolo" id="conferma-si" type="button">Cambia intervento</button>
+          <button class="tasto" id="conferma-no" type="button">Resta qui</button>
+        </div>
+      </div>
+    </div>
+    <div class="intestazione-rilievo">
+      <div class="titoli-rilievo">
+        <h2 class="tipo-attivo" id="tipo-attivo" tabindex="-1"></h2>
+        <p class="luogo-attivo" id="luogo-attivo"></p>
+      </div>
+      <div class="apertura"><span class="piccolo">Apertura</span><strong id="apertura"></strong></div>
+    </div>
+    <nav class="schede" aria-label="Sezioni del rilievo">
+      <button type="button" data-scheda="checklist" aria-current="page">Checklist</button>
+      <button type="button" data-scheda="soggetti">Soggetti</button>
+      <button type="button" data-scheda="cronologia">Cronologia</button>
+      <button type="button" data-scheda="riepilogo">Riepilogo</button>
+    </nav>
+    <div id="pannello"></div>
+  </section>
+
+  <footer>
+    <p>I riferimenti normativi sono quelli dell’app Atti-MO, verificati l’ultima volta il <span id="data-verifica"></span>. Prima di usarli in un atto vero, riverificali su fonti ufficiali.</p>
+    <p id="indipendenza"></p>
+    <p>Questa demo non produce atti e non è un parere legale.</p>
+  </footer>
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  // #region dati
+  // Generato da costruisci.py a partire dai sorgenti Swift. Non modificare a mano.
+  const NORME = {"fonte":{"file":"ChecklistDefinizioni.swift","sha256":"23b56106e736330a80490a2399bde903de10fc5e93cb3e90cbdbfe13c83954c7","ultima_verifica":"07/10/2026"},"app":{"nome":"Atti-MO","sottotitolo":"Atti immediati sul posto","acronimo":"ATTi IMmediati sul pOsto","indipendenza":"Atti-MO è uno strumento indipendente, non legato a un singolo corpo di polizia. Resta all'operante verificare la propria qualifica di polizia giudiziaria e l'ambito dei poteri applicabili al caso."},"tipi":[{"chiave":"sinistroStradale","nome":"Sinistro Stradale","descrizione":"Rilievi urgenti su sinistri stradali, lesioni e omicidio stradale (art. 189 CdS).","checklist":[{"titolo":"Condizioni delle persone coinvolte verificate / soccorso richiesto","basi":"art. 189 c.1 CdS","obbligatorio":true,"condizionale":false},{"titolo":"Fotografie di mezzi, targhe e tracce sul manto stradale (prima di spostamenti)","basi":"art. 189 c.2 CdS; art. 354 c.1-2 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Generalità e documenti di tutti i conducenti raccolti","basi":"art. 189 c.4 CdS","obbligatorio":true,"condizionale":false},{"titolo":"Se sospetto stato di ebbrezza: avviso della facoltà di difensore dato PRIMA dell'accertamento","basi":"art. 186 CdS; art. 114 disp. att. CPP","obbligatorio":true,"condizionale":true},{"titolo":"Se sospetta assunzione di stupefacenti: accertamento qualitativo non invasivo e, se positivo, prelievo di fluido del cavo orale","basi":"art. 187 c.2 e 2-bis CdS (L. 177/2024)","obbligatorio":false,"condizionale":true},{"titolo":"Se accertamento art. 187 CdS: descritte le condizioni concrete del conducente e il pericolo per la circolazione","basi":"art. 187 CdS; Corte cost. 10/2026","obbligatorio":false,"condizionale":true},{"titolo":"Rimozione intralcio disposta solo dopo i rilievi urgenti indispensabili","basi":"art. 189 c.3 CdS","obbligatorio":false,"condizionale":false},{"titolo":"Testimoni identificati","basi":"art. 351 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Se assunte sommarie informazioni: dato avviso del diritto di chiedere la fonoregistrazione","basi":"art. 351 c.1-quater CPP","obbligatorio":false,"condizionale":true}]},{"chiave":"reatoCodiceRosso","nome":"Codice Rosso / Violenza domestica","descrizione":"Accertamenti urgenti, tutele rafforzate per persone offese e minori.","checklist":[{"titolo":"Condizioni fisiche delle persone coinvolte verificate / soccorso richiesto","basi":"art. 593 CP; art. 354 c.3 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Segni e tracce lasciate sulla persona descritti/fotografati (con il consenso dell'interessato)","basi":"art. 354 c.3 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Se persona offesa minore o vulnerabile: attivate le tutele specifiche (pseudonimizzazione, procedure rafforzate)","basi":"prassi Codice Rosso / tutela minori","obbligatorio":true,"condizionale":true},{"titolo":"Valutata la condizione di particolare vulnerabilità della persona offesa e dato atto della valutazione","basi":"art. 90-quater CPP; Cass. VI n. 14172/2026","obbligatorio":true,"condizionale":false},{"titolo":"Se rese dichiarazioni da minore, infermo di mente o persona vulnerabile: documentate integralmente in audio o video (a pena di inutilizzabilità)","basi":"art. 357 c.3-ter CPP","obbligatorio":true,"condizionale":true},{"titolo":"Informativa alla persona offesa dal primo contatto: difensore, patrocinio a spese dello Stato, giustizia riparativa","basi":"art. 90-bis CPP","obbligatorio":true,"condizionale":false},{"titolo":"Testimoni identificati","basi":"art. 351 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Se assunte sommarie informazioni: dato avviso del diritto di chiedere la fonoregistrazione","basi":"art. 351 c.1-quater CPP","obbligatorio":false,"condizionale":true}]},{"chiave":"furtoRaffica","nome":"Furto in Abitazione / Esercizio","descrizione":"Sopralluogo di PG per furti, danni ed effrazioni (art. 624-bis CP).","checklist":[{"titolo":"Stato dei luoghi fotografato prima di qualunque intervento di terzi","basi":"art. 354 c.1 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Elementi di effrazione/manomissione documentati (foto + descrizione)","basi":"art. 354 c.2-3 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Descrizione dettagliata di quanto sottratto/danneggiato raccolta dalla persona offesa","basi":"art. 350-351 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Informativa alla persona offesa dal primo contatto: facoltà di nominare un difensore, patrocinio a spese dello Stato, giustizia riparativa","basi":"art. 90-bis CPP","obbligatorio":true,"condizionale":false},{"titolo":"Atto della persona offesa qualificato: denuncia se il furto è procedibile d'ufficio, querela con espressa volontà punitiva negli altri casi","basi":"art. 624-bis CP; Corte cost. 130/2026; art. 336 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Se raccolta querela: dichiarazione o elezione di domicilio del querelante, anche PEC","basi":"art. 153-bis CPP; art. 90-bis c.1 lett. a-bis) CPP","obbligatorio":false,"condizionale":true},{"titolo":"Eventuali tracce materiali segnalate alla Polizia Scientifica, se disponibile","basi":"art. 354 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Testimoni identificati","basi":"art. 351 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Se assunte sommarie informazioni: dato avviso del diritto di chiedere la fonoregistrazione","basi":"art. 351 c.1-quater CPP","obbligatorio":false,"condizionale":true}]},{"chiave":"rilievoGenerico","nome":"Sopralluogo di PG Generico","descrizione":"Sopralluogo ed accertamenti di PG generici (art. 354 CPP).","checklist":[{"titolo":"Stato dei luoghi e delle cose fotografato prima di ogni modificazione","basi":"art. 354 c.1 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Identificazione delle persone presenti sul posto","basi":"art. 349 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Rilievi ed accertamenti sulle cose e tracce pertinenti al reato","basi":"art. 354 c.2 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Se sequestro di PG: redatto verbale e dato avviso diritto al difensore","basi":"art. 354, 355 CPP; art. 114 disp. att. CPP","obbligatorio":false,"condizionale":true},{"titolo":"Sommarie informazioni assunte o spontanee dichiarazioni ricevute","basi":"artt. 350, 351 CPP","obbligatorio":false,"condizionale":false}]}],"messaggi":{"dichiarazione_senza_difensore":"Delle notizie assunte sul posto dall'indagato senza difensore (art. 350 c.5 CPP) è vietata ogni documentazione e utilizzazione processuale (c.6).","sommarie_senza_avviso":"Per le sommarie informazioni occorre attestare l'avviso della facoltà di farsi assistere da un difensore.","accertamento_senza_avviso":"Per gli accertamenti urgenti sulla persona (art. 354 c.3 CPP) è obbligatorio attestare l'avviso della facoltà di farsi assistere da un difensore (art. 114 disp. att. CPP)."},"palette":{"navyProfondo":"#0D1C33","navy":"#14294A","navyChiaro":"#213B63","arancione":"#E8801A","oro":"#CCAD6B","verdeAssolto":"#40B07D","rossoBlocco":"#E68078","testoChiaro":"#F0F2F7","testoTenue":"#ADB8C9"},"ruoli":[{"chiave":"indagato","nome":"Persona sottoposta ad indagini","qualita":"persona sottoposta a indagini","prefisso":"IND"},{"chiave":"personaOffesa","nome":"Persona offesa dal reato","qualita":"persona offesa dal reato","prefisso":"PO"},{"chiave":"danneggiato","nome":"Soggetto danneggiato","qualita":"persona danneggiata","prefisso":"DAN"},{"chiave":"conducente","nome":"Conducente di veicolo","qualita":"conducente","prefisso":"COND"},{"chiave":"trasportato","nome":"Persona trasportata","qualita":"persona trasportata","prefisso":"TRASP"},{"chiave":"testimone","nome":"Persona informata sui fatti / Testimone","qualita":"persona informata sui fatti","prefisso":"TEST"},{"chiave":"custode","nome":"Custode nominato","qualita":"custode","prefisso":"CUST"}],"stati":[{"chiave":"identificato","nome":"Identificato sul posto","inciso":null},{"chiave":"inCorso","nome":"Identificazione in corso","inciso":"in corso di identificazione"},{"chiave":"nonIdentificato","nome":"Non identificato / Sconosciuto","inciso":"non identificato sul posto"}],"modalita":[{"chiave":"notizieSulPostoSenzaDifensore","nome":"Sommarie notizie sul posto senza difensore (art. 350 c.5 CPP)"},{"chiave":"sommarieInformazioniConDifensore","nome":"Sommarie informazioni con difensore (art. 350 c.1-4 CPP)"},{"chiave":"dichiarazioneSpontanea","nome":"Dichiarazioni spontanee (art. 350 c.7 CPP)"},{"chiave":"dIniziativa","nome":"Sommarie informazioni a persone informate (art. 351 CPP)"}],"sesso":["Maschile","Femminile","Altro"]};
+  // #endregion dati
+
+  // #region logica
+  // Nessun accesso alla pagina e nessuna lettura dell'orologio: l'ora arriva sempre come argomento.
+
+  function nuovoRilievo(tipo, adesso) {
+    return {
+      tipo: tipo.chiave,
+      nomeTipo: tipo.nome,
+      apertura: adesso,
+      checklist: tipo.checklist.map((v, i) => ({
+        id: i, titolo: v.titolo, basi: v.basi, spuntato: false, istante: null,
+      })),
+      cronologia: [],
+      prossimaVoce: 1,
+      soggetti: [],
+      prossimoSoggetto: 1,
+      luogo: '',
+      fatti: '',
+      fine: null,
+    };
+  }
+
+  // Spunta o toglie la spunta. Ogni voce di cronologia ricorda l'adempimento da cui nasce
+  // (elementoId): togliendo la spunta sparisce sempre, anche se l'ora è stata corretta.
+  // È una differenza voluta rispetto all'app iOS, dove una voce a ora corretta resta.
+  function spunta(rilievo, idElemento, adesso) {
+    const e = rilievo.checklist.find((x) => x.id === idElemento);
+    if (!e) return false;
+    e.spuntato = !e.spuntato;
+    if (e.spuntato) {
+      e.istante = adesso;
+      rilievo.cronologia.push({
+        id: rilievo.prossimaVoce++, elementoId: e.id, istante: adesso,
+        descrizione: e.titolo, riferimento: e.basi, automatica: true,
+      });
+      rilievo.cronologia.sort((a, b) => a.istante - b.istante);
+    } else {
+      e.istante = null;
+      rilievo.cronologia = rilievo.cronologia.filter((v) => v.elementoId !== e.id);
+    }
+    return true;
+  }
+
+  // "HH:MM" -> data dello stesso giorno di `base`, a secondi zero. Non valido -> null.
+  function oraSuData(base, hhmm) {
+    const m = /^(\d{2}):(\d{2})$/.exec(hhmm || '');
+    if (!m) return null;
+    const ore = Number(m[1]), minuti = Number(m[2]);
+    if (ore > 23 || minuti > 59) return null;
+    return new Date(base.getFullYear(), base.getMonth(), base.getDate(), ore, minuti, 0, 0);
+  }
+
+  // Correzione dell'ora di un passaggio: l'operante annota dopo aver compiuto l'adempimento
+  // e negli atti conta l'ora reale. La voce non è più automatica (resta evidenziata).
+  // Differenza voluta rispetto all'app iOS: si allinea anche l'ora mostrata sulla scheda
+  // dell'adempimento, che nell'app resterebbe quella non corretta.
+  function correggiIstante(rilievo, idVoce, nuovo) {
+    const v = rilievo.cronologia.find((x) => x.id === idVoce);
+    if (!v || !(nuovo instanceof Date) || isNaN(nuovo)) return false;
+    v.istante = nuovo;
+    v.automatica = false;
+    const e = rilievo.checklist.find((x) => x.id === v.elementoId);
+    if (e) e.istante = nuovo;
+    rilievo.cronologia.sort((a, b) => a.istante - b.istante);
+    return true;
+  }
+
+  const pad = (n) => (n < 10 ? '0' : '') + n;
+  const ora = (d) => pad(d.getHours()) + ':' + pad(d.getMinutes());
+
+  // La cronologia ridotta mostra gli ultimi 3 passaggi, come nell'app.
+  const VOCI_RIDOTTE = 3;
+  const vociVisibili = (rilievo, espansa) =>
+    espansa ? rilievo.cronologia : rilievo.cronologia.slice(-VOCI_RIDOTTE);
+  const vociNascoste = (rilievo, espansa) =>
+    espansa ? 0 : Math.max(0, rilievo.cronologia.length - VOCI_RIDOTTE);
+
+  // ---- Persone coinvolte
+  const ruoloDi = (chiave) => NORME.ruoli.find((x) => x.chiave === chiave);
+  const vuoto = (t) => String(t || '').trim() === '';
+
+  function nuovoSoggetto(id, chiaveRuolo, progressivo) {
+    return {
+      id, ruolo: chiaveRuolo, progressivo,
+      generalita: { cognome: '', nome: '', luogoNascita: '', dataNascita: '', sesso: '', residenza: '', documento: '' },
+      stato: 'identificato', haDichiarazione: false, modalita: null,
+      avvisoDifensore: false, sottopostoAccertamento: false, minore: false,
+    };
+  }
+
+  // La sigla è il prefisso del ruolo e un progressivo, come nell'app: PO1, TEST2 e così via.
+  const sigla = (s) => (s.minore ? 'M' : ruoloDi(s.ruolo).prefisso) + s.progressivo;
+
+  function campiMancanti(s) {
+    const m = [];
+    if (vuoto(s.generalita.cognome)) m.push('Cognome');
+    if (vuoto(s.generalita.nome)) m.push('Nome');
+    return m;
+  }
+  const generalitaComplete = (s) => campiMancanti(s).length === 0;
+
+  function etichettaLocale(s) {
+    const cn = (s.generalita.cognome + ' ' + s.generalita.nome).trim();
+    return cn === '' ? sigla(s) : cn;
+  }
+
+  // Progressivo = massimo del ruolo + 1, come nell'app: dopo una rimozione possono restare buchi (PO1, PO3).
+  function aggiungiSoggetto(rilievo, chiaveRuolo, adesso) {
+    const ruolo = ruoloDi(chiaveRuolo);
+    if (!ruolo) return null;
+    const progressivo = rilievo.soggetti
+      .filter((x) => x.ruolo === chiaveRuolo)
+      .reduce((m, x) => Math.max(m, x.progressivo), 0) + 1;
+    const s = nuovoSoggetto(rilievo.prossimoSoggetto++, chiaveRuolo, progressivo);
+    rilievo.soggetti.push(s);
+    rilievo.cronologia.push({
+      id: rilievo.prossimaVoce++, elementoId: null, soggettoId: s.id, istante: adesso,
+      descrizione: 'Identificazione avviata: ' + sigla(s) + ' (' + ruolo.nome + ')',
+      riferimento: null, automatica: true,
+    });
+    rilievo.cronologia.sort((a, b) => a.istante - b.istante);
+    return s;
+  }
+
+  // Rimuovendo la persona sparisce sempre anche la sua voce di cronologia, anche se l'ora era stata corretta.
+  // È una differenza voluta rispetto all'app iOS, dove una voce a ora corretta resta.
+  function rimuoviSoggetto(rilievo, id) {
+    if (!rilievo.soggetti.some((x) => x.id === id)) return false;
+    rilievo.soggetti = rilievo.soggetti.filter((x) => x.id !== id);
+    rilievo.cronologia = rilievo.cronologia.filter((v) => v.soggettoId !== id);
+    return true;
+  }
+
+  // Controlli sulle garanzie difensive. Restituiscono { tipo, messaggio } oppure null.
+  // Art. 350 c.5-6: nell'app il messaggio compare solo se esiste il testo della dichiarazione,
+  // ma la schermata non ha un campo per scriverlo, quindi non può comparire. Qui compare
+  // appena si indica la modalità "notizie sul posto senza difensore" per l'indagato.
+  function validaDichiarazione(s) {
+    if (!s.haDichiarazione || !s.modalita) return null;
+    if (s.modalita === 'notizieSulPostoSenzaDifensore') {
+      if (s.ruolo === 'indagato') return { tipo: 'bloccante', messaggio: NORME.messaggi.dichiarazione_senza_difensore };
+    } else if (s.modalita === 'sommarieInformazioniConDifensore') {
+      if (!s.avvisoDifensore) return { tipo: 'avviso', messaggio: NORME.messaggi.sommarie_senza_avviso };
+    }
+    return null;
+  }
+
+  function validaAccertamento(s) {
+    if (s.sottopostoAccertamento && !s.avvisoDifensore) {
+      return { tipo: 'bloccante', messaggio: NORME.messaggi.accertamento_senza_avviso };
+    }
+    return null;
+  }
+
+  // Dove compare l'interruttore dell'avviso al difensore: per l'indagato e per chi viene sottoposto
+  // ad accertamenti (come nell'app) e, in più, per chi rende sommarie informazioni con difensore,
+  // altrimenti l'avviso richiesto non potrebbe mai essere attestato.
+  const avvisoNegliAccertamenti = (s) => s.ruolo === 'indagato' || s.sottopostoAccertamento;
+  const avvisoNelleSommarie = (s) =>
+    s.haDichiarazione && s.modalita === 'sommarieInformazioniConDifensore' && !avvisoNegliAccertamenti(s);
+
+  // ---- Riepilogo
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataLunga = (d) => d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear();
+  function dataNumerica(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : '';
+  }
+  // Desinenza accordata al sesso; senza sesso indicato restano entrambe.
+  const accorda = (s, radice) => radice + ({ Maschile: 'o', Femminile: 'a' }[s.generalita.sesso] || 'o/a');
+
+  function identita(s) {
+    const g = s.generalita;
+    const p = (t) => String(t || '').trim();
+    const nominativo = [p(g.cognome).toUpperCase(), p(g.nome)].filter((x) => x !== '').join(' ');
+    if (nominativo === '') return sigla(s);
+    const parti = [nominativo];
+    let nascita = '';
+    const luogo = p(g.luogoNascita);
+    // «ad Ascoli Piceno», «a Roma»: la d eufonica davanti alla stessa vocale.
+    if (luogo !== '') nascita += (luogo.toLowerCase().startsWith('a') ? ' ad ' : ' a ') + luogo;
+    if (g.dataNascita) nascita += ' il ' + dataNumerica(g.dataNascita);
+    if (nascita !== '') parti.push(accorda(s, 'nat') + nascita);
+    if (p(g.residenza) !== '') parti.push('residente in ' + p(g.residenza));
+    if (p(g.documento) !== '') parti.push(accorda(s, 'identificat') + ' a mezzo ' + p(g.documento));
+    return parti.join(', ');
+  }
+
+  // Riga di una persona, con le stesse regole dell'app. Le notizie assunte sul posto
+  // dall'indagato senza difensore (art. 350 c.5-6) non vengono riportate: nessun accenno al contenuto.
+  function rigaPersona(s, numero) {
+    let riga = numero + ') ' + identita(s) + ', in qualità di ' + ruoloDi(s.ruolo).qualita;
+    if (s.minore) riga += ', minore di età';
+    const inciso = NORME.stati.find((x) => x.chiave === s.stato).inciso;
+    if (inciso) riga += ', ' + inciso;
+    if (s.sottopostoAccertamento) {
+      riga += ', nei cui confronti si è proceduto ad accertamenti urgenti sulla persona';
+      if (s.avvisoDifensore) riga += ', previo avviso della facoltà di farsi assistere da un difensore di fiducia';
+    }
+    if (s.haDichiarazione && s.modalita) {
+      if (s.modalita === 'sommarieInformazioniConDifensore' || s.modalita === 'dIniziativa') {
+        riga += s.avvisoDifensore
+          ? ', che, previo avviso della facoltà di farsi assistere da un difensore, ha reso sommarie informazioni documentate con separato verbale'
+          : ', che ha reso sommarie informazioni documentate con separato verbale';
+      } else if (s.modalita === 'dichiarazioneSpontanea') {
+        riga += ', che ha reso spontanee dichiarazioni documentate con separato verbale';
+      }
+    }
+    return riga + ';';
+  }
+
+  // Il riepilogo riporta soltanto due orari, inizio e fine delle operazioni: gli orari dei singoli
+  // adempimenti restano nella cronologia. Se la fine non è indicata vale l'ora in cui si produce.
+  function bozzaRiepilogo(r, fine, adesso) {
+    const luogo = String(r.luogo || '').trim();
+    const chiusura = fine || adesso;
+    const sezioni = [];
+    if (r.soggetti.length > 0) {
+      const tutte = r.soggetti.every((s) => s.stato === 'identificato');
+      const righe = [tutte ? 'Sul posto sono state identificate le seguenti persone:' : 'Sul posto erano presenti le seguenti persone:'];
+      r.soggetti.forEach((s, i) => righe.push(rigaPersona(s, i + 1)));
+      righe[righe.length - 1] = righe[righe.length - 1].replace(/;$/, '.');
+      sezioni.push({ titolo: 'Persone presenti sul posto', righe });
+    }
+    const svolti = r.checklist.filter((e) => e.spuntato);
+    if (svolti.length > 0) {
+      sezioni.push({
+        titolo: 'Attività ed adempimenti svolti',
+        righe: ['Attività ed accertamenti eseguiti:', ...svolti.map((e) => '• ' + e.titolo + (e.basi ? ' [' + e.basi + ']' : ''))],
+      });
+    }
+    const fatti = String(r.fatti || '').trim();
+    sezioni.push({
+      titolo: 'Stato dei luoghi e descrizione dei fatti',
+      righe: fatti === '' ? ['(non compilato)'] : fatti.split('\n').filter((x) => x.trim() !== ''),
+    });
+    return {
+      titolo: 'Riepilogo dimostrativo',
+      tipo: r.nomeTipo,
+      premessa: 'In data ' + dataLunga(r.apertura) + ', alle ore ' + ora(r.apertura) + ', in ' + (luogo === '' ? 'luogo da indicare' : luogo) + '.',
+      sezioni,
+      chiusura: 'Le operazioni, iniziate alle ore ' + ora(r.apertura) + ', sono state chiuse alle ore ' + ora(chiusura) + ' del ' + dataLunga(chiusura) + '.',
+      nota: 'Riepilogo dimostrativo con dati di fantasia: non è un atto né un parere legale.',
+    };
+  }
+
+  function testoRiepilogo(b) {
+    const righe = [b.titolo, b.tipo, '', b.premessa, ''];
+    for (const sez of b.sezioni) righe.push(sez.titolo, ...sez.righe, '');
+    righe.push(b.chiusura, '', b.nota);
+    return righe.join('\n');
+  }
+
+  // Pagina stampabile: un documento HTML completo e autonomo (nessuno script, nessuna rete) da salvare
+  // e aprire nel browser per stampare o fare un PDF. Ogni testo viene reso innocuo prima di entrare nel codice.
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const CSS_STAMPA =
+    'body{margin:0;background:#fff;color:#000;font:12pt/1.55 Georgia,"Times New Roman",serif}' +
+    'main{max-width:42rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}' +
+    'h1{font-size:1.5rem;margin:0}.tipo{margin:.15rem 0 1.25rem;font-style:italic}' +
+    'h2{font-size:1.1rem;margin:1.4rem 0 .4rem}p{margin:0 0 .5rem;overflow-wrap:anywhere}' +
+    '.nota{margin-top:1.5rem;font-size:.9rem;font-style:italic}.guida{color:#555;font:10pt sans-serif;margin-bottom:1.25rem}' +
+    '@media print{main{max-width:none;padding:0}h2{break-after:avoid}p{orphans:3;widows:3}.guida{display:none}}';
+
+  function paginaStampabile(b) {
+    const t = (testo) => esc(String(testo).replace(/(\p{L})'(\p{L})/gu, '$1\u2019$2'));
+    const sezioni = b.sezioni
+      .map((sez) => '<section><h2>' + t(sez.titolo) + '</h2>' + sez.righe.map((riga) => '<p>' + t(riga) + '</p>').join('') + '</section>')
+      .join('\n');
+    return '<!doctype html>\n<html lang="it">\n<head>\n<meta charset="utf-8">\n' +
+      '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+      '<title>' + t(b.titolo) + '</title>\n<style>' + CSS_STAMPA + '</style>\n</head>\n<body>\n<main>\n' +
+      '<p class="guida">Per stampare o salvare in PDF usa il comando Stampa del browser.</p>\n' +
+      '<h1>' + t(b.titolo) + '</h1>\n<p class="tipo">' + t(b.tipo) + '</p>\n<p>' + t(b.premessa) + '</p>\n' +
+      sezioni + '\n<p>' + t(b.chiusura) + '</p>\n<p class="nota">' + t(b.nota) + '</p>\n</main>\n</body>\n</html>\n';
+  }
+  // #endregion logica
+
+  // #region vista
+  // Gli apostrofi dei testi dell'app restano identici nei dati; si convertono solo a video.
+  const tip = (s) => s.replace(/(\p{L})'(\p{L})/gu, '$1\u2019$2');
+  const $ = (id) => document.getElementById(id);
+
+  function el(tag, classe, testo) {
+    const e = document.createElement(tag);
+    if (classe) e.className = classe;
+    if (testo !== undefined) e.textContent = testo;
+    return e;
+  }
+
+  // Stato della schermata. Il rilievo nasce solo quando l'utente sceglie un tipo,
+  // mai durante il disegno della pagina.
+  const ui = { rilievo: null, scheda: 'checklist', espansa: false, inCorrezione: null, soggettoAperto: null, menuRuoli: false, copia: null, adesso: null, download: null, statoDownload: 'non offerto' };
+  const violazioniCsp = [];
+
+  // Evidenzia le maiuscole di "ATTi IMmediati sul pOsto": sono le lettere che formano il nome.
+  function riempiAcronimo(p, testo) {
+    let corrente = '';
+    for (const c of testo) {
+      if (/\p{Lu}/u.test(c)) {
+        if (corrente) { p.append(el('span', null, corrente)); corrente = ''; }
+        p.append(el('span', 'iniziale', c));
+      } else {
+        corrente += c;
+      }
+    }
+    if (corrente) p.append(el('span', null, corrente));
+  }
+
+  function mostraSchermata(nome) {
+    const inRilievo = nome === 'rilievo';
+    $('testata').hidden = inRilievo;
+    $('avviso-pieno').hidden = inRilievo;
+    $('avviso-breve').hidden = !inRilievo;
+    $('schermata-scelta').hidden = inRilievo;
+    $('schermata-rilievo').hidden = !inRilievo;
+    window.scrollTo(0, 0);
+    (inRilievo ? $('tipo-attivo') : $('titolo-tipi')).focus();
+  }
+
+  function mostraTipi() {
+    const elenco = $('tipi');
+    for (const t of NORME.tipi) {
+      const n = t.checklist.length;
+      const tasto = el('button', 'scheda scheda-tasto');
+      tasto.type = 'button';
+      tasto.append(
+        el('span', 'titolo', tip(t.nome)),
+        el('span', 'descr', tip(t.descrizione)),
+        el('span', 'conta', n === 1 ? '1 adempimento in checklist' : n + ' adempimenti in checklist')
+      );
+      tasto.addEventListener('click', () => apriRilievo(t));
+      const voce = el('li');
+      voce.append(tasto);
+      elenco.append(voce);
+    }
+  }
+
+  function apriRilievo(tipo) {
+    ui.rilievo = nuovoRilievo(tipo, new Date());
+    ui.scheda = 'checklist';
+    ui.espansa = false;
+    ui.inCorrezione = null;
+    ui.soggettoAperto = null;
+    ui.menuRuoli = false;
+    $('conferma-cambio').hidden = true;
+    $('tipo-attivo').textContent = tip(tipo.nome);
+    $('apertura').textContent = ora(ui.rilievo.apertura);
+    aggiornaLuogo();
+    aggiornaSchede();
+    mostraPannello();
+    mostraSchermata('rilievo');
+  }
+
+  function chiudiRilievo() {
+    ui.rilievo = null;
+    $('pannello').replaceChildren();          // niente resti dei dati nella pagina dopo l'uscita
+    $('conferma-cambio').hidden = true;
+    mostraSchermata('scelta');
+  }
+
+  function chiediCambio() {
+    if (ui.rilievo.cronologia.length === 0 && ui.rilievo.soggetti.length === 0) { chiudiRilievo(); return; }
+    $('conferma-cambio').hidden = false;
+    $('conferma-no').focus();
+  }
+
+  function aggiornaSchede() {
+    for (const b of document.querySelectorAll('[data-scheda]')) {
+      if (b.dataset.scheda === ui.scheda) b.setAttribute('aria-current', 'page');
+      else b.removeAttribute('aria-current');
+    }
+  }
+
+  function mostraPannello() {
+    const costruisci = { checklist: pannelloChecklist, soggetti: pannelloSoggetti, cronologia: pannelloCronologia, riepilogo: pannelloRiepilogo };
+    $('pannello').replaceChildren(costruisci[ui.scheda]());
+  }
+
+  function pannelloChecklist() {
+    const sezione = el('div');
+    sezione.append(el('h3', 'titolo-sez', 'Checklist operativa di PG'));
+
+    const obbligatori = ui.rilievo.checklist.filter((e) => e.obbligatorio);
+    const mancanti = obbligatori.filter((e) => !e.spuntato);
+    if (mancanti.length > 0) {
+      const p = el('p', 'esito esito-rosso');
+      p.style.marginBottom = '1rem';
+      p.append(el('strong', null, 'Attenzione: '), 'Mancano ' + mancanti.length + ' adempimenti obbligatori.');
+      sezione.append(p);
+    } else if (obbligatori.length > 0) {
+      const p = el('p', 'esito esito-arancione');
+      p.style.marginBottom = '1rem';
+      p.style.borderColor = 'var(--verde-assolto)';
+      p.style.backgroundColor = 'color-mix(in srgb, var(--verde-assolto) 12%, transparent)';
+      p.append(el('strong', null, 'Ottimo: '), 'Tutti gli adempimenti obbligatori assolti.');
+      p.style.color = 'var(--verde-assolto)';
+      sezione.append(p);
+    }
+        
+    const elenco = el('ul', 'elenco');
+    for (const e of ui.rilievo.checklist) elenco.append(cardAdempimento(e));
+    sezione.append(elenco, sezionePosizione(), sezioneFatti());
+    return sezione;
+  }
+
+  function cardAdempimento(e) {
+    const voce = el('li');
+    const etichetta = el('label', 'scheda adempimento');
+    const casella = el('input');
+    casella.type = 'checkbox';
+    casella.checked = e.spuntato;
+    const testo = el('span', 'testo');
+    const assolto = el('span', 'assolto');
+    testo.append(el('span', 'titolo', tip(e.titolo)));
+    if (e.basi) testo.append(el('span', 'norma', tip(e.basi)));
+    testo.append(assolto);
+
+    const aggiorna = () => {
+      casella.checked = e.spuntato;
+      assolto.hidden = !e.spuntato;
+      assolto.textContent = e.spuntato ? 'Assolto alle ' + ora(e.istante) : '';
+    };
+    casella.addEventListener('change', () => { spunta(ui.rilievo, e.id, new Date()); aggiorna(); });
+    aggiorna();
+
+    etichetta.append(casella, testo);
+    voce.append(etichetta);
+    return voce;
+  }
+
+  function pannelloCronologia() {
+    const r = ui.rilievo;
+    const sezione = el('div');
+
+    const testa = el('div', 'testa-sez');
+    testa.append(el('h3', 'titolo-sez', 'Cronologia'));
+    const tasto = el('button', 'tasto-testo', ui.espansa ? 'Riduci' : 'Mostra tutto');
+    tasto.type = 'button';
+    tasto.id = 'tasto-cron';
+    tasto.addEventListener('click', () => { ui.espansa = !ui.espansa; ui.inCorrezione = null; mostraPannello(); $('tasto-cron').focus(); });
+    testa.append(tasto);
+    sezione.append(testa);
+
+    const scheda = el('div', 'scheda');
+    const voci = vociVisibili(r, ui.espansa);
+    if (voci.length === 0) {
+      scheda.append(el('p', 'vuoto', 'Gli orari si registrano da soli mentre spunti gli adempimenti.'));
+    }
+    voci.forEach((v, i) => {
+      scheda.append(rigaCronologia(v, i === voci.length - 1));
+      if (ui.inCorrezione === v.id) scheda.append(editorOra(v));
+    });
+    const nascoste = vociNascoste(r, ui.espansa);
+    if (nascoste > 0) {
+      scheda.append(el('p', 'altri', nascoste === 1 ? 'Un altro passaggio registrato' : 'Altri ' + nascoste + ' passaggi registrati'));
+    }
+    sezione.append(scheda);
+    sezione.append(el('p', 'suggerimento', tip("Tocca un passaggio per correggerne l'ora, se l'hai spuntato dopo averlo compiuto.")));
+    return sezione;
+  }
+
+  function rigaCronologia(v, ultima) {
+    const riga = el('button', ultima ? 'riga-cron ultima' : 'riga-cron');
+    riga.type = 'button';
+    riga.dataset.voce = String(v.id);
+    riga.setAttribute('aria-expanded', ui.inCorrezione === v.id ? 'true' : 'false');
+    const filo = el('span', 'filo');
+    filo.append(el('span', v.automatica ? 'pallino' : 'pallino corretta'));
+    if (!ultima) filo.append(el('span', 'linea'));
+    const descr = el('span', 'descr-cron');
+    descr.append(el('span', 'titolo-cron', tip(v.descrizione)));
+    if (v.riferimento) descr.append(el('span', 'norma', tip(v.riferimento)));
+    if (!v.automatica) descr.append(el('span', 'corretta-nota', tip("Ora corretta dall'operante")));
+    riga.append(el('span', 'orario', ora(v.istante)), filo, descr);
+    riga.addEventListener('click', () => {
+      ui.inCorrezione = ui.inCorrezione === v.id ? null : v.id;
+      mostraPannello();
+      if (ui.inCorrezione === null) focusRiga(v.id); else $('campo-ora').focus();
+    });
+    return riga;
+  }
+
+  // Il focus torna alla riga appena modificata; se non è più tra quelle visibili, al tasto "Mostra tutto".
+  function focusRiga(id) {
+    const riga = document.querySelector('[data-voce="' + id + '"]');
+    (riga || $('tasto-cron')).focus();
+  }
+
+  function chiudiEditor(id) {
+    ui.inCorrezione = null;
+    mostraPannello();
+    focusRiga(id);
+  }
+
+  function editorOra(v) {
+    const box = el('div', 'editor-ora');
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', 'Ora del passaggio');
+    const etichetta = el('label', null, 'Ora effettiva');
+    etichetta.htmlFor = 'campo-ora';
+    const campo = el('input');
+    campo.type = 'time';
+    campo.id = 'campo-ora';
+    campo.required = true;
+    campo.value = ora(v.istante);
+    const aiuto = el('p', 'aiuto', tip("Indica l'ora in cui l'adempimento è stato effettivamente compiuto, non quella in cui l'hai registrato."));
+    const errore = el('p', 'errore', 'Inserisci un’ora valida.');
+    errore.id = 'errore-ora';
+    errore.hidden = true;
+    errore.setAttribute('role', 'alert');
+    const azioni = el('div', 'azioni');
+    const conferma = el('button', 'tasto primario', tip("Correggi l'ora"));
+    conferma.type = 'button';
+    const annulla = el('button', 'tasto', 'Annulla');
+    annulla.type = 'button';
+    azioni.append(conferma, annulla);
+
+    conferma.addEventListener('click', () => {
+      const nuovo = oraSuData(v.istante, campo.value);
+      if (!nuovo) {
+        errore.hidden = false;
+        campo.setAttribute('aria-invalid', 'true');
+        campo.focus();
+        return;
+      }
+      correggiIstante(ui.rilievo, v.id, nuovo);
+      chiudiEditor(v.id);
+    });
+    annulla.addEventListener('click', () => chiudiEditor(v.id));
+    box.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') chiudiEditor(v.id); });
+
+    box.append(etichetta, campo, aiuto, errore, azioni);
+    return box;
+  }
+
+  // ---- Persone coinvolte: elenco
+  const trovaSoggetto = (id) => ui.rilievo.soggetti.find((x) => x.id === id);
+
+  function pannelloSoggetti() {
+    if (ui.soggettoAperto !== null) {
+      const s = trovaSoggetto(ui.soggettoAperto);
+      if (s) return editorSoggetto(s);
+      ui.soggettoAperto = null;
+    }
+    return elencoSoggetti();
+  }
+
+  function elencoSoggetti() {
+    const r = ui.rilievo;
+    const sezione = el('div');
+    sezione.append(el('h3', 'titolo-sez', 'Persone coinvolte'));
+    if (r.soggetti.length === 0) {
+      const scheda = el('div', 'scheda');
+      scheda.append(el('p', 'vuoto', 'Nessuna persona inserita. Aggiungi chi è coinvolto: i dati restano in questa pagina e non vengono inviati a nessuno.'));
+      sezione.append(scheda);
+    } else {
+      const elenco = el('ul', 'elenco');
+      for (const s of r.soggetti) {
+        const voce = el('li');
+        voce.append(rigaSoggetto(s));
+        elenco.append(voce);
+      }
+      sezione.append(elenco);
+    }
+
+    const aggiungi = el('button', 'tasto-testo aggiungi', 'Aggiungi persona');
+    aggiungi.type = 'button';
+    aggiungi.id = 'aggiungi-persona';
+    aggiungi.setAttribute('aria-expanded', ui.menuRuoli ? 'true' : 'false');
+    aggiungi.addEventListener('click', () => { ui.menuRuoli = !ui.menuRuoli; mostraPannello(); $('aggiungi-persona').focus(); });
+    sezione.append(aggiungi);
+
+    if (ui.menuRuoli) {
+      const menu = el('ul', 'elenco menu-ruoli');
+      for (const ruolo of NORME.ruoli) {
+        const voce = el('li');
+        const tasto = el('button', 'scheda scheda-tasto');
+        tasto.type = 'button';
+        tasto.append(el('span', 'titolo', tip(ruolo.nome)));
+        tasto.addEventListener('click', () => apriNuovoSoggetto(ruolo.chiave));
+        voce.append(tasto);
+        menu.append(voce);
+      }
+      sezione.append(menu);
+    }
+    return sezione;
+  }
+
+  function rigaSoggetto(s) {
+    const tasto = el('button', 'scheda scheda-tasto riga-sogg');
+    tasto.type = 'button';
+    tasto.dataset.soggetto = String(s.id);
+    const corpo = el('span', 'corpo-sogg');
+    const nome = el('span', 'riga-nome');
+    nome.append(el('span', 'nome-sogg', etichettaLocale(s)), el('span', 'sigla', sigla(s)));
+    corpo.append(nome, el('span', 'ruolo', tip(ruoloDi(s.ruolo).nome)));
+    if (s.stato !== 'identificato') {
+      corpo.append(el('span', 'stato-sogg oro', tip(NORME.stati.find((x) => x.chiave === s.stato).nome)));
+    } else if (!generalitaComplete(s)) {
+      corpo.append(el('span', 'stato-sogg mancano', 'Mancano: ' + campiMancanti(s).join(', ')));
+    }
+    if (s.minore) corpo.append(el('span', 'minore', 'Minore — tutele rafforzate'));
+    tasto.append(el('span', generalitaComplete(s) ? 'barra' : 'barra da-completare'), corpo);
+    tasto.addEventListener('click', () => {
+      ui.soggettoAperto = s.id;
+      ui.menuRuoli = false;
+      mostraPannello();
+      $('titolo-editor').focus();
+    });
+    return tasto;
+  }
+
+  function apriNuovoSoggetto(chiave) {
+    const s = aggiungiSoggetto(ui.rilievo, chiave, new Date());
+    ui.menuRuoli = false;
+    ui.soggettoAperto = s.id;
+    mostraPannello();
+    $('titolo-editor').focus();
+  }
+
+  function chiudiEditorSoggetto(id) {
+    ui.soggettoAperto = null;
+    mostraPannello();
+    (document.querySelector('[data-soggetto="' + id + '"]') || $('aggiungi-persona')).focus();
+  }
+
+  // ---- Persone coinvolte: componenti dei moduli
+  let contaId = 0;
+  const nuovoId = () => 'c-' + (++contaId);
+
+  function campoTesto(etichetta, valore, alCambio, segnaposto) {
+    const box = el('div', 'campo');
+    const id = nuovoId();
+    const lab = el('label', null, etichetta);
+    lab.htmlFor = id;
+    const campo = el('input');
+    campo.type = 'text';
+    campo.id = id;
+    campo.value = valore;
+    campo.setAttribute('autocomplete', 'off');
+    if (segnaposto) campo.placeholder = segnaposto;
+    campo.addEventListener('input', () => alCambio(campo.value));
+    box.append(lab, campo);
+    return box;
+  }
+
+  function campoData(etichetta, valore, alCambio) {
+    const box = el('div', 'campo');
+    const id = nuovoId();
+    const lab = el('label', null, etichetta);
+    lab.htmlFor = id;
+    const campo = el('input');
+    campo.type = 'date';
+    campo.id = id;
+    campo.value = valore;
+    const cancella = el('button', 'tasto-testo pericolo-testo', 'Cancella');
+    cancella.type = 'button';
+    cancella.hidden = !valore;
+    const aggiorna = () => { alCambio(campo.value); cancella.hidden = !campo.value; };
+    campo.addEventListener('input', aggiorna);
+    campo.addEventListener('change', aggiorna);
+    cancella.addEventListener('click', () => { campo.value = ''; aggiorna(); campo.focus(); });
+    const riga = el('div', 'riga-data');
+    riga.append(campo, cancella);
+    box.append(lab, riga);
+    return box;
+  }
+
+  function campoSesso(valore, alCambio) {
+    const gruppo = el('fieldset', 'segmentato');
+    gruppo.append(el('legend', null, tip('Sesso (facoltativo, accorda «nato/nata» nel riepilogo)')));
+    const barra = el('div', 'gruppo');
+    for (const [v, testo] of [['', 'Non specificato'], ...NORME.sesso.map((x) => [x, x])]) {
+      const lab = el('label');
+      const radio = el('input');
+      radio.type = 'radio';
+      radio.name = 'sesso';
+      radio.value = v;
+      radio.checked = valore === v;
+      radio.addEventListener('change', () => alCambio(v));
+      lab.append(radio, el('span', null, testo));
+      barra.append(lab);
+    }
+    gruppo.append(barra);
+    return gruppo;
+  }
+
+  function campoSelect(etichetta, opzioni, valore, alCambio, nomeCampo) {
+    const box = el('div', 'campo');
+    const id = nuovoId();
+    const lab = el('label', null, etichetta);
+    lab.htmlFor = id;
+    const sel = el('select');
+    sel.id = id;
+    if (nomeCampo) sel.dataset.campo = nomeCampo;
+    for (const [v, testo] of opzioni) {
+      const o = el('option', null, tip(testo));
+      o.value = v;
+      sel.append(o);
+    }
+    sel.value = valore;
+    sel.addEventListener('change', () => alCambio(sel.value));
+    box.append(lab, sel);
+    return box;
+  }
+
+  function interruttore(titolo, sotto, riferimento, acceso, alCambio, nomeCampo) {
+    const lab = el('label', 'interruttore');
+    const testo = el('span', 'testo-int');
+    testo.append(el('span', 'titolo-int', tip(titolo)));
+    if (sotto) testo.append(el('span', 'sotto', tip(sotto)));
+    if (riferimento) testo.append(el('span', 'norma', tip(riferimento)));
+    const casella = el('input');
+    casella.type = 'checkbox';
+    casella.setAttribute('role', 'switch');
+    casella.checked = acceso;
+    if (nomeCampo) casella.dataset.campo = nomeCampo;
+    casella.addEventListener('change', () => alCambio(casella.checked));
+    lab.append(testo, casella);
+    return lab;
+  }
+
+  function esitoVista(esito) {
+    if (!esito) return null;
+    const p = el('p', 'esito ' + (esito.tipo === 'bloccante' ? 'esito-rosso' : 'esito-arancione'));
+    p.setAttribute('role', 'status');
+    p.append(el('strong', null, (esito.tipo === 'bloccante' ? 'Attenzione' : 'Avviso') + ': '), el('span', null, tip(esito.messaggio)));
+    return p;
+  }
+
+  const AVVISO_DIFENSORE = 'Avviso della facoltà di farsi assistere da un difensore';
+
+  function disegnaDichiarazione(box, s, ridisegna) {
+    const pila = el('div', 'pila');
+    pila.append(interruttore('Ha reso dichiarazioni', null, 'art. 350 CPP', s.haDichiarazione,
+      (v) => { s.haDichiarazione = v; ridisegna('haDichiarazione'); }, 'haDichiarazione'));
+    if (s.haDichiarazione) {
+      pila.append(campoSelect('Modalità',
+        [['', 'Da indicare'], ...NORME.modalita.map((m) => [m.chiave, m.nome])],
+        s.modalita || '', (v) => { s.modalita = v || null; ridisegna('modalita'); }, 'modalita'));
+      if (!s.modalita) {
+        pila.append(el('p', 'avviso-campo', tip('Indica la modalità: senza, la dichiarazione non entra nel riepilogo.')));
+      }
+      if (avvisoNelleSommarie(s)) {
+        pila.append(interruttore(AVVISO_DIFENSORE, null, 'art. 114 disp. att. CPP', s.avvisoDifensore,
+          (v) => { s.avvisoDifensore = v; ridisegna('avviso-sommarie'); }, 'avviso-sommarie'));
+      }
+      const esito = esitoVista(validaDichiarazione(s));
+      if (esito) pila.append(esito);
+    }
+    box.replaceChildren(pila);
+  }
+
+  function disegnaAccertamenti(box, s, ridisegna) {
+    const pila = el('div', 'pila');
+    pila.append(interruttore('Sottoposto ad accertamenti urgenti sulla persona', 'Per esempio alcoltest o accertamenti su sostanze',
+      'art. 354 c.3 CPP; art. 356 CPP', s.sottopostoAccertamento,
+      (v) => { s.sottopostoAccertamento = v; ridisegna('accertamento'); }, 'accertamento'));
+    if (avvisoNegliAccertamenti(s)) {
+      pila.append(interruttore(AVVISO_DIFENSORE, null, 'art. 114 disp. att. CPP', s.avvisoDifensore,
+        (v) => { s.avvisoDifensore = v; ridisegna('avviso'); }, 'avviso'));
+    }
+    const esito = esitoVista(validaAccertamento(s));
+    if (esito) pila.append(esito);
+    box.replaceChildren(pila);
+  }
+
+  // ---- Persone coinvolte: scheda "Generalità"
+  function editorSoggetto(s) {
+    const g = s.generalita;
+    const sezione = el('div', 'editor-sogg');
+    const titolo = el('h3', 'titolo-sez', 'Generalità');
+    titolo.id = 'titolo-editor';
+    titolo.tabIndex = -1;
+    sezione.append(titolo);
+
+    const riga = el('div', 'scheda riga-sigla');
+    riga.append(el('span', 'etichetta', 'Sigla assegnata'), el('span', 'sigla', sigla(s)), el('span', 'ruolo', tip(ruoloDi(s.ruolo).nome)));
+    sezione.append(riga);
+    sezione.append(el('p', 'suggerimento', 'I dati che inserisci qui restano in questa pagina e non vengono inviati a nessun servizio esterno. Se ricarichi la pagina si cancellano: usa solo dati di fantasia.'));
+
+    const aiutoStato = el('p', 'aiuto', tip('Le generalità restano facoltative: inserisci quelle che conosci. Nel riepilogo la persona compare con questa indicazione.'));
+    aiutoStato.hidden = s.stato === 'identificato';
+    const stato = el('div', 'pila');
+    stato.append(
+      campoSelect('Identificazione', NORME.stati.map((x) => [x.chiave, x.nome]), s.stato,
+        (v) => { s.stato = v; aiutoStato.hidden = v === 'identificato'; }),
+      aiutoStato);
+
+    const campi = el('div', 'pila');
+    campi.append(
+      campoTesto('Cognome', g.cognome, (v) => { g.cognome = v; }),
+      campoTesto('Nome', g.nome, (v) => { g.nome = v; }),
+      campoTesto('Luogo di nascita', g.luogoNascita, (v) => { g.luogoNascita = v; }),
+      campoData('Data di nascita', g.dataNascita, (v) => { g.dataNascita = v; }),
+      campoSesso(g.sesso, (v) => { g.sesso = v; }),
+      campoTesto('Residenza', g.residenza, (v) => { g.residenza = v; }, 'Via, civico, comune'),
+      campoTesto('Documento', g.documento, (v) => { g.documento = v; }, 'Tipo e numero'));
+
+    const minore = el('div', 'scheda');
+    minore.append(interruttore('Minore', 'Attiva le tutele rafforzate.', null, s.minore, (v) => { s.minore = v; }));
+
+    const boxDich = el('div', 'scheda');
+    const boxAcc = el('div', 'scheda');
+    const ridisegna = (campoFocus) => {
+      disegnaDichiarazione(boxDich, s, ridisegna);
+      disegnaAccertamenti(boxAcc, s, ridisegna);
+      if (campoFocus) {
+        const f = sezione.querySelector('[data-campo="' + campoFocus + '"]');
+        if (f) f.focus();
+      }
+    };
+    ridisegna(null);
+
+    const fatto = el('button', 'tasto primario ampio', 'Fatto');
+    fatto.type = 'button';
+    fatto.addEventListener('click', () => chiudiEditorSoggetto(s.id));
+
+    const rimuovi = el('button', 'tasto-testo pericolo-testo', 'Rimuovi questa persona');
+    rimuovi.type = 'button';
+    const conferma = el('div', 'conferma');
+    conferma.hidden = true;
+    conferma.setAttribute('role', 'alert');
+    conferma.append(el('p', null, 'Rimuovere questa persona?'));
+    conferma.append(el('p', 'aiuto', tip("Le generalità saranno eliminate. L'operazione non è reversibile.")));
+    const azioni = el('div', 'azioni');
+    const si = el('button', 'tasto pericolo', 'Rimuovi');
+    si.type = 'button';
+    const no = el('button', 'tasto', 'Annulla');
+    no.type = 'button';
+    azioni.append(si, no);
+    conferma.append(azioni);
+    rimuovi.addEventListener('click', () => { conferma.hidden = false; no.focus(); });
+    no.addEventListener('click', () => { conferma.hidden = true; rimuovi.focus(); });
+    si.addEventListener('click', () => {
+      rimuoviSoggetto(ui.rilievo, s.id);
+      ui.soggettoAperto = null;
+      mostraPannello();
+      $('aggiungi-persona').focus();
+    });
+    const fine = el('div', 'azioni-fine');
+    fine.append(rimuovi);
+
+    sezione.append(stato, campi, minore, boxDich, boxAcc, fatto, fine, conferma);
+    return sezione;
+  }
+
+  // ---- Luogo e descrizione dei fatti
+  function aggiornaLuogo() {
+    const l = ui.rilievo.luogo.trim();
+    $('luogo-attivo').textContent = l === '' ? 'Luogo non indicato' : l;
+  }
+
+  function sezionePosizione() {
+    const sezione = el('div', 'sez-sotto');
+    sezione.append(el('h3', 'titolo-sez', 'Dove ti trovi'));
+    const scheda = el('div', 'scheda');
+    const campo = el('input', 'campo-libero');
+    campo.type = 'text';
+    campo.value = ui.rilievo.luogo;
+    campo.placeholder = 'Comune, via, riferimento';
+    campo.setAttribute('aria-label', 'Dove ti trovi');
+    campo.setAttribute('autocomplete', 'off');
+    campo.addEventListener('input', () => { ui.rilievo.luogo = campo.value; aggiornaLuogo(); });
+    scheda.append(campo);
+    sezione.append(scheda);
+    return sezione;
+  }
+
+  function sezioneFatti() {
+    const sezione = el('div', 'sez-sotto');
+    sezione.append(el('h3', 'titolo-sez', 'Come si sono svolti i fatti'));
+    const scheda = el('div', 'scheda');
+    const area = el('textarea', 'campo-libero');
+    area.rows = 6;
+    area.value = ui.rilievo.fatti;
+    area.placeholder = tip("Racconta l'accaduto con parole tue. (Dettatura vocale supportata dal dispositivo)");
+    area.setAttribute("capture", "microphone");
+    area.setAttribute('aria-label', 'Come si sono svolti i fatti');
+    area.addEventListener('input', () => { ui.rilievo.fatti = area.value; });
+    scheda.append(area);
+    sezione.append(scheda);
+
+    const avvertenza = el('div', 'avvertenza');
+    const testo = el('div');
+    testo.append(
+      el('p', 'avv-titolo', 'Scrivi le tue osservazioni, non le parole altrui'),
+      el('p', 'avv-corpo', tip('Le notizie raccolte sul posto senza difensore non sono documentabili: trascriverle qui equivarrebbe a documentarle.')),
+      el('span', 'norma', 'art. 350 c.5-6 CPP'));
+    avvertenza.append(el('span', 'filo-oro'), testo);
+    sezione.append(avvertenza);
+    return sezione;
+  }
+
+  // ---- Riepilogo
+  function soloSchermo(nodo) { nodo.classList.add('solo-schermo'); return nodo; }
+
+  function schedaOrari() {
+    const r = ui.rilievo;
+    const scheda = soloSchermo(el('div', 'scheda'));
+    const inizio = el('div', 'riga-orario');
+    inizio.append(el('span', 'etichetta-or', 'Inizio delle operazioni'), el('strong', null, ora(r.apertura)));
+    const fine = el('div', 'riga-orario');
+    fine.append(el('span', 'etichetta-or', 'Fine delle operazioni'));
+    const destra = el('span', 'dx-orario');
+    if (r.fine === null) {
+      const adesso = el('button', 'tasto-testo', 'Adesso');
+      adesso.type = 'button';
+      adesso.id = 'fine-adesso';
+      adesso.addEventListener('click', () => { r.fine = new Date(); ui.copia = null; mostraPannello(); $('campo-fine').focus(); });
+      destra.append(adesso);
+    } else {
+      const campo = el('input');
+      campo.type = 'time';
+      campo.id = 'campo-fine';
+      campo.value = ora(r.fine);
+      campo.setAttribute('aria-label', 'Ora di fine delle operazioni');
+      campo.addEventListener('change', () => {
+        const nuovo = oraSuData(r.fine, campo.value);
+        if (!nuovo) { campo.value = ora(r.fine); return; }
+        r.fine = nuovo; ui.copia = null; mostraPannello(); $('campo-fine').focus();
+      });
+      const togli = el('button', 'tasto-testo', '×');
+      togli.type = 'button';
+      togli.setAttribute('aria-label', "Togli l'ora di fine delle operazioni");
+      togli.addEventListener('click', () => { r.fine = null; ui.copia = null; mostraPannello(); $('fine-adesso').focus(); });
+      destra.append(campo, togli);
+    }
+    fine.append(destra);
+    const nota = r.fine === null
+      ? "Se non la indichi, nel riepilogo risulta l'ora in cui lo produci."
+      : 'Nel riepilogo compaiono soltanto questi due orari: la cronologia degli adempimenti resta nella scheda Cronologia.';
+    scheda.append(inizio, fine, el('p', 'suggerimento', tip(nota)));
+    return scheda;
+  }
+
+  async function copiaRiepilogo() {
+    const testo = testoRiepilogo(bozzaRiepilogo(ui.rilievo, ui.rilievo.fine, ui.adesso));
+    try {
+      if (!(navigator.clipboard && navigator.clipboard.writeText)) throw new Error('copia non disponibile');
+      await navigator.clipboard.writeText(testo);
+      ui.copia = 'ok';
+    } catch (errore) {
+      ui.copia = 'manuale';
+    }
+    mostraPannello();
+    if (ui.copia === 'manuale') { const area = $('testo-da-copiare'); area.focus(); area.select(); } else { $('copia').focus(); }
+  }
+
+  // Riga di diagnosi, visibile solo quando il salvataggio non è disponibile: dice perché.
+  function testoDiagnosi() {
+    let incorniciata;
+    try { incorniciata = window.self !== window.top; } catch (errore) { incorniciata = true; }
+    return 'Dettagli tecnici: claude ' + (window.claude ? 'presente' : 'assente') + '; salvataggio ' + ui.statoDownload +
+      '; finestra ' + (incorniciata ? 'incorniciata' : 'a tutta pagina') + '; CSP ' +
+      (violazioniCsp.length ? violazioniCsp.slice(0, 3).join(' | ') : 'nessuna violazione');
+  }
+
+  async function salvaFile(idTasto, nomeFile, dati) {
+    try {
+      await ui.download.save({ filename: nomeFile, data: dati });
+      ui.copia = 'salvato';
+    } catch (errore) {
+      ui.copia = errore && errore.code === 'declined' ? 'annullato' : 'errore';
+    }
+    mostraPannello();
+    $(idTasto).focus();
+  }
+
+  function pannelloRiepilogo() {
+    const r = ui.rilievo;
+    ui.adesso = new Date();
+    const bozza = bozzaRiepilogo(r, r.fine, ui.adesso);
+    const sezione = el('div');
+    sezione.append(soloSchermo(el('h3', 'titolo-sez', 'Riepilogo')), schedaOrari());
+
+    const azioni = soloSchermo(el('div', 'azioni-riep'));
+    const copia = el('button', 'tasto primario', 'Copia il testo');
+    copia.type = 'button';
+    copia.id = 'copia';
+    copia.addEventListener('click', copiaRiepilogo);
+    if (ui.download) {
+      // Nella finestra di claude.ai il browser blocca la stampa e i salvataggi diretti: si salva un file.
+      const salvaTesto = el('button', 'tasto', 'Salva come file di testo');
+      salvaTesto.type = 'button';
+      salvaTesto.id = 'salva-testo';
+      salvaTesto.addEventListener('click', () => salvaFile('salva-testo', 'riepilogo-atti-mo.txt', testoRiepilogo(bozza) + '\n'));
+      const salvaPagina = el('button', 'tasto', 'Salva pagina stampabile');
+      salvaPagina.type = 'button';
+      salvaPagina.id = 'salva-pagina';
+      salvaPagina.addEventListener('click', () => salvaFile('salva-pagina', 'riepilogo-atti-mo.html', paginaStampabile(bozza)));
+      azioni.append(copia, salvaTesto, salvaPagina);
+    } else {
+      const stampa = el('button', 'tasto', 'Stampa o salva in PDF');
+      stampa.type = 'button';
+      stampa.id = 'stampa';
+      stampa.addEventListener('click', () => window.print());
+      azioni.append(copia, stampa);
+    }
+    sezione.append(azioni, soloSchermo(el('p', 'suggerimento', ui.download
+      ? 'Per stampare o fare un PDF: salva la pagina stampabile, aprila dal telefono o dal computer e usa Stampa.'
+      : 'Se la stampa non parte (in alcune finestre il browser la blocca), copia il testo e incollalo in Note.')));
+    if (!ui.download) sezione.append(soloSchermo(el('p', 'diagnosi', testoDiagnosi())));
+
+    // Esito dell'ultima azione di copia o salvataggio.
+    const messaggi = {
+      ok: ['Testo copiato.', false],
+      salvato: ['File salvato.', false],
+      annullato: ['Salvataggio annullato.', true],
+      errore: ['Non riesco a salvare il file in questa finestra. Copia il testo e incollalo in Note.', true],
+      manuale: ['Non riesco a copiare in automatico: seleziona il testo qui sotto e copialo.', true],
+    };
+    if (messaggi[ui.copia]) {
+      const [testo, attenzione] = messaggi[ui.copia];
+      const stato = soloSchermo(el('p', attenzione ? 'stato-copia attenzione' : 'stato-copia', testo));
+      stato.setAttribute('role', 'status');
+      sezione.append(stato);
+      if (ui.copia === 'manuale') {
+        const area = soloSchermo(el('textarea', 'campo-libero'));
+        area.id = 'testo-da-copiare';
+        area.readOnly = true;
+        area.value = testoRiepilogo(bozza);
+        area.setAttribute('aria-label', 'Testo del riepilogo');
+        sezione.append(area);
+      }
+    }
+
+    const doc = el('article', 'documento');
+    doc.setAttribute('aria-label', 'Riepilogo dimostrativo');
+    doc.append(el('h3', null, bozza.titolo), el('p', 'doc-tipo', tip(bozza.tipo)), el('p', 'doc-premessa', tip(bozza.premessa)));
+    for (const sez of bozza.sezioni) {
+      const blocco = el('section', 'doc-sez');
+      blocco.append(el('h4', null, sez.titolo));
+      for (const riga of sez.righe) blocco.append(el('p', null, tip(riga)));
+      doc.append(blocco);
+    }
+    doc.append(el('p', 'doc-chiusura', tip(bozza.chiusura)), el('p', 'doc-nota', tip(bozza.nota)));
+    sezione.append(doc);
+    return sezione;
+  }
+  // #endregion vista
+
+  // #region avvio
+  
+  function ripristinaDate(r) {
+    if (r.apertura) r.apertura = new Date(r.apertura);
+    if (r.fine) r.fine = new Date(r.fine);
+    r.checklist.forEach(e => { if (e.istante) e.istante = new Date(e.istante); });
+    r.cronologia.forEach(v => { if (v.istante) v.istante = new Date(v.istante); });
+  }
+
+  function salvaStato() {
+    if (ui.rilievo) {
+      sessionStorage.setItem('atti-mo-rilievo', JSON.stringify(ui.rilievo));
+    }
+  }
+  setInterval(salvaStato, 1500);
+
+  function avvio() {
+
+    document.title = NORME.app.nome + ', demo';
+    $('nome').textContent = NORME.app.nome;
+    riempiAcronimo($('acronimo'), NORME.app.acronimo);
+    $('data-verifica').textContent = NORME.fonte.ultima_verifica;
+    $('indipendenza').textContent = tip(NORME.app.indipendenza);
+    mostraTipi();
+
+    // Il salvataggio dei file è offerto dall'host (claude.ai): arriva dopo, o non arriva. Senza, la pagina funziona lo stesso.
+    document.addEventListener('securitypolicyviolation', (e) => {
+      violazioniCsp.push((e.violatedDirective || '?') + ' ' + (e.blockedURI || ''));
+      if (ui.rilievo && ui.scheda === 'riepilogo') mostraPannello();
+    });
+    if (window.claude && typeof window.claude.use === 'function') {
+      ui.statoDownload = 'in attesa';
+      const aggiorna = () => { if (ui.rilievo && ui.scheda === 'riepilogo') mostraPannello(); };
+      window.claude.use('downloads').then((capability) => {
+        ui.download = capability || null;
+        ui.statoDownload = ui.download ? 'disponibile' : 'non disponibile';
+        aggiorna();
+      }, (errore) => {
+        ui.download = null;
+        ui.statoDownload = 'errore ' + String((errore && (errore.code || errore.message)) || errore);
+        aggiorna();
+      });
+    }
+
+    
+    $('toggle-tema').addEventListener('click', () => {
+      const isChiaro = document.documentElement.getAttribute('data-tema') === 'chiaro';
+      document.documentElement.setAttribute('data-tema', isChiaro ? 'scuro' : 'chiaro');
+    });
+
+    $('cancella-dati').addEventListener('click', () => {
+      sessionStorage.removeItem('atti-mo-rilievo');
+      chiudiRilievo();
+    });
+
+    const salvato = sessionStorage.getItem('atti-mo-rilievo');
+    if (salvato) {
+      try {
+        ui.rilievo = JSON.parse(salvato);
+        ripristinaDate(ui.rilievo);
+        ui.scheda = 'checklist';
+        $('tipo-attivo').textContent = tip(ui.rilievo.nomeTipo);
+        $('apertura').textContent = ora(ui.rilievo.apertura);
+        aggiornaLuogo();
+        aggiornaSchede();
+        mostraSchermata('rilievo');
+        mostraPannello();
+      } catch (e) {
+        sessionStorage.removeItem('atti-mo-rilievo');
+      }
+    }
+
+    $('cambia').addEventListener('click', chiediCambio);
+
+    $('conferma-si').addEventListener('click', chiudiRilievo);
+    $('conferma-no').addEventListener('click', () => { $('conferma-cambio').hidden = true; $('cambia').focus(); });
+    for (const b of document.querySelectorAll('[data-scheda]')) {
+      b.addEventListener('click', () => {
+        ui.scheda = b.dataset.scheda; ui.inCorrezione = null; ui.soggettoAperto = null; ui.menuRuoli = false; ui.copia = null;
+        aggiornaSchede(); mostraPannello();
+      });
+    }
+  }
+  avvio();
+  // #endregion avvio
+})();
+</script>
+</body>
+</html>
