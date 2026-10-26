@@ -1,0 +1,1500 @@
+<!doctype html>
+<html lang="it" data-tema="scuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; font-src data:; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#2A2540">
+<title>Atti-MO 5.1, demo pubblica</title>
+<style>
+/* Grafica Nashira. Colori del marchio alla lettera (viola notte, oro, chiaro, carta); gli altri sono derivati e verificati sui contrasti. */
+@font-face {
+  font-family: "Jost";
+  src: url(data:font/woff2;base64,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) format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+:root {
+  --viola: #2A2540; --oro: #E3B341; --chiaro: #F1EEE6; --carta: #F7F4EE;
+  --carattere: "Jost", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sfondo: #2A2540;
+  --superficie: #39344C;
+  --superficie-alta: #464157;
+  --filo: #565165;
+  --testo: #F1EEE6;
+  --testo-tenue: #B5B2B4;
+  --accento: #E3B341;
+  --su-accento: #2A2540;
+  --accento-testo: #E3B341;
+  --verde: #6CC49B;
+  --su-verde: #2A2540;
+  --rosso: #EF9D95;
+  --su-rosso: #2A2540;
+  color-scheme: dark;
+}
+:root[data-tema="chiaro"] {
+  --sfondo: #F7F4EE;
+  --superficie: #F1EEE6;
+  --superficie-alta: #E5E2DC;
+  --filo: #CECBCB;
+  --testo: #2A2540;
+  --testo-tenue: #666173;
+  --accento: #E3B341;
+  --su-accento: #2A2540;
+  --accento-testo: #765F40;
+  --verde: #2D6D5C;
+  --su-verde: #F7F4EE;
+  --rosso: #A0484A;
+  --su-rosso: #F7F4EE;
+  color-scheme: light;
+}
+/* Fasce che restano viola notte in entrambi i temi: i loghi del kit esistono solo per fondo scuro. */
+.notte-fissa {
+  --sfondo: #2A2540;
+  --superficie: #39344C;
+  --superficie-alta: #464157;
+  --filo: #565165;
+  --testo: #F1EEE6;
+  --testo-tenue: #B5B2B4;
+  --accento: #E3B341;
+  --su-accento: #2A2540;
+  --accento-testo: #E3B341;
+  --verde: #6CC49B;
+  --su-verde: #2A2540;
+  --rosso: #EF9D95;
+  --su-rosso: #2A2540;
+  color-scheme: dark;
+  color: var(--testo);
+}
+
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 1rem; }
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--sfondo); color: var(--testo); font: 400 1rem/1.55 var(--carattere); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--accento-testo); }
+:focus-visible { outline: 2px solid var(--accento-testo); outline-offset: 2px; }
+.notte-fissa :focus-visible { outline-color: var(--oro); }
+[tabindex="-1"]:focus { outline: none; }
+
+/* Fasce */
+.banda { background: var(--viola); padding: calc(.7rem + env(safe-area-inset-top, 0px)) 1.25rem .7rem; }
+.banda-in, .piede-in { max-width: 34rem; margin: 0 auto; }
+.banda-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.marchio { display: block; height: 2.125rem; width: auto; }
+.tema { min-height: 2.25rem; padding: .35rem .9rem; border-radius: 999px; border: 1px solid var(--filo); background: transparent; font-size: .8125rem; font-weight: 500; cursor: pointer; }
+
+.pagina { max-width: 34rem; margin: 0 auto; padding: 1.5rem 1.25rem 2.25rem; }
+
+/* Testata */
+h1 { margin: 0; font-weight: 600; font-size: clamp(2.75rem, 13vw, 3.9rem); line-height: 1; letter-spacing: -.015em; }
+.acronimo { margin: .55rem 0 0; font-size: 1.25rem; font-weight: 500; color: var(--testo-tenue); }
+.acronimo .iniziale { color: var(--accento-testo); font-weight: 700; }
+.versione { margin: .5rem 0 0; font-size: .875rem; color: var(--testo-tenue); }
+.lead { margin: 1.25rem 0 0; max-width: 31rem; font-size: 1.125rem; line-height: 1.5; }
+.passi-titolo { margin: 1.75rem 0 .6rem; font-size: 1.0625rem; font-weight: 600; }
+.passi { list-style: none; counter-reset: passo; margin: 0; padding: 1rem 1.1rem; display: grid; gap: .7rem; background: var(--superficie); border: 1px solid var(--filo); border-radius: 14px; }
+.passi li { counter-increment: passo; display: grid; grid-template-columns: 1.75rem 1fr; gap: .75rem; align-items: start; font-size: .9375rem; }
+.passi li::before { content: counter(passo); display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--accento); color: var(--su-accento); font-weight: 700; font-size: .875rem; }
+.passi-nota { margin: .7rem 0 0; font-size: .875rem; font-weight: 500; color: var(--accento-testo); }
+
+.avviso { margin: 1.25rem 0 0; padding: .9rem 1rem; border-radius: 12px; font-size: .9375rem; border: 1px solid var(--accento-testo); background: var(--superficie); background: color-mix(in srgb, var(--accento) 12%, transparent); }
+.avviso strong { color: var(--accento-testo); font-weight: 600; }
+.avviso.breve { margin-top: 0; padding: .55rem .85rem; font-size: .8125rem; }
+
+section { margin-top: 2rem; }
+#schermata-rilievo { margin-top: .75rem; }
+h2 { margin: 0; font-size: 1.3rem; font-weight: 600; line-height: 1.25; }
+#titolo-tipi { margin-bottom: .75rem; }
+.elenco { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+
+.scheda { display: block; padding: 1rem; border-radius: 12px; border: 1px solid var(--filo); background: var(--superficie); }
+.scheda-tasto { width: 100%; text-align: left; cursor: pointer; }
+.scheda-tasto .titolo { display: block; font-size: 1.125rem; font-weight: 600; }
+.scheda-tasto .descr { display: block; margin-top: .25rem; font-size: .9375rem; color: var(--testo-tenue); }
+.scheda-tasto .conta { display: block; margin-top: .6rem; font-size: .875rem; font-weight: 500; }
+@media (hover: hover) { .scheda-tasto:hover { border-color: var(--accento-testo); } }
+
+/* Pulsanti */
+.tasto { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: .55rem 1.1rem; border-radius: 12px; border: 1px solid var(--filo); background: transparent; font-weight: 500; text-decoration: none; cursor: pointer; }
+.tasto.primario { background: var(--accento); border-color: var(--accento); color: var(--su-accento); font-weight: 600; }
+.tasto.pericolo { background: var(--rosso); border-color: var(--rosso); color: var(--su-rosso); font-weight: 600; }
+.tasto.ampio { width: 100%; }
+.tasto-testo { align-self: flex-start; min-height: 2.75rem; padding: .5rem 0; background: none; border: 0; color: var(--accento-testo); font-weight: 500; cursor: pointer; }
+.tasto-testo.pericolo-testo { color: var(--rosso); }
+.tasto-testo.aggiungi::before { content: "+\00a0"; }
+.azioni { display: flex; flex-wrap: wrap; gap: .6rem; }
+
+/* Rilievo */
+.barra-rilievo { display: flex; flex-direction: column; }
+.conferma { margin: 0 0 .75rem; padding: .9rem 1rem; border-radius: 12px; border: 1px solid var(--rosso); background: color-mix(in srgb, var(--rosso) 12%, transparent); }
+.conferma p { margin: 0 0 .7rem; font-size: .9375rem; }
+.intestazione-rilievo { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-top: .25rem; }
+.titoli-rilievo { flex: 1; min-width: 0; }
+.tipo-attivo { font-size: 1.5rem; }
+.luogo-attivo { margin: .15rem 0 0; font-size: .9375rem; color: var(--testo-tenue); overflow-wrap: anywhere; }
+.apertura { flex: none; text-align: right; }
+.apertura .piccolo { display: block; font-size: .75rem; color: var(--testo-tenue); }
+.apertura strong { font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.schede { display: flex; gap: .5rem; margin: 1rem 0 1.25rem; overflow-x: auto; padding-bottom: .25rem; }
+.schede button { flex: none; min-height: 2.5rem; padding: .45rem 1rem; border-radius: 999px; border: 1px solid var(--filo); background: transparent; color: var(--testo-tenue); font-weight: 500; font-size: .9375rem; cursor: pointer; }
+.schede button[aria-current="page"] { background: var(--accento); border-color: var(--accento); color: var(--su-accento); font-weight: 600; }
+
+.titolo-sez { margin-bottom: .75rem; font-size: 1.1875rem; font-weight: 600; }
+.testa-sez { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+.testa-sez .titolo-sez { margin: 0; }
+.testa-sez .tasto-testo { padding: .4rem 0; }
+.sez-sotto { margin-top: 1.5rem; }
+
+/* Adempimenti */
+.adempimento { display: flex; gap: .9rem; align-items: flex-start; cursor: pointer; }
+.adempimento input { -webkit-appearance: none; appearance: none; flex: none; display: grid; place-content: center; width: 1.5rem; height: 1.5rem; margin: .1rem 0 0; border: 2px solid var(--accento-testo); border-radius: 7px; background: transparent; }
+.adempimento input::after { content: ""; width: .35rem; height: .7rem; border: solid var(--su-verde); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); opacity: 0; }
+.adempimento input:checked { background: var(--verde); border-color: var(--verde); }
+.adempimento input:checked::after { opacity: 1; }
+.adempimento input:focus-visible { outline-offset: 3px; }
+.adempimento .testo { display: block; min-width: 0; }
+.adempimento .titolo { display: block; font-size: 1rem; font-weight: 500; }
+.norma { display: block; margin-top: .25rem; font-size: .8125rem; color: var(--accento-testo); }
+.assolto { display: block; margin-top: .25rem; font-size: .8125rem; font-weight: 500; color: var(--verde); }
+.adempimento + .tasto-testo { min-height: 2.25rem; padding: .25rem 0; font-size: .875rem; }
+
+/* Cronologia */
+.vuoto { margin: 0; font-size: .9375rem; color: var(--testo-tenue); }
+.riga-cron { display: grid; grid-template-columns: 3.4rem 8px 1fr; gap: .75rem; width: 100%; padding: .2rem 0; text-align: left; background: none; border: 0; cursor: pointer; }
+.orario { font-weight: 600; font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.filo { display: flex; flex-direction: column; align-items: center; padding-top: .55rem; }
+.pallino { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--verde); }
+.pallino.corretta { background: var(--accento-testo); }
+.linea { flex: 1; width: 1px; margin-top: 3px; background: var(--filo); }
+.descr-cron { display: block; min-width: 0; padding-bottom: .9rem; }
+.riga-cron.ultima .descr-cron { padding-bottom: 0; }
+.titolo-cron { display: block; font-size: .9375rem; }
+.altri { margin: .6rem 0 0; font-size: .8125rem; color: var(--testo-tenue); }
+.corretta-nota { display: block; margin-top: .25rem; font-size: .8125rem; color: var(--accento-testo); }
+.suggerimento { margin: .6rem 0 0; font-size: .8125rem; color: var(--testo-tenue); }
+
+.editor-ora { margin: .5rem 0 .9rem; padding: .9rem 1rem; border-radius: 12px; border: 1px solid var(--filo); background: var(--superficie-alta); }
+.editor-ora label { display: block; margin-bottom: .35rem; font-size: .875rem; font-weight: 500; }
+.editor-ora .aiuto { margin: .6rem 0 .8rem; font-size: .875rem; color: var(--testo-tenue); }
+.editor-ora .errore { margin: .5rem 0 0; font-size: .875rem; color: var(--rosso); }
+.editor-ora input[aria-invalid="true"] { border-color: var(--rosso); }
+
+/* Persone */
+.menu-ruoli { margin: .25rem 0 .5rem; }
+.riga-sogg { display: flex; gap: .9rem; align-items: stretch; }
+.barra { flex: none; width: 4px; border-radius: 3px; background: var(--verde); }
+.barra.da-completare { background: var(--accento); }
+.corpo-sogg { display: block; min-width: 0; }
+.riga-nome { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.nome-sogg { font-size: 1.0625rem; font-weight: 600; }
+.sigla { display: inline-block; padding: .1rem .55rem; border-radius: 999px; background: var(--oro); color: var(--viola); font-size: .8125rem; font-weight: 600; }
+.ruolo { display: block; margin-top: .15rem; font-size: .875rem; color: var(--testo-tenue); }
+.stato-sogg { display: block; margin-top: .25rem; font-size: .8125rem; font-weight: 500; }
+.stato-sogg.mancano, .stato-sogg.oro, .minore { color: var(--accento-testo); }
+.minore { display: block; margin-top: .25rem; font-size: .8125rem; font-weight: 600; }
+.editor-sogg > * + * { margin-top: 1rem; }
+.riga-sigla { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; }
+.riga-sigla .etichetta { font-size: .8125rem; color: var(--testo-tenue); }
+.pila { display: grid; gap: .9rem; }
+.campo { display: block; }
+.campo label, .segmentato legend { display: block; margin-bottom: .3rem; font-size: .875rem; color: var(--testo-tenue); }
+.campo input[type="text"], .campo input[type="date"], .campo select, .campo-libero, .editor-ora input[type="time"], .dx-orario input[type="time"] {
+  display: block; width: 100%; min-height: 2.75rem; padding: .6rem .75rem; border-radius: 10px; border: 1px solid var(--filo); background: var(--sfondo); color: var(--testo); color-scheme: inherit;
+}
+.editor-ora input[type="time"], .dx-orario input[type="time"] { width: auto; min-width: 8rem; font-variant-numeric: tabular-nums; }
+textarea.campo-libero { min-height: 8rem; resize: vertical; }
+.riga-data { display: flex; align-items: center; gap: .75rem; }
+.riga-data input { flex: 1; min-width: 0; }
+.riga-data .tasto-testo { padding: .4rem 0; }
+.segmentato { margin: 0; padding: 0; border: 0; min-width: 0; }
+.segmentato .gruppo { display: flex; border: 1px solid var(--filo); border-radius: 10px; overflow: hidden; }
+.segmentato label { position: relative; flex: 1; margin: 0; }
+.segmentato input { position: absolute; opacity: 0; pointer-events: none; }
+.segmentato span { display: block; padding: .65rem .3rem; text-align: center; font-size: .875rem; color: var(--testo-tenue); cursor: pointer; }
+.segmentato input:checked + span { background: var(--accento); color: var(--su-accento); font-weight: 600; }
+.segmentato input:focus-visible + span { outline: 2px solid var(--accento-testo); outline-offset: -2px; }
+.interruttore { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; cursor: pointer; }
+.testo-int { display: block; min-width: 0; }
+.titolo-int { display: block; font-size: 1rem; font-weight: 500; }
+.sotto { display: block; margin-top: .15rem; font-size: .8125rem; color: var(--testo-tenue); }
+.interruttore input { -webkit-appearance: none; appearance: none; flex: none; position: relative; width: 2.75rem; height: 1.6rem; margin: 0; border-radius: 999px; background: var(--filo); }
+.interruttore input::after { content: ""; position: absolute; top: .2rem; left: .2rem; width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--sfondo); }
+.interruttore input:checked { background: var(--accento); }
+.interruttore input:checked::after { left: 1.35rem; background: var(--su-accento); }
+.interruttore input:focus-visible { outline: 2px solid var(--accento-testo); outline-offset: 3px; }
+.esito { margin: 0 0 1rem; padding: .65rem .85rem; border-radius: 10px; font-size: .875rem; border-left: 4px solid; background: var(--superficie); }
+.esito-rosso { border-color: var(--rosso); background: color-mix(in srgb, var(--rosso) 12%, transparent); }
+.esito-rosso strong { color: var(--rosso); }
+.esito-arancione { border-color: var(--accento-testo); background: color-mix(in srgb, var(--accento) 14%, transparent); }
+.esito-arancione strong { color: var(--accento-testo); }
+.esito-verde { border-color: var(--verde); background: color-mix(in srgb, var(--verde) 12%, transparent); }
+.esito-verde strong { color: var(--verde); }
+.avviso-campo { margin: 0; font-size: .8125rem; font-weight: 500; color: var(--accento-testo); }
+.azioni-fine { text-align: center; }
+
+/* Fatti */
+.avvertenza { display: flex; gap: .7rem; margin-top: .75rem; }
+.filo-oro { flex: none; width: 4px; border-radius: 3px; background: var(--accento); }
+.avv-titolo { margin: 0; font-size: .875rem; font-weight: 600; }
+.avv-corpo { margin: .15rem 0 0; font-size: .8125rem; color: var(--testo-tenue); }
+
+/* Riepilogo */
+.riga-orario { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 2.5rem; }
+.riga-orario + .riga-orario { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--filo); }
+.etichetta-or { font-size: .9375rem; color: var(--testo-tenue); }
+.riga-orario strong { font-weight: 600; font-variant-numeric: tabular-nums; }
+.dx-orario { display: flex; align-items: center; gap: .5rem; }
+.dx-orario .tasto-testo { padding: .4rem .5rem; font-size: 1.25rem; line-height: 1; color: var(--testo-tenue); }
+.azioni-riep { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.stato-copia { margin: .6rem 0 0; font-size: .9375rem; color: var(--verde); }
+.stato-copia.attenzione { color: var(--accento-testo); }
+#testo-da-copiare { margin-top: .6rem; min-height: 10rem; font-size: .875rem; }
+.documento { margin-top: 1.25rem; padding: 1.4rem 1.2rem; border-radius: 6px; border: 1px solid var(--filo); background: var(--carta); color: var(--viola); font: .96875rem/1.6 Georgia, "Times New Roman", serif; }
+.documento h3 { margin: 0; font-size: 1.3rem; line-height: 1.25; font-weight: 700; }
+.documento .doc-tipo { margin: .15rem 0 1rem; font-style: italic; }
+.documento h4 { margin: 1.1rem 0 .35rem; font-size: 1.0625rem; }
+.documento p { margin: 0 0 .45rem; overflow-wrap: anywhere; }
+.documento .doc-nota { margin-top: 1.1rem; font-size: .875rem; font-style: italic; }
+
+/* Piede e contatti */
+.piede { background: var(--viola); padding: 2rem 1.25rem calc(1.75rem + env(safe-area-inset-bottom, 0px)); font-size: .875rem; line-height: 1.55; }
+.piede p { margin: 0 0 .7rem; color: var(--testo-tenue); }
+.piede strong { color: var(--testo); font-weight: 600; }
+.contatti { margin: 1.5rem 0; padding: 1.25rem; display: grid; grid-template-columns: 1fr; gap: 1.1rem; border-radius: 14px; border: 1px solid var(--filo); background: var(--superficie); }
+.contatti h2 { font-size: 1.25rem; }
+.contatti p { font-size: .9375rem; }
+.contatti .contatto { margin: .25rem 0 .9rem; font-size: 1.125rem; font-weight: 600; color: var(--oro); }
+.contatti .azioni { margin-top: .25rem; }
+#feedback-esito { margin: .6rem 0 0; font-size: .875rem; color: var(--verde); }
+.qr { display: none; margin: 0; text-align: center; }
+.qr img { display: block; width: 8rem; height: 8rem; padding: 1.25rem; box-sizing: content-box; border-radius: 12px; background: var(--carta); }
+.qr figcaption { margin-top: .5rem; font-size: .8125rem; color: var(--testo-tenue); }
+@media (min-width: 36rem) { .contatti { grid-template-columns: 1fr auto; align-items: center; } .qr { display: block; } }
+.credito { display: flex; align-items: center; gap: .9rem; margin-top: 1.25rem; }
+.credito img { display: block; width: 2.5rem; height: 2.5rem; flex: none; }
+.credito p { margin: 0; }
+
+@media print {
+  :root { padding: 0; }
+  body { background: #fff; color: #000; }
+  .pagina { max-width: none; padding: 0; }
+  .banda, #testata, #avviso-pieno, #avviso-breve, #schermata-scelta, .piede, noscript,
+  .barra-rilievo, .intestazione-rilievo, .schede, .solo-schermo { display: none !important; }
+  #schermata-rilievo { margin: 0; }
+  .documento { margin: 0; padding: 0; border: 0; border-radius: 0; background: #fff; color: #000; font-size: 11pt; }
+  .documento h4 { break-after: avoid; }
+  .documento p { orphans: 3; widows: 3; }
+}
+</style>
+</head>
+<body>
+<header class="banda notte-fissa">
+  <div class="banda-in">
+    <img class="marchio" alt="Nashira Studio" width="86" height="34" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDggMTIwIiB3aWR0aD0iMzA4IiBoZWlnaHQ9IjEyMCIgeG1sbnM6YzJwYT0iaHR0cDovL2MycGEub3JnL21hbmlmZXN0Ij48bWV0YWRhdGE+PGMycGE6bWFuaWZlc3Q+QUFBV2dtcDFiV0lBQUFBZWFuVnRaR015Y0dFQUVRQVFnQUFBcWdBNG0zRURZekp3WVFBQUFCWmNhblZ0WWdBQUFFZHFkVzFrWXpKdFlRQVJBQkNBQUFDcUFEaWJjUU4xY200Nll6SndZVHBqTkdGbVpXRmpNUzFqTkRRMUxUUmtOVFF0T0dNNU1TMWhOR05qWkRBd1ptRmlOV1FBQUFBRGwycDFiV0lBQUFBcGFuVnRaR015WVhNQUVRQVFnQUFBcWdBNG0zRURZekp3WVM1aGMzTmxjblJwYjI1ekFBQUFBTHhxZFcxaUFBQUFSR3AxYldSalltOXlBQkVBRUlBQUFLb0FPSnR4RTJNeWNHRXVhVzVuY21Wa2FXVnVkQzUyTXdBQUFBQVlZekp6YUh4czQyU2tCdi9JMmxyVy9HOHJQNUFBQUFCd1kySnZjcU5wWkdNNlptOXliV0YwYldsdFlXZGxMM04yWnl0NGJXeHFhVzV6ZEdGdVkyVkpSSGdzZUcxd09tbHBaRG95WVRFMU5qTXdNQzAwTUdJMExUUTFObUV0WVRKaU9TMDVZVEl6T1RabVpUZGhOekZzY21Wc1lYUnBiMjV6YUdsd2FIQmhjbVZ1ZEU5bUFBQUI0bXAxYldJQUFBQkJhblZ0WkdOaWIzSUFFUUFRZ0FBQXFnQTRtM0VUWXpKd1lTNWhZM1JwYjI1ekxuWXlBQUFBQUJoak1uTm96TDc4a3NWYksxZmpldXFnTVQyc25nQUFBWmxqWW05eW9tZGhZM1JwYjI1emdxSm1ZV04wYVc5dWEyTXljR0V1YjNCbGJtVmthbkJoY21GdFpYUmxjbk9oYTJsdVozSmxaR2xsYm5SemdhSmpkWEpzZUMxelpXeG1JMnAxYldKbVBXTXljR0V1WVhOelpYSjBhVzl1Y3k5ak1uQmhMbWx1WjNKbFpHbGxiblF1ZGpOa2FHRnphRmdnU0puWDJzSUdaeS96cHFtVTVZVWtiVGxobkVvdk53Y1Q2d0NuenZUZjlCeWtabUZqZEdsdmJuZ2RZMjl0TG1GdWRHaHliM0JwWXk1amJHRjFaR1V1Y0hKdmRtbGtaV1JxY0dGeVlXMWxkR1Z5YzZGNEgyTnZiUzVoYm5Sb2NtOXdhV011YjNKcFoybHVMV052Ym1acFpHVnVZMlZuZFc1cmJtOTNibXRrWlhOamNtbHdkR2x2Ym5obVEyeGhkV1JsSUhCeWIzWnBaR1ZrSUhSb2FYTWdabWxzWlNCaGRDQjBhR1VnY21WeGRXVnpkQ0J2WmlCaElIVnpaWElnWVc1a0lHMWhlU0JvWVhabElHTnlaV0YwWldRZ2IzSWdiVzlrYVdacFpXUWdkR2hsSUdacGJHVWdZMjl1ZEdWdWRITXViWE52Wm5SM1lYSmxRV2RsYm5TaFpHNWhiV1ZtUTJ4aGRXUmxjbUZzYkVGamRHbHZibk5KYm1Oc2RXUmxaUFVBQUFESWFuVnRZZ0FBQUVCcWRXMWtZMkp2Y2dBUkFCQ0FBQUNxQURpYmNSTmpNbkJoTG1oaGMyZ3VaR0YwWVFBQUFBQVlZekp6YUZENjVjQ2VOZFpzcnI2K09jU2NmamtBQUFDQVkySnZjcVZqWVd4blpuTm9ZVEkxTm1Od1lXUk5BQUFBQUFBQUFBQUFBQUFBQUdSb1lYTm9XQ0JrdXBCRW1mNTRsZ2dZMS93bkl6NnR4dndsOUtEN0pXd3k0N2Z6N24wZFhXUnVZVzFsYm1wMWJXSm1JRzFoYm1sbVpYTjBhbVY0WTJ4MWMybHZibk9Cb21WemRHRnlkQmlXWm14bGJtZDBhQmtlQkFBQUFqNXFkVzFpQUFBQUoycDFiV1JqTW1Oc0FCRUFFSUFBQUtvQU9KdHhBMk15Y0dFdVkyeGhhVzB1ZGpJQUFBQUNEMk5pYjNLbFkyRnNaMlp6YUdFeU5UWnBjMmxuYm1GMGRYSmxlRTF6Wld4bUkycDFiV0ptUFM5ak1uQmhMM1Z5Ympwak1uQmhPbU0wWVdabFlXTXhMV00wTkRVdE5HUTFOQzA0WXpreExXRTBZMk5rTURCbVlXSTFaQzlqTW5CaExuTnBaMjVoZEhWeVpXcHBibk4wWVc1alpVbEVlQ3g0YlhBNmFXbGtPakF6TURRMU5EYzBMVEZqWVdVdE5HWXlaUzFpWldZMUxUZ3daakk0Tm1ReVptRTFabkpqY21WaGRHVmtYMkZ6YzJWeWRHbHZibk9Eb21OMWNteDRMWE5sYkdZamFuVnRZbVk5WXpKd1lTNWhjM05sY25ScGIyNXpMMk15Y0dFdWFXNW5jbVZrYVdWdWRDNTJNMlJvWVhOb1dDQkltZGZhd2dabkwvT21xWlRsaFNSdE9XR2NTaTgzQnhQckFLZk85Ti8wSEtKamRYSnNlQ3B6Wld4bUkycDFiV0ptUFdNeWNHRXVZWE56WlhKMGFXOXVjeTlqTW5CaExtRmpkR2x2Ym5NdWRqSmthR0Z6YUZnZ21US0doSFJWaEkyWHdHY1BPU21SZ2UvMmw4WVErZk1mWmxjRU4wVndmVm1pWTNWeWJIZ3BjMlZzWmlOcWRXMWlaajFqTW5CaExtRnpjMlZ5ZEdsdmJuTXZZekp3WVM1b1lYTm9MbVJoZEdGa2FHRnphRmdnWVVTbW1WMVVFNzcrMlJ0elNvM3VlZlJFNmVWYmlWRkxUMVFzYzFJR1pFeDBZMnhoYVcxZloyVnVaWEpoZEc5eVgybHVabStqWkc1aGJXVnZRVzUwYUhKdmNHbGpJRVpwYkdWelozWmxjbk5wYjI1bE1TNHdMakJyYzNCbFkxWmxjbk5wYjI1bE1pNDBMakFBQUJBNGFuVnRZZ0FBQUNocWRXMWtZekpqY3dBUkFCQ0FBQUNxQURpYmNRTmpNbkJoTG5OcFoyNWhkSFZ5WlFBQUFCQUlZMkp2Y3RLRVdRSVNvZ0VtR0NGWkFnb3dnZ0lHTUlJQmphQURBZ0VDQWhSQTVhQUs3c0k1MEw2NGcvb0dRZ1U5WjFVVEFEQUtCZ2dxaGtqT1BRUURBekJKTVJjd0ZRWURWUVFLRXc1QmJuUm9jbTl3YVdNc0lGQkNRekV1TUN3R0ExVUVBeE1sUVc1MGFISnZjR2xqSUVOdmJuUmxiblFnUTNKbFpHVnVkR2xoYkhNZ1VtOXZkQ0JEUVRBZUZ3MHlOakE0TURjeE9EUXpOVFphRncweU9EQTRNRFl4T1RRek5UWmFNRVF4RnpBVkJnTlZCQW9URGtGdWRHaHliM0JwWXl3Z1VFSkRNU2t3SndZRFZRUURFeUJCYm5Sb2NtOXdhV01nUTJ4aGRXUmxJRU52Ym5SbGJuUWdVMmxuYm1sdVp6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJKaDZDbXZMVUJnRkZOVTB2VUtsT1Z0RTZkamQxN0w1U3V3WDBMZW1GaXNCTTNka2QvM2N5anhGQTNRbzVTNDZmWDAvaWhZMFZaN21mYjlLRjcwM3Q1T2pXREJXTUE0R0ExVWREd0VCL3dRRUF3SUhnREFWQmdOVkhTVUVEakFNQmdvckJnRUVBWVBvWGdJQk1Bd0dBMVVkRXdFQi93UUNNQUF3SHdZRFZSMGpCQmd3Rm9BVXpsSGlCSUZPWkZzaitPUEV6NW8rbk1IWFhNSXdDZ1lJS29aSXpqMEVBd01EWndBd1pBSXdNWE1kRko0QmV0TExWWTdPUnVFOW5vcWJiQVpPWm4vYUFyWHlUd0ZBWmZLclB6eEYydlBvSk5mMStVQ2RnMVhHQWpCd1gxemQ5V0dxWWtxbUw1U0ZxdzFReVNqcjF6SmZwSk05KzFyZER3U1BMTU9QT2pLdWlYam9VL3BVVWVHOVJ3bWhZM0JoWkZrTm5nQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUFpZUUVrcnRkclY1QUM5dHNOTVd3c2E5ZEJTelhjOWlvV1crK2FmcHlpTGxXWmRZOC9iS2VpWjBCbU93R01vWnBZZXl2aVNWdEVZTWRmSHVQbFI4SzVPRGtVPTwvYzJwYTptYW5pZmVzdD48L21ldGFkYXRhPjxkZWZzPjxjbGlwUGF0aCBpZD0iY25GMUVFRTYiPjxwYXRoIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTS0yMCAtMjAgSDE0MCBWMTQwIEgtMjAgWiBNNjAuMDAgMzQuODggTDY1LjI4IDUwLjcyIEw4MS4xMiA1Ni4wMCBMNjUuMjggNjEuMjggTDYwLjAwIDc3LjEyIEw1NC43MiA2MS4yOCBMMzguODggNTYuMDAgTDU0LjcyIDUwLjcyIFoiLz48L2NsaXBQYXRoPjwvZGVmcz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NuRjFFRUU2KSI+CjxwYXRoIGQ9Ik0yMCA3NCBMMjAgMTAwIEw0NiAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0UzQjM0MSIgc3Ryb2tlLXdpZHRoPSI3LjAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMjggNTYgQTE2IDE2IDAgMCAxIDYwIDU2IEExNiAxNiAwIDAgMCA5MiA1NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRTNCMzQxIiBzdHJva2Utd2lkdGg9IjguMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0yOCA1NiBBMTYgMTYgMCAwIDAgNjAgNTYgQTE2IDE2IDAgMCAxIDkyIDU2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGMUVFRTYiIHN0cm9rZS13aWR0aD0iOC4wIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9nPgo8cGF0aCBkPSJNNjAgNDAgTDY0IDUyIEw3NiA1NiBMNjQgNjAgTDYwIDcyIEw1NiA2MCBMNDQgNTYgTDU2IDUyIFoiIGZpbGw9IiNFM0IzNDEiLz4KPHBhdGggZD0iTTk4IDEyIEwxMDAuNCAxOS42IEwxMDggMjIgTDEwMC40IDI0LjQgTDk4IDMyIEw5NS42IDI0LjQgTDg4IDIyIEw5NS42IDE5LjYgWiIgZmlsbD0iI0YxRUVFNiIvPjxwYXRoIGQ9Ik0xNjUuMDgyNSAzMy44VjU1LjQyTDE0MS41NjUgMzIuMTlWNjYuMEgxNDYuOTEyNVY0NC4zNzk5OTk5OTk5OTk5OTVMMTcwLjQzIDY3LjYxVjMzLjhaTTE4MC4zMzE1IDU5LjQzMzVRMTgwLjMzMTUgNTguNDMzIDE4MC44MDMgNTcuNzI1NzUwMDAwMDAwMDA1UTE4MS4yNzQ1IDU3LjAxODUgMTgyLjI1MiA1Ni42Mjc1UTE4My4yMjk1IDU2LjIzNjUgMTg0Ljc5MzUgNTYuMjM2NVExODYuNTg3NSA1Ni4yMzY1IDE4OC4xOTE3NSA1Ni43MDIyNVExODkuNzk2IDU3LjE2OCAxOTEuMTk5IDU4LjE2ODVWNTUuNjM4NVExOTAuNzg1IDU1LjE0NCAxODkuNzkwMjUwMDAwMDAwMDEgNTQuNTIyOTk5OTk5OTk5OTk2UTE4OC43OTU1IDUzLjkwMiAxODcuMjU0NSA1My40MzYyNVExODUuNzEzNSA1Mi45NzA1IDE4My41NzQ1IDUyLjk3MDVRMTc5LjYzIDUyLjk3MDUgMTc3LjQ1NjUgNTQuNzk5UTE3NS4yODMgNTYuNjI3NSAxNzUuMjgzIDU5LjY5OFExNzUuMjgzIDYxLjg2IDE3Ni4zMDY1IDYzLjM3MjI1UTE3Ny4zMyA2NC44ODQ1IDE3OS4wMjYyNSA2NS42NzIyNDk5OTk5OTk5OVExODAuNzIyNSA2Ni40NiAxODIuNjg5IDY2LjQ2UTE4NC41NTIgNjYuNDYgMTg2LjMxNzI1IDY1Ljc4NzI1UTE4OC4wODI1IDY1LjExNDUgMTg5LjI0OTc1IDYzLjc1MTc1UTE5MC40MTcgNjIuMzg5IDE5MC40MTcgNjAuMzY1TDE4OS42ODEgNTcuNjA1MDAwMDAwMDAwMDA0UTE4OS42ODEgNTkuMTkyIDE4OC45NDUgNjAuMzUzNVExODguMjA5IDYxLjUxNSAxODYuOTkgNjIuMTMwMjUwMDAwMDAwMDA0UTE4NS43NzEwMDAwMDAwMDAwMiA2Mi43NDU1IDE4NC4yNzYgNjIuNzQ1NVExODMuMTM3NSA2Mi43NDU1IDE4Mi4yNDA1IDYyLjM2NlExODEuMzQzNSA2MS45ODY1IDE4MC44Mzc1IDYxLjIzMzI1UTE4MC4zMzE1IDYwLjQ4MDAwMDAwMDAwMDAwNCAxODAuMzMxNSA1OS40MzM1Wk0xNzguNzU2IDUwLjM2UTE3OS4yMzkgNTAuMDI2NSAxODAuMTcwNSA0OS41NDkyNVExODEuMTAyIDQ5LjA3MiAxODIuNDA3MjUgNDguNzIxMjVRMTgzLjcxMjUgNDguMzcwNSAxODUuMjA3NSA0OC4zNzA1UTE4Ni4xNzM1IDQ4LjM3MDUgMTg3LjAwMTUgNDguNTYwMjQ5OTk5OTk5OTk2UTE4Ny44Mjk1IDQ4Ljc1IDE4OC40MzMyNSA0OS4xNTgyNVExODkuMDM3IDQ5LjU2NjUwMDAwMDAwMDAwNSAxODkuMzU5IDUwLjIyNzc1UTE4OS42ODEgNTAuODg5IDE4OS42ODEgNTEuODY2NVY2Ni4wSDE5NC41Njg1VjUwLjkzNVExOTQuNTY4NSA0OC44MDc1MDAwMDAwMDAwMDUgMTkzLjQzNTc0OTk5OTk5OTk4IDQ3LjM0MTI1UTE5Mi4zMDMgNDUuODc1IDE5MC4yOTYyNSA0NS4wOTg3NVExODguMjg5NSA0NC4zMjI1MDAwMDAwMDAwMDUgMTg1LjY3OSA0NC4zMjI1MDAwMDAwMDAwMDVRMTgyLjcxMiA0NC4zMjI1MDAwMDAwMDAwMDUgMTgwLjQ0NjUwMDAwMDAwMDAxIDQ1LjE2MjAwMDAwMDAwMDAwNlExNzguMTgxIDQ2LjAwMTUgMTc2LjczMiA0Ni44NzU1Wk0yMDEuMzQxOTk5OTk5OTk5OTggNTkuMDMxIDE5OC40NDQgNjEuOTUyUTE5OS4zNzU1IDYzLjEzNjUgMjAwLjczODI1IDY0LjIxNzVRMjAyLjEwMSA2NS4yOTg1IDIwMy45MDY1IDY1Ljk2NTQ5OTk5OTk5OTk5UTIwNS43MTIgNjYuNjMyNSAyMDcuODk3IDY2LjYzMjVRMjExLjM3IDY2LjYzMjUgMjEzLjQxMTI1IDY0LjgzMjc1UTIxNS40NTI1IDYzLjAzMyAyMTUuNDUyNSA2MC4wMlEyMTUuNDUyNSA1OC4wOTk1IDIxNC41NzI3NDk5OTk5OTk5OCA1Ni45MDM0OTk5OTk5OTk5OTRRMjEzLjY5Mjk5OTk5OTk5OTk4IDU1LjcwNzQ5OTk5OTk5OTk5NiAyMTIuMjIxIDU0Ljg4NTI1UTIxMC43NDkgNTQuMDYzIDIwOC45ODk1IDUzLjM3M1EyMDcuNzAxNSA1Mi44NTU1IDIwNi42NjA3NSA1Mi4zOTU1UTIwNS42MiA1MS45MzU1MDAwMDAwMDAwMDUgMjA1LjAwNDc1IDUxLjM2NjI1UTIwNC4zODk1IDUwLjc5NyAyMDQuMzg5NSA1MC4wMjY1UTIwNC4zODk1IDQ5LjE1MjUgMjA1LjA3OTUgNDguNzA0UTIwNS43Njk1IDQ4LjI1NTUgMjA2LjgzOSA0OC4yNTU1UTIwOC40MDMgNDguMjU1NSAyMDkuODc1IDQ5LjA0MzI1UTIxMS4zNDcgNDkuODMxIDIxMi4zOTM1IDUxLjA2MTVMMjE1LjE1MzUgNDguMTE3NVEyMTQuMjc5NDk5OTk5OTk5OTggNDcuMDM2NTAwMDAwMDAwMDA0IDIxMy4wMjYgNDYuMjA4NVEyMTEuNzcyNSA0NS4zODA1IDIxMC4yMzcyNTAwMDAwMDAwMiA0NC44ODAyNVEyMDguNzAyIDQ0LjM3OTk5OTk5OTk5OTk5NSAyMDYuOTQyNSA0NC4zNzk5OTk5OTk5OTk5OTVRMjA1LjAxMDUgNDQuMzc5OTk5OTk5OTk5OTk1IDIwMy4zNDMwMDAwMDAwMDAwMiA0NS4wMTI0OTk5OTk5OTk5OTZRMjAxLjY3NTUgNDUuNjQ0OTk5OTk5OTk5OTk2IDIwMC42NjkyNSA0Ni45MjcyNVExOTkuNjYzIDQ4LjIwOTUwMDAwMDAwMDAwNiAxOTkuNjYzIDUwLjExODVRMTk5LjY2MyA1Mi4wMjc1IDIwMC41NzcyNSA1My4yNzUyNVEyMDEuNDkxNSA1NC41MjI5OTk5OTk5OTk5OTYgMjAyLjg4Mjk5OTk5OTk5OTk4IDU1LjI4MlEyMDQuMjc0NSA1Ni4wNDEgMjA1LjcwMDUgNTYuNTgxNVEyMDcuMTI2NSA1Ny4wNzYgMjA4LjE4NDUgNTcuNTcwNDk5OTk5OTk5OTk2UTIwOS4yNDI1IDU4LjA2NSAyMDkuODQwNTAwMDAwMDAwMDIgNTguNzE0NzQ5OTk5OTk5OTk1UTIxMC40Mzg1IDU5LjM2NDUgMjEwLjQzODUgNjAuMjk2UTIxMC40Mzg1IDYxLjM0MjUgMjA5LjY5MSA2MS45NTJRMjA4Ljk0MzUgNjIuNTYxNSAyMDcuNTg2NSA2Mi41NjE1UTIwNi41Mjg1IDYyLjU2MTUgMjA1LjQ3MDUwMDAwMDAwMDAyIDYyLjE1MzI1UTIwNC40MTI1IDYxLjc0NSAyMDMuMzk0NzUgNjAuOTQ1NzUwMDAwMDAwMDA0UTIwMi4zNzcgNjAuMTQ2NSAyMDEuMzQxOTk5OTk5OTk5OTggNTkuMDMxWk0yMjQuODcwOTk5OTk5OTk5OTggMzAuMTE5OTk5OTk5OTk5OTk3SDIxOS44Njg0OTk5OTk5OTk5OFY2Ni4wSDIyNC44NzA5OTk5OTk5OTk5OFpNMjMzLjQ5NTk5OTk5OTk5OTk4IDUzLjEyMDAwMDAwMDAwMDAwNVY2Ni4wSDIzOC40OTg0OTk5OTk5OTk5OFY1Mi40M1EyMzguNDk4NDk5OTk5OTk5OTggNDkuNzI3NSAyMzcuNjcwNDk5OTk5OTk5OTggNDcuOTEwNVEyMzYuODQyNDk5OTk5OTk5OTcgNDYuMDkzNSAyMzUuMjI2NzQ5OTk5OTk5OTggNDUuMTczNTAwMDAwMDAwMDA0UTIzMy42MTEgNDQuMjUzNSAyMzEuMjMwNDk5OTk5OTk5OTggNDQuMjUzNVEyMjguODYxNDk5OTk5OTk5OTggNDQuMjUzNSAyMjcuMTc2NzQ5OTk5OTk5OTcgNDUuNDMyMjVRMjI1LjQ5MiA0Ni42MTEwMDAwMDAwMDAwMDQgMjI0LjU4MzUgNDguNjAwNTAwMDAwMDAwMDA0UTIyMy42NzQ5OTk5OTk5OTk5OCA1MC41OSAyMjMuNjc0OTk5OTk5OTk5OTggNTMuMTIwMDAwMDAwMDAwMDA1SDIyNC44NzA5OTk5OTk5OTk5OFEyMjQuODcwOTk5OTk5OTk5OTggNTEuNzE3IDIyNS40NTE3NSA1MC42NTMyNVEyMjYuMDMyNSA0OS41ODk1IDIyNy4wOTYyNSA0OC45OTE1UTIyOC4xNiA0OC4zOTM1IDIyOS41NjMgNDguMzkzNVEyMzEuNTk4NSA0OC4zOTM1IDIzMi41NDcyNSA0OS41OTUyNVEyMzMuNDk1OTk5OTk5OTk5OTggNTAuNzk3IDIzMy40OTU5OTk5OTk5OTk5OCA1My4xMjAwMDAwMDAwMDAwMDVaTTI0NC42NzQgMzYuNDIyUTI0NC42NzQgMzcuNjg3IDI0NS42MDU1IDM4LjU2Njc1UTI0Ni41MzcgMzkuNDQ2NSAyNDcuODEzNSAzOS40NDY1UTI0OS4xMjQ1IDM5LjQ0NjUgMjUwLjAzODc1IDM4LjU2Njc1UTI1MC45NTMgMzcuNjg3IDI1MC45NTMgMzYuNDIyUTI1MC45NTMgMzUuMTIyNSAyNTAuMDM4NzUgMzQuMjYwMDAwMDAwMDAwMDA1UTI0OS4xMjQ1IDMzLjM5NzUgMjQ3LjgxMzUgMzMuMzk3NVEyNDYuNTM3IDMzLjM5NzUgMjQ1LjYwNTUgMzQuMjYwMDAwMDAwMDAwMDA1UTI0NC42NzQgMzUuMTIyNSAyNDQuNjc0IDM2LjQyMlpNMjQ1LjM1MjUgNDQuODRWNjYuMEgyNTAuMjYzVjQ0Ljg0Wk0yNjIuMDczNSA0NC44NEgyNTcuMTI4NTAwMDAwMDAwMDNWNjYuMEgyNjIuMDczNVpNMjY4LjM1MjUgNTAuMTUzIDI3MC43NzkgNDUuOTQ0UTI3MC4wNTQ1IDQ1LjA5MyAyNjkuMDQyNSA0NC43MjVRMjY4LjAzMDUgNDQuMzU3IDI2Ni44ODA1IDQ0LjM1N1EyNjUuMjkzNSA0NC4zNTcgMjYzLjc5Mjc1IDQ1LjUxMjc1UTI2Mi4yOTIwMDAwMDAwMDAwMyA0Ni42Njg1IDI2MS4zNTQ3NSA0OC42MjkyNVEyNjAuNDE3NSA1MC41OSAyNjAuNDE3NSA1My4xMjAwMDAwMDAwMDAwMDVMMjYyLjA3MzUgNTQuMDk3NVEyNjIuMDczNSA1Mi41Nzk0OTk5OTk5OTk5OTYgMjYyLjQxODUgNTEuNDQxUTI2Mi43NjM1IDUwLjMwMjUgMjYzLjU0NTUgNDkuNjdRMjY0LjMyNzUgNDkuMDM3NSAyNjUuNTU4IDQ5LjAzNzVRMjY2LjQ3OCA0OS4wMzc1IDI2Ny4wODc1IDQ5LjMxOTI1UTI2Ny42OTcgNDkuNjAxIDI2OC4zNTI1IDUwLjE1M1pNMjc3LjM0NTQ5OTk5OTk5OTk2IDU5LjQzMzVRMjc3LjM0NTQ5OTk5OTk5OTk2IDU4LjQzMyAyNzcuODE3IDU3LjcyNTc1MDAwMDAwMDAwNVEyNzguMjg4NSA1Ny4wMTg1IDI3OS4yNjU5OTk5OTk5OTk5NiA1Ni42Mjc1UTI4MC4yNDM1IDU2LjIzNjUgMjgxLjgwNzUgNTYuMjM2NVEyODMuNjAxNSA1Ni4yMzY1IDI4NS4yMDU3NDk5OTk5OTk5NyA1Ni43MDIyNVEyODYuODEgNTcuMTY4IDI4OC4yMTI5OTk5OTk5OTk5NyA1OC4xNjg1VjU1LjYzODVRMjg3Ljc5OSA1NS4xNDQgMjg2LjgwNDI0OTk5OTk5OTk3IDU0LjUyMjk5OTk5OTk5OTk5NlEyODUuODA5NDk5OTk5OTk5OTYgNTMuOTAyIDI4NC4yNjg0OTk5OTk5OTk5NiA1My40MzYyNVEyODIuNzI3NDk5OTk5OTk5OTYgNTIuOTcwNSAyODAuNTg4NDk5OTk5OTk5OTUgNTIuOTcwNVEyNzYuNjQ0IDUyLjk3MDUgMjc0LjQ3MDUgNTQuNzk5UTI3Mi4yOTY5OTk5OTk5OTk5NyA1Ni42Mjc1IDI3Mi4yOTY5OTk5OTk5OTk5NyA1OS42OThRMjcyLjI5Njk5OTk5OTk5OTk3IDYxLjg2IDI3My4zMjA1IDYzLjM3MjI1UTI3NC4zNDQgNjQuODg0NSAyNzYuMDQwMjUgNjUuNjcyMjQ5OTk5OTk5OTlRMjc3LjczNjUgNjYuNDYgMjc5LjcwMyA2Ni40NlEyODEuNTY2IDY2LjQ2IDI4My4zMzEyNDk5OTk5OTk5NSA2NS43ODcyNVEyODUuMDk2NSA2NS4xMTQ1IDI4Ni4yNjM3NDk5OTk5OTk5NiA2My43NTE3NVEyODcuNDMxIDYyLjM4OSAyODcuNDMxIDYwLjM2NUwyODYuNjk1IDU3LjYwNTAwMDAwMDAwMDAwNFEyODYuNjk1IDU5LjE5MiAyODUuOTU4OTk5OTk5OTk5OTUgNjAuMzUzNVEyODUuMjIyOTk5OTk5OTk5OTYgNjEuNTE1IDI4NC4wMDM5OTk5OTk5OTk5NiA2Mi4xMzAyNTAwMDAwMDAwMDRRMjgyLjc4NDk5OTk5OTk5OTk3IDYyLjc0NTUgMjgxLjI4OTk5OTk5OTk5OTk2IDYyLjc0NTVRMjgwLjE1MTUgNjIuNzQ1NSAyNzkuMjU0NSA2Mi4zNjZRMjc4LjM1NzQ5OTk5OTk5OTk2IDYxLjk4NjUgMjc3Ljg1MTUgNjEuMjMzMjVRMjc3LjM0NTQ5OTk5OTk5OTk2IDYwLjQ4MDAwMDAwMDAwMDAwNCAyNzcuMzQ1NDk5OTk5OTk5OTYgNTkuNDMzNVpNMjc1Ljc3IDUwLjM2UTI3Ni4yNTMgNTAuMDI2NSAyNzcuMTg0NDk5OTk5OTk5OTYgNDkuNTQ5MjVRMjc4LjExNiA0OS4wNzIgMjc5LjQyMTI1IDQ4LjcyMTI1UTI4MC43MjY1IDQ4LjM3MDUgMjgyLjIyMTUgNDguMzcwNVEyODMuMTg3NSA0OC4zNzA1IDI4NC4wMTU1IDQ4LjU2MDI0OTk5OTk5OTk5NlEyODQuODQzNSA0OC43NSAyODUuNDQ3MjUgNDkuMTU4MjVRMjg2LjA1MSA0OS41NjY1MDAwMDAwMDAwMDUgMjg2LjM3MyA1MC4yMjc3NVEyODYuNjk1IDUwLjg4OSAyODYuNjk1IDUxLjg2NjVWNjYuMEgyOTEuNTgyNVY1MC45MzVRMjkxLjU4MjUgNDguODA3NTAwMDAwMDAwMDA1IDI5MC40NDk3NSA0Ny4zNDEyNVEyODkuMzE3IDQ1Ljg3NSAyODcuMzEwMjUgNDUuMDk4NzVRMjg1LjMwMzUgNDQuMzIyNTAwMDAwMDAwMDA1IDI4Mi42OTMgNDQuMzIyNTAwMDAwMDAwMDA1UTI3OS43MjYgNDQuMzIyNTAwMDAwMDAwMDA1IDI3Ny40NjA1IDQ1LjE2MjAwMDAwMDAwMDAwNlEyNzUuMTk1IDQ2LjAwMTUgMjczLjc0NiA0Ni44NzU1WiIgZmlsbD0iI0YxRUVFNiIvPjxwYXRoIGQ9Ik0xNDEuOTYyMzc3NDQxNDA2MjYgOTEuNTQ3MjEyODkwNjI1IDE0MC45NjgwMDgwNTY2NDA2MyA5Mi4xODA3ODk3OTQ5MjE4OFExNDEuMzQyIDkzLjI0NTU5MzAxNzU3ODEzIDE0Mi4wMjYxOTI3NDkwMjM0NCA5NC4xNjczOTQ4OTc0NjA5NFExNDIuNzEwMzg1NDk4MDQ2ODYgOTUuMDg5MTk2Nzc3MzQzNzQgMTQzLjcyNDU4MjI3NTM5MDYyIDk1LjY0NTc5Nzg1MTU2MjQ5UTE0NC43Mzg3NzkwNTI3MzQzNyA5Ni4yMDIzOTg5MjU3ODEyNSAxNDYuMDYzMTgzMzQ5NjA5MzcgOTYuMjAyMzk4OTI1NzgxMjVRMTQ3LjAxMzU4NDk2MDkzNzUgOTYuMjAyMzk4OTI1NzgxMjUgMTQ3LjgyNTM4MjgxMjQ5OTk4IDk1Ljg5ODc5OTE5NDMzNTk0UTE0OC42MzcxODA2NjQwNjI1IDk1LjU5NTE5OTQ2Mjg5MDYyIDE0OS4yNDY1NzY5MDQyOTY5IDk1LjA0MDgwMDUzNzEwOTM2UTE0OS44NTU5NzMxNDQ1MzEyNSA5NC40ODY0MDE2MTEzMjgxMiAxNTAuMTk2OTcwNDU4OTg0MzcgOTMuNzEyMDA0MDI4MzIwMzFRMTUwLjUzNzk2Nzc3MzQzNzUgOTIuOTM3NjA2NDQ1MzEyNSAxNTAuNTM3OTY3NzczNDM3NSA5MS45OTYwMTA3NDIxODc1UTE1MC41Mzc5Njc3NzM0Mzc1IDkwLjk3NTIxMjg5MDYyNSAxNTAuMTg1OTY5MTE2MjEwOSA5MC4yMzgyMTQyMzMzOTg0NFExNDkuODMzOTcwNDU4OTg0MzcgODkuNTAxMjE1NTc2MTcxODcgMTQ5LjI2ODU3MTUzMzIwMzEgODguOTc1NDE2MzgxODM1OTRRMTQ4LjcwMzE3MjYwNzQyMTg2IDg4LjQ0OTYxNzE4NzUgMTQ4LjAyNTU3Mjg3NTk3NjU0IDg4LjA5NzYxNzE4NzQ5OTk5UTE0Ny4zNDc5NzMxNDQ1MzEyNCA4Ny43NDU2MTcxODc1IDE0Ni43MDU1NzE1MzMyMDMxIDg3LjUwODAxNjExMzI4MTI2UTE0NS40NjkxNzc5Nzg1MTU2MyA4Ny4wNjM2MTcxODc1IDE0NC42MzUzNzQ3NTU4NTkzNyA4Ni41NzMwMTYxMTMyODEyNlExNDMuODAxNTcxNTMzMjAzMTIgODYuMDgyNDE1MDM5MDYyNSAxNDMuMzgzNTY2MTYyMTA5NCA4NS40NTk4MDk5MzY1MjM0NFExNDIuOTY1NTYwNzkxMDE1NjMgODQuODM3MjA0ODMzOTg0MzcgMTQyLjk2NTU2MDc5MTAxNTYzIDgzLjk5Njc5MjQ4MDQ2ODc2UTE0Mi45NjU1NjA3OTEwMTU2MyA4Mi45NDk1NzQyMTg3NSAxNDMuNjkxNTcwMTkwNDI5NjcgODIuMjYwOTY5MTE2MjEwOTNRMTQ0LjQxNzU3OTU4OTg0Mzc0IDgxLjU3MjM2NDAxMzY3MTg3IDE0NS43NjgzODU0OTgwNDY4OCA4MS41NzIzNjQwMTM2NzE4N1ExNDYuNzY3MTkxNDA2MjUgODEuNTcyMzY0MDEzNjcxODcgMTQ3LjQ1MTM5NDg5NzQ2MDk0IDgxLjk1MDc2NTYyNVExNDguMTM1NTk4Mzg4NjcxODcgODIuMzI5MTY3MjM2MzI4MTIgMTQ4LjU4NDM5ODkyNTc4MTI0IDgyLjkwNTU2ODg0NzY1NjI0UTE0OS4wMzMxOTk0NjI4OTA2MiA4My40ODE5NzA0NTg5ODQzOCAxNDkuMjgzOTk3MzE0NDUzMTMgODQuMDcxNTcxNTMzMjAzMTNMMTUwLjM0NDM2NDAxMzY3MTg4IDgzLjQ4MTk5MTk0MzM1OTM4UTE1MC4wNDA3NjgzMTA1NDY4NyA4Mi43MzgzOTYyNDAyMzQzOCAxNDkuNDQyMzcyMDcwMzEyNSA4Mi4wMzIxOTgxMjAxMTcxOVExNDguODQzOTc1ODMwMDc4MTQgODEuMzI2IDE0Ny45NTI5Nzg1MTU2MjUgODAuODYxODAwNTM3MTA5MzdRMTQ3LjA2MTk4MTIwMTE3MTg4IDgwLjM5NzYwMTA3NDIxODc2IDE0NS44MzQzODI4MTI1IDgwLjM5NzYwMTA3NDIxODc2UTE0NC42MzMxODg3MjA3MDMxMiA4MC4zOTc2MDEwNzQyMTg3NiAxNDMuNjk1OTkzMjg2MTMyODIgODAuODcwNTk4Mzg4NjcxODhRMTQyLjc1ODc5Nzg1MTU2MjUgODEuMzQzNTk1NzAzMTI1IDE0Mi4yMjY0MDAyNjg1NTQ3IDgyLjE4ODM5MjIxMTkxNDA2UTE0MS42OTQwMDI2ODU1NDY4OCA4My4wMzMxODg3MjA3MDMxMiAxNDEuNjk0MDAyNjg1NTQ2ODggODQuMTQxOTg2NTcyMjY1NjJRMTQxLjY5NDAwMjY4NTU0Njg4IDg1LjEyNzU4MjI3NTM5MDYyIDE0Mi4wNzQ2MDEwNzQyMTg3NSA4NS44MzE1ODA5MzI2MTcxOVExNDIuNDU1MTk5NDYyODkwNjIgODYuNTM1NTc5NTg5ODQzNzUgMTQzLjA3MTE5ODEyMDExNzE3IDg3LjAzMDU3OTU4OTg0Mzc0UTE0My42ODcxOTY3NzczNDM3NiA4Ny41MjU1Nzk1ODk4NDM3NCAxNDQuNDA0Mzk3NTgzMDA3ODQgODcuODcwOTgxMjAxMTcxODdRMTQ1LjEyMTU5ODM4ODY3MTg4IDg4LjIxNjM4MjgxMjUgMTQ1Ljc4MTYwMzc1OTc2NTYzIDg4LjQ1ODM4NTQ5ODA0Njg4UTE0Ni42NjE2MDM3NTk3NjU2MyA4OC43NzUxODYwMzUxNTYyNSAxNDcuNDY0NjA1MTAyNTM5MDUgODkuMjA4NTg4OTg5MjU3OFExNDguMjY3NjA2NDQ1MzEyNSA4OS42NDE5OTE5NDMzNTkzNyAxNDguNzczNjA3Nzg4MDg1OTQgOTAuMzI4Mzk2MjQwMjM0MzhRMTQ5LjI3OTYwOTEzMDg1OTM3IDkxLjAxNDgwMDUzNzEwOTM4IDE0OS4yNzk2MDkxMzA4NTkzNyA5Mi4xMjgwMDUzNzEwOTM3NVExNDkuMjc5NjA5MTMwODU5MzcgOTMuMzk1MjE4MjYxNzE4NzUgMTQ4LjQzMDQwMjk1NDEwMTU3IDk0LjIyMjQyNzEyNDAyMzQ0UTE0Ny41ODExOTY3NzczNDM3NiA5NS4wNDk2MzU5ODYzMjgxMyAxNDYuMTAyNzgxNzM4MjgxMjQgOTUuMDQ5NjM1OTg2MzI4MTNRMTQ0Ljk4NTE2OTkyMTg3NSA5NS4wNDk2MzU5ODYzMjgxMyAxNDQuMTkzMTY1ODkzNTU0NyA5NC41Nzg4MzE0MjA4OTg0NFExNDMuNDAxMTYxODY1MjM0MzcgOTQuMTA4MDI2ODU1NDY4NzUgMTQyLjg2NjU2NDgxOTMzNTkzIDkzLjMxMTYyMTIxNTgyMDMxUTE0Mi4zMzE5Njc3NzM0Mzc1IDkyLjUxNTIxNTU3NjE3MTg3IDE0MS45NjIzNzc0NDE0MDYyNiA5MS41NDcyMTI4OTA2MjVaTTE1Ni43MjYwMDUzNzEwOTM3NSA4NS44OFY4Ni45NTc5NjUwODc4OTA2M0gxNjEuMTY5OTY3NzczNDM3NVY4NS44OFpNMTU4LjM3NjAwNTM3MTA5Mzc1IDgyLjM2Vjk2LjBIMTU5LjUxOTk2Nzc3MzQzNzVWODIuMzZaTTE2OS4yNDk5Njc3NzM0Mzc1IDkyLjMwNDAxNjExMzI4MTI1Vjg1Ljg4SDE2OC4xMDYwMDUzNzEwOTM3NFY5Mi40MzYwMTA3NDIxODc1UTE2OC4xMDYwMDUzNzEwOTM3NCA5NC4xNjk2MDY0NDUzMTI1IDE2OC45NDYzOTg5MjU3ODEyNCA5NS4xOTQ4MDMyMjI2NTYyNVExNjkuNzg2NzkyNDgwNDY4NzMgOTYuMjIgMTcxLjM2MTk5MTk0MzM1OTM2IDk2LjIyUTE3Mi40OTcxOTk0NjI4OTA2MiA5Ni4yMiAxNzMuMzM3NjA1MTAyNTM5MDQgOTUuNjAxNzg5Nzk0OTIxODdRMTc0LjE3ODAxMDc0MjE4NzUgOTQuOTgzNTc5NTg5ODQzNzYgMTc0LjU5NjAwNTM3MTA5Mzc1IDkzLjg4Nzk2Nzc3MzQzNzVWOTYuMEgxNzUuNzM5OTY3NzczNDM3NDhWODUuODhIMTc0LjU5NjAwNTM3MTA5Mzc1VjkyLjA0UTE3NC41OTYwMDUzNzEwOTM3NSA5Mi45MDI0MDY5ODI0MjE4OCAxNzQuMjE1NDAxNjExMzI4MSA5My42MDY0MTUwMzkwNjI1MVExNzMuODM0Nzk3ODUxNTYyNDggOTQuMzEwNDIzMDk1NzAzMTMgMTczLjE2Mzc5MjQ4MDQ2ODc0IDk0LjcyMTgyODczNTM1MTU2UTE3Mi40OTI3ODcxMDkzNzUgOTUuMTMzMjM0Mzc1IDE3MS42MjU5ODEyMDExNzE4NyA5NS4xMzMyMzQzNzVRMTcwLjQwMjc3MDk5NjA5Mzc1IDk1LjEzMzIzNDM3NSAxNjkuODI2MzY5Mzg0NzY1NjMgOTQuMzgwODI4NzM1MzUxNTdRMTY5LjI0OTk2Nzc3MzQzNzUgOTMuNjI4NDIzMDk1NzAzMTMgMTY5LjI0OTk2Nzc3MzQzNzUgOTIuMzA0MDE2MTEzMjgxMjVaTTE5MS45OTA4MTY2NTAzOTA2MyA3OC44NFY5Ni4wSDE5My4xMzQ3NzkwNTI3MzQ0Vjc4Ljg0Wk0xODMuMzM2MDA1MzcxMDkzNzYgOTAuOTRRMTgzLjMzNjAwNTM3MTA5Mzc2IDkyLjU1OTE5OTQ2Mjg5MDYzIDE4My45OTE2MDM3NTk3NjU2NCA5My43NDcxOTk0NjI4OTA2MlExODQuNjQ3MjAyMTQ4NDM3NTEgOTQuOTM1MTk5NDYyODkwNjIgMTg1Ljc2MDQwMDI2ODU1NDcgOTUuNTc3NTk5NzMxNDQ1M1ExODYuODczNTk4Mzg4NjcxOSA5Ni4yMiAxODguMjE5OTk3MzE0NDUzMTQgOTYuMjJRMTg5LjUzMTE5OTQ2Mjg5MDY0IDk2LjIyIDE5MC40ODYwMDAwMDAwMDAwMiA5NS41MjkxOTY3NzczNDM3NFExOTEuNDQwODAwNTM3MTA5NCA5NC44MzgzOTM1NTQ2ODc1IDE5MS45NzU0MDAyNjg1NTQ3MiA5My42MzcxOTI3NDkwMjM0M1ExOTIuNTEwMDAwMDAwMDAwMDIgOTIuNDM1OTkxOTQzMzU5MzcgMTkyLjUxMDAwMDAwMDAwMDAyIDkwLjk0UTE5Mi41MTAwMDAwMDAwMDAwMiA4OS40MjIwMDgwNTY2NDA2MiAxOTEuOTc1NDAwMjY4NTU0NzIgODguMjMxODA3MjUwOTc2NTZRMTkxLjQ0MDgwMDUzNzEwOTQgODcuMDQxNjA2NDQ1MzEyNSAxOTAuNDg2MDAwMDAwMDAwMDIgODYuMzUwODAzMjIyNjU2MjVRMTg5LjUzMTE5OTQ2Mjg5MDY0IDg1LjY2IDE4OC4yMTk5OTczMTQ0NTMxNCA4NS42NlExODYuODczNTk4Mzg4NjcxOSA4NS42NiAxODUuNzYwNDAwMjY4NTU0NyA4Ni4zMDI0MDAyNjg1NTQ2OVExODQuNjQ3MjAyMTQ4NDM3NTEgODYuOTQ0ODAwNTM3MTA5MzcgMTgzLjk5MTYwMzc1OTc2NTY0IDg4LjEyMTgwMDUzNzEwOTM4UTE4My4zMzYwMDUzNzEwOTM3NiA4OS4yOTg4MDA1MzcxMDkzNyAxODMuMzM2MDA1MzcxMDkzNzYgOTAuOTRaTTE4NC40OTMxNjcyMzYzMjgxMyA5MC45NFExODQuNDkzMTY3MjM2MzI4MTMgODkuNjE1NTkwMzMyMDMxMjUgMTg1LjAxODk3MDQ1ODk4NDM3IDg4LjY3Mzk4MjU0Mzk0NTMxUTE4NS41NDQ3NzM2ODE2NDA2MyA4Ny43MzIzNzQ3NTU4NTkzOCAxODYuNDI5MTc5MzIxMjg5MDcgODcuMjM1MTY5OTIxODc1MDFRMTg3LjMxMzU4NDk2MDkzNzUgODYuNzM3OTY1MDg3ODkwNjMgMTg4LjM3ODM5MzU1NDY4NzUgODYuNzM3OTY1MDg3ODkwNjNRMTg5LjMyNDQwNDI5Njg3NSA4Ni43Mzc5NjUwODc4OTA2MyAxOTAuMTQ3MjA4ODYyMzA0NyA4Ny4yODM1NzI4NzU5NzY1N1ExOTAuOTcwMDEzNDI3NzM0NCA4Ny44MjkxODA2NjQwNjI1IDE5MS40ODA0MTUwMzkwNjI1IDg4Ljc3OTU4ODk4OTI1NzgyUTE5MS45OTA4MTY2NTAzOTA2MyA4OS43Mjk5OTczMTQ0NTMxMyAxOTEuOTkwODE2NjUwMzkwNjMgOTAuOTRRMTkxLjk5MDgxNjY1MDM5MDYzIDkyLjE1MDAwMjY4NTU0Njg4IDE5MS40ODA0MTUwMzkwNjI1IDkzLjEwMDQxMTAxMDc0MjE5UTE5MC45NzAwMTM0Mjc3MzQ0IDk0LjA1MDgxOTMzNTkzNzUgMTkwLjE0NzIwODg2MjMwNDcgOTQuNTk2NDI3MTI0MDIzNDVRMTg5LjMyNDQwNDI5Njg3NSA5NS4xNDIwMzQ5MTIxMDkzOCAxODguMzc4MzkzNTU0Njg3NSA5NS4xNDIwMzQ5MTIxMDkzOFExODcuMzEzNTg0OTYwOTM3NSA5NS4xNDIwMzQ5MTIxMDkzOCAxODYuNDI5MTc5MzIxMjg5MDcgOTQuNjQ0ODMwMDc4MTI1MDFRMTg1LjU0NDc3MzY4MTY0MDYzIDk0LjE0NzYyNTI0NDE0MDYzIDE4NS4wMTg5NzA0NTg5ODQzNyA5My4yMDE2MTcxODc1UTE4NC40OTMxNjcyMzYzMjgxMyA5Mi4yNTU2MDkxMzA4NTkzNyAxODQuNDkzMTY3MjM2MzI4MTMgOTAuOTRaTTIwMS40OTIwMDUzNzEwOTM3NyA4MS4zMDM5NzU4MzAwNzgxM1EyMDEuNDkyMDA1MzcxMDkzNzcgODEuNjI5NTY2MTYyMTA5MzcgMjAxLjczMTc5Nzg1MTU2MjUzIDgxLjg3Mzc1ODkxMTEzMjgxUTIwMS45NzE1OTAzMzIwMzEyNyA4Mi4xMTc5NTE2NjAxNTYyNSAyMDIuMzA1OTgxMjAxMTcxOSA4Mi4xMTc5NTE2NjAxNTYyNVEyMDIuNjUzNTcxNTMzMjAzMTUgODIuMTE3OTUxNjYwMTU2MjUgMjAyLjg4Njc2NDI4MjIyNjU4IDgxLjg3Mzc1ODkxMTEzMjgxUTIwMy4xMTk5NTcwMzEyNSA4MS42Mjk1NjYxNjIxMDkzNyAyMDMuMTE5OTU3MDMxMjUgODEuMzAzOTc1ODMwMDc4MTNRMjAzLjExOTk1NzAzMTI1IDgwLjk1NjM4NTQ5ODA0Njg3IDIwMi44ODY3NjQyODIyMjY1OCA4MC43MjMxOTI3NDkwMjM0NFEyMDIuNjUzNTcxNTMzMjAzMTUgODAuNDkgMjAyLjMwNTk4MTIwMTE3MTkgODAuNDlRMjAxLjk3MTU5MDMzMjAzMTI3IDgwLjQ5IDIwMS43MzE3OTc4NTE1NjI1MyA4MC43MjMxOTI3NDkwMjM0NFEyMDEuNDkyMDA1MzcxMDkzNzcgODAuOTU2Mzg1NDk4MDQ2ODcgMjAxLjQ5MjAwNTM3MTA5Mzc3IDgxLjMwMzk3NTgzMDA3ODEzWk0yMDEuNzM0IDg1Ljg4Vjk2LjBIMjAyLjg3Nzk2MjQwMjM0Mzc3Vjg1Ljg4Wk0yMTAuNzE2MDA1MzcxMDkzNzYgOTAuOTRRMjEwLjcxNjAwNTM3MTA5Mzc2IDkyLjQ1OCAyMTEuNDAyNjYzODA3NTg4NDUgOTMuNjU3UTIxMi4wODkzMjIyNDQwODMxOCA5NC44NTYgMjEzLjI2NjQ1MDk5MjM1OTg0IDk1LjUzOFEyMTQuNDQzNTc5NzQwNjM2NSA5Ni4yMiAyMTUuOTA0MDkxMzM1NzIwNSA5Ni4yMlEyMTcuMzg2NDAxNjExMzI4MTMgOTYuMjIgMjE4LjU1OTAwMTM0Mjc3MzQ2IDk1LjUzOFEyMTkuNzMxNjAxMDc0MjE4NzYgOTQuODU2IDIyMC40MTU4MDA1MzcxMDkzNiA5My42NTdRMjIxLjEgOTIuNDU4IDIyMS4xIDkwLjk0UTIyMS4xIDg5LjQgMjIwLjQxNTgwMDUzNzEwOTM2IDg4LjIxMlEyMTkuNzMxNjAxMDc0MjE4NzYgODcuMDI0IDIxOC41NTkwMDEzNDI3NzM0NiA4Ni4zNDJRMjE3LjM4NjQwMTYxMTMyODEzIDg1LjY2IDIxNS45MDQwOTEzMzU3MjA1IDg1LjY2UTIxNC40NDM1Nzk3NDA2MzY1IDg1LjY2IDIxMy4yNjY0NTA5OTIzNTk4NCA4Ni4zNDJRMjEyLjA4OTMyMjI0NDA4MzE4IDg3LjAyNCAyMTEuNDAyNjYzODA3NTg4NDUgODguMjEyUTIxMC43MTYwMDUzNzEwOTM3NiA4OS40IDIxMC43MTYwMDUzNzEwOTM3NiA5MC45NFpNMjExLjg3MzE2NzIzNjMyODEzIDkwLjk0MTc2MDEwNzQyMTg3UTIxMS44NzMxNjcyMzYzMjgxMyA4OS43MTY3ODk3OTQ5MjE4OCAyMTIuNDAzMDk3MDUzNTI3ODMgODguNzYyMDM4Mjg2MjU4MDJRMjEyLjkzMzAyNjg3MDcyNzUzIDg3LjgwNzI4Njc3NzU5NDE2IDIxMy44NTA3MTAyMTI3MDc1IDg3LjI3MjYyNTkzMjc0MjM5UTIxNC43NjgzOTM1NTQ2ODc1IDg2LjczNzk2NTA4Nzg5MDYzIDIxNS45MTI0MDI5NTQxMDE1NyA4Ni43Mzc5NjUwODc4OTA2M1EyMTcuMDU2NDEyMzUzNTE1NjQgODYuNzM3OTY1MDg3ODkwNjMgMjE3Ljk2OTQyMDQxMDE1NjI2IDg3LjI3NDc2OTY1MzMyMDNRMjE4Ljg4MjQyODQ2Njc5Njg4IDg3LjgxMTU3NDIxODc1IDIxOS40MTI2MzMzMDA3ODEyNCA4OC43NjU4ODAzNTYxMDI2NlEyMTkuOTQyODM4MTM0NzY1NjIgODkuNzIwMTg2NDkzNDU1MzIgMjE5Ljk0MjgzODEzNDc2NTYyIDkwLjk0MTY5ODM0OTI2NjcyUTIxOS45NDI4MzgxMzQ3NjU2MiA5Mi4xNjMyMTAyMDUwNzgxMyAyMTkuNDEyNjMzMzAwNzgxMjQgOTMuMTA5MjE4MjYxNzE4NzVRMjE4Ljg4MjQyODQ2Njc5Njg4IDk0LjA1NTIyNjMxODM1OTM3IDIxNy45Njk0MjA0MTAxNTYyNiA5NC41OTg2MzA2MTUyMzQzOFEyMTcuMDU2NDEyMzUzNTE1NjQgOTUuMTQyMDM0OTEyMTA5MzggMjE1LjkxMjQwMjk1NDEwMTU3IDk1LjE0MjAzNDkxMjEwOTM4UTIxNC43NjgzOTM1NTQ2ODc1IDk1LjE0MjAzNDkxMjEwOTM4IDIxMy44NTA5ODUyMjk0OTIxOCA5NC41OTg2MzA2MTUyMzQzOFEyMTIuOTMzNTc2OTA0Mjk2ODcgOTQuMDU1MjI2MzE4MzU5MzcgMjEyLjQwMzM3MjA3MDMxMjUgOTMuMTEwOTc4MzY5MTQwNjJRMjExLjg3MzE2NzIzNjMyODEzIDkyLjE2NjczMDQxOTkyMTg4IDIxMS44NzMxNjcyMzYzMjgxMyA5MC45NDE3NjAxMDc0MjE4N1oiIGZpbGw9IiNBOUE1QjgiLz48L3N2Zz4=">
+    <button id="toggle-tema" class="tema" type="button">Tema carta</button>
+  </div>
+</header>
+
+<main class="pagina">
+  <header id="testata">
+    <h1 id="nome">Atti-MO</h1>
+    <p class="acronimo" id="acronimo"></p>
+    <p class="versione">Versione 5.1, demo pubblica</p>
+    <p class="lead">Sul posto la persona ce l’hai davanti, in ufficio no. Atti-MO ti aiuta a individuare le informazioni da raccogliere prima di lasciare il luogo dell’intervento.</p>
+    <h2 class="passi-titolo">Prova Atti-MO in 3 passaggi</h2>
+    <ol class="passi">
+      <li>Scegli un intervento.</li>
+      <li>Esplora checklist, soggetti e cronologia.</li>
+      <li>Genera un riepilogo dimostrativo.</li>
+    </ol>
+    <p class="passi-nota">Usa esclusivamente nomi e situazioni inventati.</p>
+  </header>
+
+  <p class="avviso" id="avviso-pieno" role="note"><strong>Demo con dati di fantasia.</strong> I dati del rilievo rimangono soltanto nella memoria della pagina: chiudendola o ricaricandola si perdono. Non è previsto un invio da questa pagina; copie, stampe e file esportati restano fuori dal controllo della demo. Non inserire dati reali.</p>
+  <p class="avviso breve" id="avviso-breve" role="note" hidden><strong>Demo con dati di fantasia.</strong> Nessun salvataggio automatico. Al termine elimina i dati dopo aver verificato le esportazioni. Non inserire dati reali.</p>
+  <noscript><p class="avviso">Per usare la demo serve JavaScript attivo.</p></noscript>
+
+  <section id="schermata-scelta" aria-labelledby="titolo-tipi">
+    <h2 id="titolo-tipi" tabindex="-1">Che intervento è?</h2>
+    <ul class="elenco" id="tipi"></ul>
+  </section>
+
+  <section id="schermata-rilievo" aria-labelledby="tipo-attivo" hidden>
+    <div class="barra-rilievo">
+      <button class="tasto-testo" id="cambia" type="button">Cambia intervento</button>
+      <button class="tasto-testo pericolo-testo" id="cancella-dati" type="button">Elimina i dati del rilievo</button>
+      <div class="conferma" id="conferma-elimina" role="alertdialog" aria-label="Conferma cancellazione" hidden>
+        <p><strong>Prima di eliminare:</strong> verifica che i documenti necessari siano stati salvati nei sistemi autorizzati. L’eliminazione rimuove il rilievo dalla memoria della pagina; non elimina copie, download, stampe, appunti o backup esterni. Non è una certificazione di conformità normativa.</p>
+        <div class="azioni"><button class="tasto pericolo" id="elimina-si" type="button">Confermo, elimina il rilievo</button><button class="tasto" id="elimina-no" type="button">Annulla</button></div>
+      </div>
+      <div class="conferma" id="conferma-cambio" role="alert" hidden>
+        <p>Se cambi intervento, perdi spunte, orari e persone di questo rilievo.</p>
+        <div class="azioni">
+          <button class="tasto pericolo" id="conferma-si" type="button">Cambia intervento</button>
+          <button class="tasto" id="conferma-no" type="button">Resta qui</button>
+        </div>
+      </div>
+    </div>
+    <div class="intestazione-rilievo">
+      <div class="titoli-rilievo">
+        <h2 class="tipo-attivo" id="tipo-attivo" tabindex="-1"></h2>
+        <p class="luogo-attivo" id="luogo-attivo"></p>
+      </div>
+      <div class="apertura"><span class="piccolo">Apertura</span><strong id="apertura"></strong></div>
+    </div>
+    <nav class="schede" aria-label="Sezioni del rilievo">
+      <button type="button" data-scheda="checklist" aria-current="page">Checklist</button>
+      <button type="button" data-scheda="soggetti">Soggetti</button>
+      <button type="button" data-scheda="cronologia">Cronologia</button>
+      <button type="button" data-scheda="riepilogo">Riepilogo</button>
+    </nav>
+    <div id="pannello"></div>
+  </section>
+</main>
+
+<footer class="piede notte-fissa">
+  <div class="piede-in">
+    <p><strong>Attenzione:</strong> le checklist non sono state validate integralmente per l’impiego operativo. I riferimenti normativi sono quelli dell’app Atti-MO, verificati l’ultima volta il <span id="data-verifica"></span>. Prima di usarli in un atto vero, riverificali su fonti ufficiali.</p>
+    <p id="indipendenza"></p>
+    <p>Atti-MO 5.1 Public Demo. Funziona senza connessione una volta aperto il file locale. Non validata per dati personali o atti reali.</p>
+
+    <section class="contatti" aria-labelledby="titolo-contatti">
+      <div>
+        <h2 id="titolo-contatti">Scrivi al supporto</h2>
+        <p><strong>Il tuo parere conta.</strong> Prova la demo e comunica all’autore cosa è utile, cosa manca e cosa correggeresti. Non includere dati personali o relativi a procedimenti reali nel feedback.</p>
+        <p class="contatto">@AttiMoSupportoBot su Telegram</p>
+        <div class="azioni">
+          <a class="tasto primario" href="https://t.me/AttiMoSupportoBot" target="_blank" rel="noopener noreferrer">Apri su Telegram</a>
+          <button id="feedback" class="tasto" type="button">Copia modello di feedback</button>
+        </div>
+        <p id="feedback-esito" role="status"></p>
+      </div>
+      <figure class="qr">
+        <img alt="Codice QR per aprire @AttiMoSupportoBot su Telegram" src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjkgMjkiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOSIgaGVpZ2h0PSIyOSIgY2xhc3M9InNlZ25vIj48cGF0aCBmaWxsPSIjZjdmNGVlIiBkPSJNMCAwaDI5djI5aC0yOXoiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMyYTI1NDAiIGQ9Ik0wIDAuNWg3bTIgMGgxbTUgMGgxbTEgMGgzbTIgMGg3bS0yOSAxaDFtNSAwaDFtMiAwaDNtMSAwaDNtMyAwaDFtMiAwaDFtNSAwaDFtLTI5IDFoMW0xIDBoM20xIDBoMW0xIDBoNG0xIDBoMW0xIDBoNm0xIDBoMW0xIDBoM20xIDBoMW0tMjkgMWgxbTEgMGgzbTEgMGgxbTIgMGgybTEgMGgzbTMgMGgybTIgMGgxbTEgMGgzbTEgMGgxbS0yOSAxaDFtMSAwaDNtMSAwaDFtMSAwaDJtMSAwaDNtMSAwaDFtMiAwaDFtMyAwaDFtMSAwaDNtMSAwaDFtLTI5IDFoMW01IDBoMW0xIDBoMW0xIDBoMm0xIDBoMm0xIDBoNW0xIDBoMW01IDBoMW0tMjkgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0xOSAxaDJtMSAwaDFtMyAwaDFtMSAwaDJtLTIwIDFoMW0yIDBoMW0xIDBoMW0xIDBoMW0xIDBoM200IDBoMW0yIDBoMm0xIDBoMm0xIDBoMW0tMjQgMWgybTIgMGg0bTMgMGgxbTMgMGgxbTIgMGg0bTIgMGgybS0yOSAxaDFtMSAwaDFtMiAwaDJtMiAwaDNtNCAwaDNtMiAwaDFtMSAwaDFtMSAwaDFtMiAwaDFtLTI5IDFoMm0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoM20xIDBoNG0xIDBoMm0xIDBoMW0xIDBoMW0xIDBoMm0tMjYgMWgybTEgMGgybTEgMGgxbTEgMGgzbTEgMGg2bTIgMGgxbTEgMGgxbTIgMGgxbS0yOCAxaDNtMSAwaDFtMiAwaDFtMyAwaDFtMSAwaDFtMiAwaDJtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtLTI3IDFoMm00IDBoMm0yIDBoNm0yIDBoMW0yIDBoMm0xIDBoMW0zIDBoMW0tMjcgMWgzbTMgMGgybTEgMGgybTMgMGgzbTEgMGg0bTEgMGgxbTIgMGgxbS0yNiAxaDFtMiAwaDJtMyAwaDFtNSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtNCAwaDFtLTI5IDFoMm0xIDBoMW0xIDBoMW0xIDBoMm0xIDBoMW0yIDBoMm0xIDBoMm00IDBoM20zIDBoMW0tMjUgMWgzbTMgMGg0bTIgMGgxbTEgMGgxbTYgMGgybTEgMGgxbS0yNiAxaDNtNCAwaDJtMiAwaDFtMiAwaDNtNSAwaDFtMSAwaDFtLTI4IDFoM20xIDBoMW0xIDBoMW0yIDBoMm0zIDBoM20yIDBoNm0xIDBoM20tMjEgMWgxbTEgMGg0bTEgMGgybTEgMGgxbTEgMGgxbTMgMGgxbTEgMGgxbTEgMGgxbS0yOSAxaDdtMiAwaDNtMyAwaDZtMSAwaDFtMSAwaDFtMyAwaDFtLTI5IDFoMW01IDBoMW0zIDBoMW0yIDBoM20xIDBoMW0xIDBoMm0zIDBoMm0xIDBoMm0tMjkgMWgxbTEgMGgzbTEgMGgxbTEgMGgybTIgMGgxbTUgMGg3bTIgMGgxbS0yOCAxaDFtMSAwaDNtMSAwaDFtMyAwaDJtMiAwaDFtMyAwaDFtNCAwaDFtMSAwaDNtLTI4IDFoMW0xIDBoM20xIDBoMW0zIDBoMW0xIDBoMm0xIDBoM20xIDBoM20zIDBoNG0tMjkgMWgxbTUgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bTIgMGgxbTEgMGgxbTEgMGgybS0yOSAxaDdtMiAwaDJtMSAwaDFtMyAwaDJtMiAwaDNtMSAwaDFtMiAwaDEiLz48L3N2Zz4=">
+        <figcaption>Inquadra con il telefono</figcaption>
+      </figure>
+    </section>
+
+    <div class="credito">
+      <img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM6YzJwYT0iaHR0cDovL2MycGEub3JnL21hbmlmZXN0Ij48bWV0YWRhdGE+PGMycGE6bWFuaWZlc3Q+QUFBV2dtcDFiV0lBQUFBZWFuVnRaR015Y0dFQUVRQVFnQUFBcWdBNG0zRURZekp3WVFBQUFCWmNhblZ0WWdBQUFFZHFkVzFrWXpKdFlRQVJBQkNBQUFDcUFEaWJjUU4xY200Nll6SndZVHBrTnpVMFlXSm1NQzA0TURNeUxUUXpZMll0T1RobVl5MHdaV1EyTVdJd1pqWm1OR0VBQUFBRGwycDFiV0lBQUFBcGFuVnRaR015WVhNQUVRQVFnQUFBcWdBNG0zRURZekp3WVM1aGMzTmxjblJwYjI1ekFBQUFBTHhxZFcxaUFBQUFSR3AxYldSalltOXlBQkVBRUlBQUFLb0FPSnR4RTJNeWNHRXVhVzVuY21Wa2FXVnVkQzUyTXdBQUFBQVlZekp6YUV1S1llYUlnK1FUSFo4bkFqSWJxb3dBQUFCd1kySnZjcU5wWkdNNlptOXliV0YwYldsdFlXZGxMM04yWnl0NGJXeHFhVzV6ZEdGdVkyVkpSSGdzZUcxd09tbHBaRG8yWXpoak1qQTNPQzB3T0RoaExUUXpaVEV0WWpVd1pDMDVNVFUzWlRJeFpqZGpaV1pzY21Wc1lYUnBiMjV6YUdsd2FIQmhjbVZ1ZEU5bUFBQUI0bXAxYldJQUFBQkJhblZ0WkdOaWIzSUFFUUFRZ0FBQXFnQTRtM0VUWXpKd1lTNWhZM1JwYjI1ekxuWXlBQUFBQUJoak1uTm9SelNKUkdYamJJZ0dyS3d5MFplRnBnQUFBWmxqWW05eW9tZGhZM1JwYjI1emdxSm1ZV04wYVc5dWEyTXljR0V1YjNCbGJtVmthbkJoY21GdFpYUmxjbk9oYTJsdVozSmxaR2xsYm5SemdhSmpkWEpzZUMxelpXeG1JMnAxYldKbVBXTXljR0V1WVhOelpYSjBhVzl1Y3k5ak1uQmhMbWx1WjNKbFpHbGxiblF1ZGpOa2FHRnphRmdnaS9Qc21pWUdEOWtxc2J5QU5SRlRXbXJGcU5CYTAyUWZpNzY1bEpDNm5EU2tabUZqZEdsdmJuZ2RZMjl0TG1GdWRHaHliM0JwWXk1amJHRjFaR1V1Y0hKdmRtbGtaV1JxY0dGeVlXMWxkR1Z5YzZGNEgyTnZiUzVoYm5Sb2NtOXdhV011YjNKcFoybHVMV052Ym1acFpHVnVZMlZuZFc1cmJtOTNibXRrWlhOamNtbHdkR2x2Ym5obVEyeGhkV1JsSUhCeWIzWnBaR1ZrSUhSb2FYTWdabWxzWlNCaGRDQjBhR1VnY21WeGRXVnpkQ0J2WmlCaElIVnpaWElnWVc1a0lHMWhlU0JvWVhabElHTnlaV0YwWldRZ2IzSWdiVzlrYVdacFpXUWdkR2hsSUdacGJHVWdZMjl1ZEdWdWRITXViWE52Wm5SM1lYSmxRV2RsYm5TaFpHNWhiV1ZtUTJ4aGRXUmxjbUZzYkVGamRHbHZibk5KYm1Oc2RXUmxaUFVBQUFESWFuVnRZZ0FBQUVCcWRXMWtZMkp2Y2dBUkFCQ0FBQUNxQURpYmNSTmpNbkJoTG1oaGMyZ3VaR0YwWVFBQUFBQVlZekp6YUFvUWl0cUFhcStoTGVvVStKRSsrNHNBQUFDQVkySnZjcVZqWVd4blpuTm9ZVEkxTm1Od1lXUk5BQUFBQUFBQUFBQUFBQUFBQUdSb1lYTm9XQ0E2WkdrK1R5aWl3WU1ZdXNGRUtmR2cxdHNGZVpKcTdIVzY1N3d5K2tFS1dtUnVZVzFsYm1wMWJXSm1JRzFoYm1sbVpYTjBhbVY0WTJ4MWMybHZibk9Cb21WemRHRnlkQmlXWm14bGJtZDBhQmtlQkFBQUFqNXFkVzFpQUFBQUoycDFiV1JqTW1Oc0FCRUFFSUFBQUtvQU9KdHhBMk15Y0dFdVkyeGhhVzB1ZGpJQUFBQUNEMk5pYjNLbFkyRnNaMlp6YUdFeU5UWnBjMmxuYm1GMGRYSmxlRTF6Wld4bUkycDFiV0ptUFM5ak1uQmhMM1Z5Ympwak1uQmhPbVEzTlRSaFltWXdMVGd3TXpJdE5ETmpaaTA1T0daakxUQmxaRFl4WWpCbU5tWTBZUzlqTW5CaExuTnBaMjVoZEhWeVpXcHBibk4wWVc1alpVbEVlQ3g0YlhBNmFXbGtPall6TVRSbU16aG1MV1l3WlRFdE5EVmtNQzA1TW1NMUxXTXlZak13WkdSa05USmlaSEpqY21WaGRHVmtYMkZ6YzJWeWRHbHZibk9Eb21OMWNteDRMWE5sYkdZamFuVnRZbVk5WXpKd1lTNWhjM05sY25ScGIyNXpMMk15Y0dFdWFXNW5jbVZrYVdWdWRDNTJNMlJvWVhOb1dDQ0w4K3lhSmdZUDJTcXh2SUExRVZOYWFzV28wRnJUWkIrTHZybVVrTHFjTktKamRYSnNlQ3B6Wld4bUkycDFiV0ptUFdNeWNHRXVZWE56WlhKMGFXOXVjeTlqTW5CaExtRmpkR2x2Ym5NdWRqSmthR0Z6YUZnZ1lZSnh5NVgzN01hNlBvQVlzclpRSE9uNU1oeWI3WHBNYU5od25aMm16OW1pWTNWeWJIZ3BjMlZzWmlOcWRXMWlaajFqTW5CaExtRnpjMlZ5ZEdsdmJuTXZZekp3WVM1b1lYTm9MbVJoZEdGa2FHRnphRmdndUxqM0tLdVRpeDhrSERlbHEyUXloYk1LV05Vc1BHdnBDc3hqK0FvSHBITjBZMnhoYVcxZloyVnVaWEpoZEc5eVgybHVabStqWkc1aGJXVnZRVzUwYUhKdmNHbGpJRVpwYkdWelozWmxjbk5wYjI1bE1TNHdMakJyYzNCbFkxWmxjbk5wYjI1bE1pNDBMakFBQUJBNGFuVnRZZ0FBQUNocWRXMWtZekpqY3dBUkFCQ0FBQUNxQURpYmNRTmpNbkJoTG5OcFoyNWhkSFZ5WlFBQUFCQUlZMkp2Y3RLRVdRSVNvZ0VtR0NGWkFnb3dnZ0lHTUlJQmphQURBZ0VDQWhSQTVhQUs3c0k1MEw2NGcvb0dRZ1U5WjFVVEFEQUtCZ2dxaGtqT1BRUURBekJKTVJjd0ZRWURWUVFLRXc1QmJuUm9jbTl3YVdNc0lGQkNRekV1TUN3R0ExVUVBeE1sUVc1MGFISnZjR2xqSUVOdmJuUmxiblFnUTNKbFpHVnVkR2xoYkhNZ1VtOXZkQ0JEUVRBZUZ3MHlOakE0TURjeE9EUXpOVFphRncweU9EQTRNRFl4T1RRek5UWmFNRVF4RnpBVkJnTlZCQW9URGtGdWRHaHliM0JwWXl3Z1VFSkRNU2t3SndZRFZRUURFeUJCYm5Sb2NtOXdhV01nUTJ4aGRXUmxJRU52Ym5SbGJuUWdVMmxuYm1sdVp6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJKaDZDbXZMVUJnRkZOVTB2VUtsT1Z0RTZkamQxN0w1U3V3WDBMZW1GaXNCTTNka2QvM2N5anhGQTNRbzVTNDZmWDAvaWhZMFZaN21mYjlLRjcwM3Q1T2pXREJXTUE0R0ExVWREd0VCL3dRRUF3SUhnREFWQmdOVkhTVUVEakFNQmdvckJnRUVBWVBvWGdJQk1Bd0dBMVVkRXdFQi93UUNNQUF3SHdZRFZSMGpCQmd3Rm9BVXpsSGlCSUZPWkZzaitPUEV6NW8rbk1IWFhNSXdDZ1lJS29aSXpqMEVBd01EWndBd1pBSXdNWE1kRko0QmV0TExWWTdPUnVFOW5vcWJiQVpPWm4vYUFyWHlUd0ZBWmZLclB6eEYydlBvSk5mMStVQ2RnMVhHQWpCd1gxemQ5V0dxWWtxbUw1U0ZxdzFReVNqcjF6SmZwSk05KzFyZER3U1BMTU9QT2pLdWlYam9VL3BVVWVHOVJ3bWhZM0JoWkZrTm5nQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUFpZUUVQZEhxUE5ISnZKeE9nRVl2Y2hRRzdJVmpvdHdUQ1hSbkcxcEhQSFE4dEFzZ3Z0RldHRm01Ums3cXdBVml5QjlhSG4zbmk1ZVkzTmFMTmdrYzdRSnZjPTwvYzJwYTptYW5pZmVzdD48L21ldGFkYXRhPjxkZWZzPjxjbGlwUGF0aCBpZD0iY3NGMUVFRTYiPjxwYXRoIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTS0yMCAtMjAgSDE0MCBWMTQwIEgtMjAgWiBNNjAuMDAgMzIuMjQgTDY2LjYwIDQ5LjQwIEw4My43NiA1Ni4wMCBMNjYuNjAgNjIuNjAgTDYwLjAwIDc5Ljc2IEw1My40MCA2Mi42MCBMMzYuMjQgNTYuMDAgTDUzLjQwIDQ5LjQwIFoiLz48L2NsaXBQYXRoPjwvZGVmcz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NzRjFFRUU2KSI+CjxwYXRoIGQ9Ik0yMCA3NCBMMjAgMTAwIEw0NiAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0UzQjM0MSIgc3Ryb2tlLXdpZHRoPSI4Ljc1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTI4IDU2IEExNiAxNiAwIDAgMSA2MCA1NiBBMTYgMTYgMCAwIDAgOTIgNTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0UzQjM0MSIgc3Ryb2tlLXdpZHRoPSIxMC4wIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTI4IDU2IEExNiAxNiAwIDAgMCA2MCA1NiBBMTYgMTYgMCAwIDEgOTIgNTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0YxRUVFNiIgc3Ryb2tlLXdpZHRoPSIxMC4wIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9nPgo8cGF0aCBkPSJNNjAgMzggTDY1IDUxIEw3OCA1NiBMNjUgNjEgTDYwIDc0IEw1NSA2MSBMNDIgNTYgTDU1IDUxIFoiIGZpbGw9IiNFM0IzNDEiLz4KPHBhdGggZD0iTTk4IDEwIEwxMDEgMTkgTDExMCAyMiBMMTAxIDI1IEw5OCAzNCBMOTUgMjUgTDg2IDIyIEw5NSAxOSBaIiBmaWxsPSIjRjFFRUU2Ii8+PC9zdmc+">
+      <p><strong>Creata da Marco Perini</strong><br>Nashira Studio, versione 5.1</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+(() => {
+  'use strict';
+
+  // #region dati
+  // Generato da costruisci.py a partire dai sorgenti Swift. Non modificare a mano.
+  const NORME = {"fonte":{"file":"ChecklistDefinizioni.swift","sha256":"23b56106e736330a80490a2399bde903de10fc5e93cb3e90cbdbfe13c83954c7","ultima_verifica":"07/10/2026"},"app":{"nome":"Atti-MO","sottotitolo":"Atti immediati sul posto","acronimo":"ATTi IMmediati sul pOsto","indipendenza":"Atti-MO è uno strumento indipendente, non legato a un singolo corpo di polizia. Resta all'operante verificare la propria qualifica di polizia giudiziaria e l'ambito dei poteri applicabili al caso."},"tipi":[{"chiave":"sinistroStradale","nome":"Sinistro Stradale","descrizione":"Rilievi urgenti su sinistri stradali, lesioni e omicidio stradale (art. 189 CdS).","checklist":[{"titolo":"Condizioni delle persone coinvolte verificate / soccorso richiesto","basi":"art. 189 c.1 CdS","obbligatorio":true,"condizionale":false},{"titolo":"Fotografie di mezzi, targhe e tracce sul manto stradale (prima di spostamenti)","basi":"art. 189 c.2 CdS; art. 354 c.1-2 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Generalità e documenti di tutti i conducenti raccolti","basi":"art. 189 c.4 CdS","obbligatorio":true,"condizionale":false},{"titolo":"Se sospetto stato di ebbrezza: avviso della facoltà di difensore dato PRIMA dell'accertamento","basi":"art. 186 CdS; art. 114 disp. att. CPP","obbligatorio":true,"condizionale":true},{"titolo":"Se sospetta assunzione di stupefacenti: accertamento qualitativo non invasivo e, se positivo, prelievo di fluido del cavo orale","basi":"art. 187 c.2 e 2-bis CdS (L. 177/2024)","obbligatorio":false,"condizionale":true},{"titolo":"Se accertamento art. 187 CdS: descritte le condizioni concrete del conducente e il pericolo per la circolazione","basi":"art. 187 CdS; Corte cost. 10/2026","obbligatorio":false,"condizionale":true},{"titolo":"Rimozione intralcio disposta solo dopo i rilievi urgenti indispensabili","basi":"art. 189 c.3 CdS","obbligatorio":false,"condizionale":false},{"titolo":"Testimoni identificati","basi":"art. 351 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Se assunte sommarie informazioni: dato avviso del diritto di chiedere la fonoregistrazione","basi":"art. 351 c.1-quater CPP","obbligatorio":false,"condizionale":true}]},{"chiave":"reatoCodiceRosso","nome":"Codice Rosso / Violenza domestica","descrizione":"Accertamenti urgenti, tutele rafforzate per persone offese e minori.","checklist":[{"titolo":"Condizioni fisiche delle persone coinvolte verificate / soccorso richiesto","basi":"art. 593 CP; art. 354 c.3 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Segni e tracce lasciate sulla persona descritti/fotografati (con il consenso dell'interessato)","basi":"art. 354 c.3 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Se persona offesa minore o vulnerabile: attivate le tutele specifiche (pseudonimizzazione, procedure rafforzate)","basi":"prassi Codice Rosso / tutela minori","obbligatorio":true,"condizionale":true},{"titolo":"Valutata la condizione di particolare vulnerabilità della persona offesa e dato atto della valutazione","basi":"art. 90-quater CPP; Cass. VI n. 14172/2026","obbligatorio":true,"condizionale":false},{"titolo":"Se rese dichiarazioni da minore, infermo di mente o persona vulnerabile: documentate integralmente in audio o video (a pena di inutilizzabilità)","basi":"art. 357 c.3-ter CPP","obbligatorio":true,"condizionale":true},{"titolo":"Informativa alla persona offesa dal primo contatto: difensore, patrocinio a spese dello Stato, giustizia riparativa","basi":"art. 90-bis CPP","obbligatorio":true,"condizionale":false},{"titolo":"Testimoni identificati","basi":"art. 351 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Se assunte sommarie informazioni: dato avviso del diritto di chiedere la fonoregistrazione","basi":"art. 351 c.1-quater CPP","obbligatorio":false,"condizionale":true}]},{"chiave":"furtoRaffica","nome":"Furto in Abitazione / Esercizio","descrizione":"Sopralluogo di PG per furti, danni ed effrazioni (art. 624-bis CP).","checklist":[{"titolo":"Stato dei luoghi fotografato prima di qualunque intervento di terzi","basi":"art. 354 c.1 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Elementi di effrazione/manomissione documentati (foto + descrizione)","basi":"art. 354 c.2-3 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Descrizione dettagliata di quanto sottratto/danneggiato raccolta dalla persona offesa","basi":"art. 350-351 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Informativa alla persona offesa dal primo contatto: facoltà di nominare un difensore, patrocinio a spese dello Stato, giustizia riparativa","basi":"art. 90-bis CPP","obbligatorio":true,"condizionale":false},{"titolo":"Atto della persona offesa qualificato: denuncia se il furto è procedibile d'ufficio, querela con espressa volontà punitiva negli altri casi","basi":"art. 624-bis CP; Corte cost. 130/2026; art. 336 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Se raccolta querela: dichiarazione o elezione di domicilio del querelante, anche PEC","basi":"art. 153-bis CPP; art. 90-bis c.1 lett. a-bis) CPP","obbligatorio":false,"condizionale":true},{"titolo":"Eventuali tracce materiali segnalate alla Polizia Scientifica, se disponibile","basi":"art. 354 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Testimoni identificati","basi":"art. 351 CPP","obbligatorio":false,"condizionale":false},{"titolo":"Se assunte sommarie informazioni: dato avviso del diritto di chiedere la fonoregistrazione","basi":"art. 351 c.1-quater CPP","obbligatorio":false,"condizionale":true}]},{"chiave":"rilievoGenerico","nome":"Sopralluogo di PG Generico","descrizione":"Sopralluogo ed accertamenti di PG generici (art. 354 CPP).","checklist":[{"titolo":"Stato dei luoghi e delle cose fotografato prima di ogni modificazione","basi":"art. 354 c.1 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Identificazione delle persone presenti sul posto","basi":"art. 349 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Rilievi ed accertamenti sulle cose e tracce pertinenti al reato","basi":"art. 354 c.2 CPP","obbligatorio":true,"condizionale":false},{"titolo":"Se sequestro di PG: redatto verbale e dato avviso diritto al difensore","basi":"art. 354, 355 CPP; art. 114 disp. att. CPP","obbligatorio":false,"condizionale":true},{"titolo":"Sommarie informazioni assunte o spontanee dichiarazioni ricevute","basi":"artt. 350, 351 CPP","obbligatorio":false,"condizionale":false}]}],"messaggi":{"dichiarazione_senza_difensore":"Delle notizie assunte sul posto dall'indagato senza difensore (art. 350 c.5 CPP) è vietata ogni documentazione e utilizzazione processuale (c.6).","sommarie_senza_avviso":"Per le sommarie informazioni occorre attestare l'avviso della facoltà di farsi assistere da un difensore.","accertamento_senza_avviso":"Per gli accertamenti urgenti sulla persona (art. 354 c.3 CPP) è obbligatorio attestare l'avviso della facoltà di farsi assistere da un difensore (art. 114 disp. att. CPP)."},"ruoli":[{"chiave":"indagato","nome":"Persona sottoposta ad indagini","qualita":"persona sottoposta a indagini","prefisso":"IND"},{"chiave":"personaOffesa","nome":"Persona offesa dal reato","qualita":"persona offesa dal reato","prefisso":"PO"},{"chiave":"danneggiato","nome":"Soggetto danneggiato","qualita":"persona danneggiata","prefisso":"DAN"},{"chiave":"conducente","nome":"Conducente di veicolo","qualita":"conducente","prefisso":"COND"},{"chiave":"trasportato","nome":"Persona trasportata","qualita":"persona trasportata","prefisso":"TRASP"},{"chiave":"testimone","nome":"Persona informata sui fatti / Testimone","qualita":"persona informata sui fatti","prefisso":"TEST"},{"chiave":"custode","nome":"Custode nominato","qualita":"custode","prefisso":"CUST"}],"stati":[{"chiave":"identificato","nome":"Identificato sul posto","inciso":null},{"chiave":"inCorso","nome":"Identificazione in corso","inciso":"in corso di identificazione"},{"chiave":"nonIdentificato","nome":"Non identificato / Sconosciuto","inciso":"non identificato sul posto"}],"modalita":[{"chiave":"notizieSulPostoSenzaDifensore","nome":"Sommarie notizie sul posto senza difensore (art. 350 c.5 CPP)"},{"chiave":"sommarieInformazioniConDifensore","nome":"Sommarie informazioni con difensore (art. 350 c.1-4 CPP)"},{"chiave":"dichiarazioneSpontanea","nome":"Dichiarazioni spontanee (art. 350 c.7 CPP)"},{"chiave":"dIniziativa","nome":"Sommarie informazioni a persone informate (art. 351 CPP)"}],"sesso":["Maschile","Femminile","Altro"]};
+  // #endregion dati
+
+  // #region logica
+  // Nessun accesso alla pagina e nessuna lettura dell'orologio: l'ora arriva sempre come argomento.
+
+  function nuovoRilievo(tipo, adesso) {
+    return {
+      tipo: tipo.chiave,
+      nomeTipo: tipo.nome,
+      apertura: adesso,
+      checklist: tipo.checklist.map((v, i) => ({
+        id: i, titolo: v.titolo, basi: v.basi, obbligatorio: v.obbligatorio, condizionale: v.condizionale, spuntato: false, nonApplicabile: false, istante: null,
+      })),
+      cronologia: [],
+      prossimaVoce: 1,
+      soggetti: [],
+      prossimoSoggetto: 1,
+      luogo: '',
+      fatti: '',
+      fine: null,
+    };
+  }
+
+  // Spunta o toglie la spunta. Ogni voce di cronologia ricorda l'adempimento da cui nasce
+  // (elementoId): togliendo la spunta sparisce sempre, anche se l'ora è stata corretta.
+  // È una differenza voluta rispetto all'app iOS, dove una voce a ora corretta resta.
+  function spunta(rilievo, idElemento, adesso) {
+    const e = rilievo.checklist.find((x) => x.id === idElemento);
+    if (!e) return false;
+    e.spuntato = !e.spuntato;
+    if (e.spuntato) e.nonApplicabile = false;
+    if (e.spuntato) {
+      e.istante = adesso;
+      rilievo.cronologia.push({
+        id: rilievo.prossimaVoce++, elementoId: e.id, istante: adesso,
+        descrizione: e.titolo, riferimento: e.basi, automatica: true,
+      });
+      rilievo.cronologia.sort((a, b) => a.istante - b.istante);
+    } else {
+      e.istante = null;
+      rilievo.cronologia = rilievo.cronologia.filter((v) => v.elementoId !== e.id);
+    }
+    return true;
+  }
+
+  // "HH:MM" -> data dello stesso giorno di `base`, a secondi zero. Non valido -> null.
+  function oraSuData(base, hhmm) {
+    const m = /^(\d{2}):(\d{2})$/.exec(hhmm || '');
+    if (!m) return null;
+    const ore = Number(m[1]), minuti = Number(m[2]);
+    if (ore > 23 || minuti > 59) return null;
+    return new Date(base.getFullYear(), base.getMonth(), base.getDate(), ore, minuti, 0, 0);
+  }
+
+  // Correzione dell'ora di un passaggio: l'operante annota dopo aver compiuto l'adempimento
+  // e negli atti conta l'ora reale. La voce non è più automatica (resta evidenziata).
+  // Differenza voluta rispetto all'app iOS: si allinea anche l'ora mostrata sulla scheda
+  // dell'adempimento, che nell'app resterebbe quella non corretta.
+  function correggiIstante(rilievo, idVoce, nuovo) {
+    const v = rilievo.cronologia.find((x) => x.id === idVoce);
+    if (!v || !(nuovo instanceof Date) || isNaN(nuovo)) return false;
+    v.istante = nuovo;
+    v.automatica = false;
+    const e = rilievo.checklist.find((x) => x.id === v.elementoId);
+    if (e) e.istante = nuovo;
+    rilievo.cronologia.sort((a, b) => a.istante - b.istante);
+    return true;
+  }
+
+  const pad = (n) => (n < 10 ? '0' : '') + n;
+  const ora = (d) => pad(d.getHours()) + ':' + pad(d.getMinutes());
+
+  // La cronologia ridotta mostra gli ultimi 3 passaggi, come nell'app.
+  const VOCI_RIDOTTE = 3;
+  const vociVisibili = (rilievo, espansa) =>
+    espansa ? rilievo.cronologia : rilievo.cronologia.slice(-VOCI_RIDOTTE);
+  const vociNascoste = (rilievo, espansa) =>
+    espansa ? 0 : Math.max(0, rilievo.cronologia.length - VOCI_RIDOTTE);
+
+  // ---- Persone coinvolte
+  const ruoloDi = (chiave) => NORME.ruoli.find((x) => x.chiave === chiave);
+  const vuoto = (t) => String(t || '').trim() === '';
+
+  function nuovoSoggetto(id, chiaveRuolo, progressivo) {
+    return {
+      id, ruolo: chiaveRuolo, progressivo,
+      generalita: { cognome: '', nome: '', luogoNascita: '', dataNascita: '', sesso: '', residenza: '', documento: '' },
+      stato: 'identificato', haDichiarazione: false, modalita: null,
+      avvisoDifensore: false, sottopostoAccertamento: false, minore: false, progressivoMinore: null,
+    };
+  }
+
+  // La sigla è il prefisso del ruolo e un progressivo, come nell'app: PO1, TEST2 e così via.
+  const sigla = (s) => (s.minore && s.progressivoMinore ? 'M' + s.progressivoMinore : ruoloDi(s.ruolo).prefisso + s.progressivo);
+
+  // Il flag "minore" dà una sigla M1, M2… numerata tra i minori, a prescindere dal ruolo (massimo + 1, come i ruoli).
+  function impostaMinore(rilievo, s, valore) {
+    if (valore && !s.minore) {
+      s.progressivoMinore = rilievo.soggetti.reduce((m, x) => Math.max(m, x.progressivoMinore || 0), 0) + 1;
+      s.minore = true;
+    } else if (!valore) {
+      s.minore = false;
+      s.progressivoMinore = null;
+    }
+  }
+
+  // Il testo "Identificazione avviata" segue la sigla attuale: se la persona diventa minore, cambia anche lì.
+  function descrizioneVoce(rilievo, v) {
+    const s = v.soggettoId === undefined || v.soggettoId === null ? null : rilievo.soggetti.find((x) => x.id === v.soggettoId);
+    return s ? 'Identificazione avviata: ' + sigla(s) + ' (' + ruoloDi(s.ruolo).nome + ')' : v.descrizione;
+  }
+
+  function campiMancanti(s) {
+    const m = [];
+    if (vuoto(s.generalita.cognome)) m.push('Cognome');
+    if (vuoto(s.generalita.nome)) m.push('Nome');
+    return m;
+  }
+  const generalitaComplete = (s) => campiMancanti(s).length === 0;
+
+  function etichettaLocale(s) {
+    const cn = (s.generalita.cognome + ' ' + s.generalita.nome).trim();
+    return cn === '' ? sigla(s) : cn;
+  }
+
+  // Progressivo = massimo del ruolo + 1, come nell'app: dopo una rimozione possono restare buchi (PO1, PO3).
+  function aggiungiSoggetto(rilievo, chiaveRuolo, adesso) {
+    const ruolo = ruoloDi(chiaveRuolo);
+    if (!ruolo) return null;
+    const progressivo = rilievo.soggetti
+      .filter((x) => x.ruolo === chiaveRuolo)
+      .reduce((m, x) => Math.max(m, x.progressivo), 0) + 1;
+    const s = nuovoSoggetto(rilievo.prossimoSoggetto++, chiaveRuolo, progressivo);
+    rilievo.soggetti.push(s);
+    rilievo.cronologia.push({
+      id: rilievo.prossimaVoce++, elementoId: null, soggettoId: s.id, istante: adesso,
+      descrizione: 'Identificazione avviata: ' + sigla(s) + ' (' + ruolo.nome + ')',
+      riferimento: null, automatica: true,
+    });
+    rilievo.cronologia.sort((a, b) => a.istante - b.istante);
+    return s;
+  }
+
+  // Rimuovendo la persona sparisce sempre anche la sua voce di cronologia, anche se l'ora era stata corretta.
+  // È una differenza voluta rispetto all'app iOS, dove una voce a ora corretta resta.
+  function rimuoviSoggetto(rilievo, id) {
+    if (!rilievo.soggetti.some((x) => x.id === id)) return false;
+    rilievo.soggetti = rilievo.soggetti.filter((x) => x.id !== id);
+    rilievo.cronologia = rilievo.cronologia.filter((v) => v.soggettoId !== id);
+    return true;
+  }
+
+  // Controlli sulle garanzie difensive. Restituiscono { tipo, messaggio } oppure null.
+  // Art. 350 c.5-6: nell'app il messaggio compare solo se esiste il testo della dichiarazione,
+  // ma la schermata non ha un campo per scriverlo, quindi non può comparire. Qui compare
+  // appena si indica la modalità "notizie sul posto senza difensore" per l'indagato.
+  function validaDichiarazione(s) {
+    if (!s.haDichiarazione || !s.modalita) return null;
+    if (s.modalita === 'notizieSulPostoSenzaDifensore') {
+      if (s.ruolo === 'indagato') return { tipo: 'bloccante', messaggio: NORME.messaggi.dichiarazione_senza_difensore };
+    } else if (s.modalita === 'sommarieInformazioniConDifensore') {
+      if (!s.avvisoDifensore) return { tipo: 'avviso', messaggio: NORME.messaggi.sommarie_senza_avviso };
+    }
+    return null;
+  }
+
+  function validaAccertamento(s) {
+    if (s.sottopostoAccertamento && !s.avvisoDifensore) {
+      return { tipo: 'bloccante', messaggio: NORME.messaggi.accertamento_senza_avviso };
+    }
+    return null;
+  }
+
+  // Dove compare l'interruttore dell'avviso al difensore: per l'indagato e per chi viene sottoposto
+  // ad accertamenti (come nell'app) e, in più, per chi rende sommarie informazioni con difensore,
+  // altrimenti l'avviso richiesto non potrebbe mai essere attestato.
+  const avvisoNegliAccertamenti = (s) => s.ruolo === 'indagato' || s.sottopostoAccertamento;
+  const avvisoNelleSommarie = (s) =>
+    s.haDichiarazione && s.modalita === 'sommarieInformazioniConDifensore' && !avvisoNegliAccertamenti(s);
+
+  // ---- Riepilogo
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataLunga = (d) => d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear();
+  function dataNumerica(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : '';
+  }
+  // Desinenza accordata al sesso; senza sesso indicato restano entrambe.
+  const accorda = (s, radice) => radice + ({ Maschile: 'o', Femminile: 'a' }[s.generalita.sesso] || 'o/a');
+
+  function identita(s) {
+    const g = s.generalita;
+    const p = (t) => String(t || '').trim();
+    const nominativo = [p(g.cognome).toUpperCase(), p(g.nome)].filter((x) => x !== '').join(' ');
+    if (nominativo === '') return sigla(s);
+    const parti = [nominativo];
+    let nascita = '';
+    const luogo = p(g.luogoNascita);
+    // «ad Ascoli Piceno», «a Roma»: la d eufonica davanti alla stessa vocale.
+    if (luogo !== '') nascita += (luogo.toLowerCase().startsWith('a') ? ' ad ' : ' a ') + luogo;
+    if (g.dataNascita) nascita += ' il ' + dataNumerica(g.dataNascita);
+    if (nascita !== '') parti.push(accorda(s, 'nat') + nascita);
+    if (p(g.residenza) !== '') parti.push('residente in ' + p(g.residenza));
+    if (p(g.documento) !== '') parti.push(accorda(s, 'identificat') + ' a mezzo ' + p(g.documento));
+    return parti.join(', ');
+  }
+
+  // Riga di una persona, con le stesse regole dell'app. Le notizie assunte sul posto
+  // dall'indagato senza difensore (art. 350 c.5-6) non vengono riportate: nessun accenno al contenuto.
+  function rigaPersona(s, numero) {
+    let riga = numero + ') ' + identita(s) + ', in qualità di ' + ruoloDi(s.ruolo).qualita;
+    if (s.minore) riga += ', minore di età';
+    const inciso = NORME.stati.find((x) => x.chiave === s.stato).inciso;
+    if (inciso) riga += ', ' + inciso;
+    if (s.sottopostoAccertamento) {
+      riga += ', nei cui confronti si è proceduto ad accertamenti urgenti sulla persona';
+      if (s.avvisoDifensore) riga += ', previo avviso della facoltà di farsi assistere da un difensore di fiducia';
+    }
+    if (s.haDichiarazione && s.modalita) {
+      if (s.modalita === 'sommarieInformazioniConDifensore' || s.modalita === 'dIniziativa') {
+        riga += s.avvisoDifensore
+          ? ', che, previo avviso della facoltà di farsi assistere da un difensore, ha reso sommarie informazioni documentate con separato verbale'
+          : ', che ha reso sommarie informazioni documentate con separato verbale';
+      } else if (s.modalita === 'dichiarazioneSpontanea') {
+        riga += ', che ha reso spontanee dichiarazioni documentate con separato verbale';
+      }
+    }
+    return riga + ';';
+  }
+
+  // Il riepilogo riporta soltanto due orari, inizio e fine delle operazioni: gli orari dei singoli
+  // adempimenti restano nella cronologia. Se la fine non è indicata vale l'ora in cui si produce.
+  function bozzaRiepilogo(r, fine, adesso) {
+    const luogo = String(r.luogo || '').trim();
+    const chiusura = fine;
+    const sezioni = [];
+    if (r.soggetti.length > 0) {
+      const tutte = r.soggetti.every((s) => s.stato === 'identificato');
+      const righe = [tutte ? 'Sul posto sono state identificate le seguenti persone:' : 'Sul posto erano presenti le seguenti persone:'];
+      r.soggetti.forEach((s, i) => righe.push(rigaPersona(s, i + 1)));
+      righe[righe.length - 1] = righe[righe.length - 1].replace(/;$/, '.');
+      sezioni.push({ titolo: 'Persone presenti sul posto', righe });
+    }
+    const svolti = r.checklist.filter((e) => e.spuntato);
+    if (svolti.length > 0) {
+      sezioni.push({
+        titolo: 'Attività ed adempimenti svolti',
+        righe: ['Attività ed accertamenti eseguiti:', ...svolti.map((e) => '• ' + e.titolo + (e.basi ? ' [' + e.basi + ']' : ''))],
+      });
+    }
+    const nonApplicabili = r.checklist.filter(e => e.nonApplicabile);
+    if (nonApplicabili.length) sezioni.push({titolo: 'Attività dichiarate non applicabili (da motivare)', righe: nonApplicabili.map(e => '• ' + e.titolo)});
+    const fatti = String(r.fatti || '').trim();
+    sezioni.push({
+      titolo: 'Stato dei luoghi e descrizione dei fatti',
+      righe: fatti === '' ? ['(non compilato)'] : fatti.split('\n').filter((x) => x.trim() !== ''),
+    });
+    return {
+      titolo: 'Riepilogo dimostrativo',
+      tipo: r.nomeTipo,
+      premessa: 'In data ' + dataLunga(r.apertura) + ', alle ore ' + ora(r.apertura) + ', in ' + (luogo === '' ? 'luogo da indicare' : luogo) + '.',
+      sezioni,
+      chiusura: chiusura ? ('Le operazioni, iniziate alle ore ' + ora(r.apertura) + ', sono state chiuse alle ore ' + ora(chiusura) + ' del ' + dataLunga(chiusura) + '.') : 'Ora di chiusura non indicata: verificare e completare prima dell’uso.',
+      nota: 'BOZZA NON VALIDATA — Solo dati di fantasia. Non costituisce atto di P.G.; verificare fonti, presupposti, cronologia e completezza.',
+    };
+  }
+
+  function testoRiepilogo(b) {
+    const righe = [b.titolo, b.tipo, '', b.premessa, ''];
+    for (const sez of b.sezioni) righe.push(sez.titolo, ...sez.righe, '');
+    righe.push(b.chiusura, '', b.nota);
+    return righe.join('\n');
+  }
+
+  // Pagina stampabile: un documento HTML completo e autonomo (nessuno script, nessuna rete) da salvare
+  // e aprire nel browser per stampare o fare un PDF. Ogni testo viene reso innocuo prima di entrare nel codice.
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const CSS_STAMPA =
+    'body{margin:0;background:#fff;color:#000;font:12pt/1.55 Georgia,"Times New Roman",serif}' +
+    'main{max-width:42rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}' +
+    'h1{font-size:1.5rem;margin:0}.tipo{margin:.15rem 0 1.25rem;font-style:italic}' +
+    'h2{font-size:1.1rem;margin:1.4rem 0 .4rem}p{margin:0 0 .5rem;overflow-wrap:anywhere}' +
+    '.nota{margin-top:1.5rem;font-size:.9rem;font-style:italic}.guida{color:#555;font:10pt sans-serif;margin-bottom:1.25rem}' +
+    '@media print{main{max-width:none;padding:0}h2{break-after:avoid}p{orphans:3;widows:3}.guida{display:none}}';
+
+  function paginaStampabile(b) {
+    const t = (testo) => esc(String(testo).replace(/(\p{L})'(\p{L})/gu, '$1\u2019$2'));
+    const sezioni = b.sezioni
+      .map((sez) => '<section><h2>' + t(sez.titolo) + '</h2>' + sez.righe.map((riga) => '<p>' + t(riga) + '</p>').join('') + '</section>')
+      .join('\n');
+    return '<!doctype html>\n<html lang="it">\n<head>\n<meta charset="utf-8">\n' +
+      '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+      '<title>' + t(b.titolo) + '</title>\n<style>' + CSS_STAMPA + '</style>\n</head>\n<body>\n<main>\n' +
+      '<p class="guida">Per stampare o salvare in PDF usa il comando Stampa del browser.</p>\n' +
+      '<h1>' + t(b.titolo) + '</h1>\n<p class="tipo">' + t(b.tipo) + '</p>\n<p>' + t(b.premessa) + '</p>\n' +
+      sezioni + '\n<p>' + t(b.chiusura) + '</p>\n<p class="nota">' + t(b.nota) + '</p>\n</main>\n</body>\n</html>\n';
+  }
+  // #endregion logica
+
+  // #region vista
+  // Gli apostrofi dei testi dell'app restano identici nei dati; si convertono solo a video.
+  const tip = (s) => s.replace(/(\p{L})'(\p{L})/gu, '$1\u2019$2');
+  const $ = (id) => document.getElementById(id);
+
+  function el(tag, classe, testo) {
+    const e = document.createElement(tag);
+    if (classe) e.className = classe;
+    if (testo !== undefined) e.textContent = testo;
+    return e;
+  }
+
+  // Stato della schermata. Il rilievo nasce solo quando l'utente sceglie un tipo,
+  // mai durante il disegno della pagina.
+  const ui = { rilievo: null, scheda: 'checklist', espansa: false, inCorrezione: null, soggettoAperto: null, menuRuoli: false, copia: null, adesso: null };
+
+  // Evidenzia le maiuscole di "ATTi IMmediati sul pOsto": sono le lettere che formano il nome.
+  function riempiAcronimo(p, testo) {
+    let corrente = '';
+    for (const c of testo) {
+      if (/\p{Lu}/u.test(c)) {
+        if (corrente) { p.append(el('span', null, corrente)); corrente = ''; }
+        p.append(el('span', 'iniziale', c));
+      } else {
+        corrente += c;
+      }
+    }
+    if (corrente) p.append(el('span', null, corrente));
+  }
+
+  function mostraSchermata(nome) {
+    const inRilievo = nome === 'rilievo';
+    $('testata').hidden = inRilievo;
+    $('avviso-pieno').hidden = inRilievo;
+    $('avviso-breve').hidden = !inRilievo;
+    $('schermata-scelta').hidden = inRilievo;
+    $('schermata-rilievo').hidden = !inRilievo;
+    window.scrollTo(0, 0);
+    (inRilievo ? $('tipo-attivo') : $('titolo-tipi')).focus();
+  }
+
+  function mostraTipi() {
+    const elenco = $('tipi');
+    for (const t of NORME.tipi) {
+      const n = t.checklist.length;
+      const tasto = el('button', 'scheda scheda-tasto');
+      tasto.type = 'button';
+      tasto.append(
+        el('span', 'titolo', tip(t.nome)),
+        el('span', 'descr', tip(t.descrizione)),
+        el('span', 'conta', n === 1 ? '1 adempimento in checklist' : n + ' adempimenti in checklist')
+      );
+      tasto.addEventListener('click', () => apriRilievo(t));
+      const voce = el('li');
+      voce.append(tasto);
+      elenco.append(voce);
+    }
+  }
+
+  function apriRilievo(tipo) {
+    ui.rilievo = nuovoRilievo(tipo, new Date());
+    ui.scheda = 'checklist';
+    ui.espansa = false;
+    ui.inCorrezione = null;
+    ui.soggettoAperto = null;
+    ui.menuRuoli = false;
+    $('conferma-cambio').hidden = true;
+    $('tipo-attivo').textContent = tip(tipo.nome);
+    $('apertura').textContent = ora(ui.rilievo.apertura);
+    aggiornaLuogo();
+    aggiornaSchede();
+    mostraPannello();
+    mostraSchermata('rilievo');
+  }
+
+  function chiudiRilievo() {
+    ui.rilievo = null;
+    $('pannello').replaceChildren();          // niente resti dei dati nella pagina dopo l'uscita
+    $('conferma-cambio').hidden = true;
+    $('conferma-elimina').hidden = true;
+    mostraSchermata('scelta');
+  }
+
+  function chiediCambio() {
+    if (!ui.rilievo) return;
+    $('conferma-cambio').hidden = false;
+    $('conferma-no').focus();
+  }
+
+  function aggiornaSchede() {
+    for (const b of document.querySelectorAll('[data-scheda]')) {
+      if (b.dataset.scheda === ui.scheda) b.setAttribute('aria-current', 'page');
+      else b.removeAttribute('aria-current');
+    }
+  }
+
+  function mostraPannello() {
+    const costruisci = { checklist: pannelloChecklist, soggetti: pannelloSoggetti, cronologia: pannelloCronologia, riepilogo: pannelloRiepilogo };
+    $('pannello').replaceChildren(costruisci[ui.scheda]());
+  }
+
+  function disegnaObbligatori(box) {
+    const obbligatori = ui.rilievo.checklist.filter((e) => e.obbligatorio);
+    const mancanti = obbligatori.filter((e) => !e.spuntato && !e.nonApplicabile && !e.condizionale);
+    const daValutare = ui.rilievo.checklist.filter((e) => e.condizionale && !e.spuntato && !e.nonApplicabile);
+    box.replaceChildren();
+    if (mancanti.length > 0) {
+      box.append(esitoRiga('esito-rosso', 'Attenzione: ', mancanti.length === 1 ? 'Manca 1 adempimento obbligatorio.' : 'Mancano ' + mancanti.length + ' adempimenti obbligatori.'));
+    } else if (obbligatori.length > 0) {
+      box.append(esitoRiga('esito-verde', 'Ottimo: ', 'Tutti gli adempimenti obbligatori assolti.'));
+    }
+    if (daValutare.length) {
+      box.append(el('p', 'esito esito-arancione', daValutare.length === 1
+        ? '1 attività condizionata da valutare: indica se eseguita o non applicabile.'
+        : daValutare.length + ' attività condizionate da valutare: indica se eseguite o non applicabili.'));
+    }
+  }
+
+  function pannelloChecklist() {
+    const sezione = el('div');
+    sezione.append(el('h3', 'titolo-sez', 'Checklist operativa di PG'));
+
+    const contatore = el('div');
+    contatore.id = 'obbligatori';
+    disegnaObbligatori(contatore);
+    sezione.append(contatore);
+    sezione.append(el('p', 'suggerimento', 'La spunta è una registrazione dichiarata dall’operatore, non una verifica automatica dell’adempimento o della sua necessità giuridica.'));
+
+    const elenco = el('ul', 'elenco');
+    for (const e of ui.rilievo.checklist) elenco.append(cardAdempimento(e));
+    sezione.append(elenco, sezionePosizione(), sezioneFatti());
+    return sezione;
+  }
+
+  function cardAdempimento(e) {
+    const voce = el('li');
+    const etichetta = el('label', 'scheda adempimento');
+    const casella = el('input');
+    casella.type = 'checkbox';
+    casella.checked = e.spuntato;
+    const testo = el('span', 'testo');
+    const assolto = el('span', 'assolto');
+    testo.append(el('span', 'titolo', tip(e.titolo)));
+    if (e.basi) testo.append(el('span', 'norma', tip(e.basi)));
+    testo.append(assolto);
+    if (e.condizionale) testo.append(el('span', 'norma', 'Attività condizionata: verificare i presupposti'));
+    const nonApplicabile = el('button', 'tasto-testo', e.nonApplicabile ? 'Ripristina da valutare' : 'Non applicabile');
+    nonApplicabile.type = 'button';
+    nonApplicabile.addEventListener('click', () => {
+      if (e.spuntato) spunta(ui.rilievo, e.id, new Date());
+      e.nonApplicabile = !e.nonApplicabile; mostraPannello();
+    });
+
+    const aggiorna = () => {
+      casella.checked = e.spuntato;
+      assolto.hidden = !e.spuntato;
+      assolto.textContent = e.spuntato ? 'Assolto alle ' + ora(e.istante) : '';
+    };
+    casella.addEventListener('change', () => { spunta(ui.rilievo, e.id, new Date()); aggiorna(); const c = $('obbligatori'); if (c) disegnaObbligatori(c); });
+    aggiorna();
+
+    etichetta.append(casella, testo);
+    voce.append(etichetta, nonApplicabile);
+    return voce;
+  }
+
+  function pannelloCronologia() {
+    const r = ui.rilievo;
+    const sezione = el('div');
+
+    const testa = el('div', 'testa-sez');
+    testa.append(el('h3', 'titolo-sez', 'Cronologia'));
+    const tasto = el('button', 'tasto-testo', ui.espansa ? 'Riduci' : 'Mostra tutto');
+    tasto.type = 'button';
+    tasto.id = 'tasto-cron';
+    tasto.addEventListener('click', () => { ui.espansa = !ui.espansa; ui.inCorrezione = null; mostraPannello(); $('tasto-cron').focus(); });
+    testa.append(tasto);
+    sezione.append(testa);
+
+    const scheda = el('div', 'scheda');
+    const voci = vociVisibili(r, ui.espansa);
+    if (voci.length === 0) {
+      scheda.append(el('p', 'vuoto', 'Gli orari si registrano da soli mentre spunti gli adempimenti.'));
+    }
+    voci.forEach((v, i) => {
+      scheda.append(rigaCronologia(v, i === voci.length - 1));
+      if (ui.inCorrezione === v.id) scheda.append(editorOra(v));
+    });
+    const nascoste = vociNascoste(r, ui.espansa);
+    if (nascoste > 0) {
+      scheda.append(el('p', 'altri', nascoste === 1 ? 'Un altro passaggio registrato' : 'Altri ' + nascoste + ' passaggi registrati'));
+    }
+    sezione.append(scheda);
+    sezione.append(el('p', 'suggerimento', tip("Tocca un passaggio per correggerne l'ora, se l'hai spuntato dopo averlo compiuto.")));
+    return sezione;
+  }
+
+  function rigaCronologia(v, ultima) {
+    const riga = el('button', ultima ? 'riga-cron ultima' : 'riga-cron');
+    riga.type = 'button';
+    riga.dataset.voce = String(v.id);
+    riga.setAttribute('aria-expanded', ui.inCorrezione === v.id ? 'true' : 'false');
+    const filo = el('span', 'filo');
+    filo.append(el('span', v.automatica ? 'pallino' : 'pallino corretta'));
+    if (!ultima) filo.append(el('span', 'linea'));
+    const descr = el('span', 'descr-cron');
+    descr.append(el('span', 'titolo-cron', tip(descrizioneVoce(ui.rilievo, v))));
+    if (v.riferimento) descr.append(el('span', 'norma', tip(v.riferimento)));
+    if (!v.automatica) descr.append(el('span', 'corretta-nota', tip("Ora corretta dall'operante")));
+    riga.append(el('span', 'orario', ora(v.istante)), filo, descr);
+    riga.addEventListener('click', () => {
+      ui.inCorrezione = ui.inCorrezione === v.id ? null : v.id;
+      mostraPannello();
+      if (ui.inCorrezione === null) focusRiga(v.id); else $('campo-ora').focus();
+    });
+    return riga;
+  }
+
+  // Il focus torna alla riga appena modificata; se non è più tra quelle visibili, al tasto "Mostra tutto".
+  function focusRiga(id) {
+    const riga = document.querySelector('[data-voce="' + id + '"]');
+    (riga || $('tasto-cron')).focus();
+  }
+
+  function chiudiEditor(id) {
+    ui.inCorrezione = null;
+    mostraPannello();
+    focusRiga(id);
+  }
+
+  function editorOra(v) {
+    const box = el('div', 'editor-ora');
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', 'Ora del passaggio');
+    const etichetta = el('label', null, 'Ora effettiva');
+    etichetta.htmlFor = 'campo-ora';
+    const campo = el('input');
+    campo.type = 'time';
+    campo.id = 'campo-ora';
+    campo.required = true;
+    campo.value = ora(v.istante);
+    const aiuto = el('p', 'aiuto', tip("Indica l'ora in cui l'adempimento è stato effettivamente compiuto, non quella in cui l'hai registrato."));
+    const errore = el('p', 'errore', 'Inserisci un’ora valida.');
+    errore.id = 'errore-ora';
+    errore.hidden = true;
+    errore.setAttribute('role', 'alert');
+    const azioni = el('div', 'azioni');
+    const conferma = el('button', 'tasto primario', tip("Correggi l'ora"));
+    conferma.type = 'button';
+    const annulla = el('button', 'tasto', 'Annulla');
+    annulla.type = 'button';
+    azioni.append(conferma, annulla);
+
+    conferma.addEventListener('click', () => {
+      const nuovo = oraSuData(v.istante, campo.value);
+      if (!nuovo) {
+        errore.hidden = false;
+        campo.setAttribute('aria-invalid', 'true');
+        campo.focus();
+        return;
+      }
+      correggiIstante(ui.rilievo, v.id, nuovo);
+      chiudiEditor(v.id);
+    });
+    annulla.addEventListener('click', () => chiudiEditor(v.id));
+    box.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') chiudiEditor(v.id); });
+
+    box.append(etichetta, campo, aiuto, errore, azioni);
+    return box;
+  }
+
+  // ---- Persone coinvolte: elenco
+  const trovaSoggetto = (id) => ui.rilievo.soggetti.find((x) => x.id === id);
+
+  function pannelloSoggetti() {
+    if (ui.soggettoAperto !== null) {
+      const s = trovaSoggetto(ui.soggettoAperto);
+      if (s) return editorSoggetto(s);
+      ui.soggettoAperto = null;
+    }
+    return elencoSoggetti();
+  }
+
+  function elencoSoggetti() {
+    const r = ui.rilievo;
+    const sezione = el('div');
+    sezione.append(el('h3', 'titolo-sez', 'Persone coinvolte'));
+    if (r.soggetti.length === 0) {
+      const scheda = el('div', 'scheda');
+      scheda.append(el('p', 'vuoto', 'Nessuna persona inserita. Aggiungi chi è coinvolto: i dati restano in questa pagina e non vengono inviati a nessuno.'));
+      sezione.append(scheda);
+    } else {
+      const elenco = el('ul', 'elenco');
+      for (const s of r.soggetti) {
+        const voce = el('li');
+        voce.append(rigaSoggetto(s));
+        elenco.append(voce);
+      }
+      sezione.append(elenco);
+    }
+
+    const aggiungi = el('button', 'tasto-testo aggiungi', 'Aggiungi persona');
+    aggiungi.type = 'button';
+    aggiungi.id = 'aggiungi-persona';
+    aggiungi.setAttribute('aria-expanded', ui.menuRuoli ? 'true' : 'false');
+    aggiungi.addEventListener('click', () => { ui.menuRuoli = !ui.menuRuoli; mostraPannello(); $('aggiungi-persona').focus(); });
+    sezione.append(aggiungi);
+
+    if (ui.menuRuoli) {
+      const menu = el('ul', 'elenco menu-ruoli');
+      for (const ruolo of NORME.ruoli) {
+        const voce = el('li');
+        const tasto = el('button', 'scheda scheda-tasto');
+        tasto.type = 'button';
+        tasto.append(el('span', 'titolo', tip(ruolo.nome)));
+        tasto.addEventListener('click', () => apriNuovoSoggetto(ruolo.chiave));
+        voce.append(tasto);
+        menu.append(voce);
+      }
+      sezione.append(menu);
+    }
+    return sezione;
+  }
+
+  function rigaSoggetto(s) {
+    const tasto = el('button', 'scheda scheda-tasto riga-sogg');
+    tasto.type = 'button';
+    tasto.dataset.soggetto = String(s.id);
+    const corpo = el('span', 'corpo-sogg');
+    const nome = el('span', 'riga-nome');
+    nome.append(el('span', 'nome-sogg', etichettaLocale(s)), el('span', 'sigla', sigla(s)));
+    corpo.append(nome, el('span', 'ruolo', tip(ruoloDi(s.ruolo).nome)));
+    if (s.stato !== 'identificato') {
+      corpo.append(el('span', 'stato-sogg oro', tip(NORME.stati.find((x) => x.chiave === s.stato).nome)));
+    } else if (!generalitaComplete(s)) {
+      corpo.append(el('span', 'stato-sogg mancano', 'Mancano: ' + campiMancanti(s).join(', ')));
+    }
+    if (s.minore) corpo.append(el('span', 'minore', 'Minore — tutele rafforzate'));
+    tasto.append(el('span', generalitaComplete(s) ? 'barra' : 'barra da-completare'), corpo);
+    tasto.addEventListener('click', () => {
+      ui.soggettoAperto = s.id;
+      ui.menuRuoli = false;
+      mostraPannello();
+      $('titolo-editor').focus();
+    });
+    return tasto;
+  }
+
+  function apriNuovoSoggetto(chiave) {
+    const s = aggiungiSoggetto(ui.rilievo, chiave, new Date());
+    ui.menuRuoli = false;
+    ui.soggettoAperto = s.id;
+    mostraPannello();
+    $('titolo-editor').focus();
+  }
+
+  function chiudiEditorSoggetto(id) {
+    ui.soggettoAperto = null;
+    mostraPannello();
+    (document.querySelector('[data-soggetto="' + id + '"]') || $('aggiungi-persona')).focus();
+  }
+
+  // ---- Persone coinvolte: componenti dei moduli
+  let contaId = 0;
+  const nuovoId = () => 'c-' + (++contaId);
+
+  function campoTesto(etichetta, valore, alCambio, segnaposto) {
+    const box = el('div', 'campo');
+    const id = nuovoId();
+    const lab = el('label', null, etichetta);
+    lab.htmlFor = id;
+    const campo = el('input');
+    campo.type = 'text';
+    campo.id = id;
+    campo.value = valore;
+    campo.setAttribute('autocomplete', 'off');
+    if (segnaposto) campo.placeholder = segnaposto;
+    campo.addEventListener('input', () => alCambio(campo.value));
+    box.append(lab, campo);
+    return box;
+  }
+
+  function campoData(etichetta, valore, alCambio) {
+    const box = el('div', 'campo');
+    const id = nuovoId();
+    const lab = el('label', null, etichetta);
+    lab.htmlFor = id;
+    const campo = el('input');
+    campo.type = 'date';
+    campo.id = id;
+    campo.value = valore;
+    const cancella = el('button', 'tasto-testo pericolo-testo', 'Cancella');
+    cancella.type = 'button';
+    cancella.hidden = !valore;
+    const aggiorna = () => { alCambio(campo.value); cancella.hidden = !campo.value; };
+    campo.addEventListener('input', aggiorna);
+    campo.addEventListener('change', aggiorna);
+    cancella.addEventListener('click', () => { campo.value = ''; aggiorna(); campo.focus(); });
+    const riga = el('div', 'riga-data');
+    riga.append(campo, cancella);
+    box.append(lab, riga);
+    return box;
+  }
+
+  function campoSesso(valore, alCambio) {
+    const gruppo = el('fieldset', 'segmentato');
+    gruppo.append(el('legend', null, tip('Sesso (facoltativo, accorda «nato/nata» nel riepilogo)')));
+    const barra = el('div', 'gruppo');
+    for (const [v, testo] of [['', 'Non specificato'], ...NORME.sesso.map((x) => [x, x])]) {
+      const lab = el('label');
+      const radio = el('input');
+      radio.type = 'radio';
+      radio.name = 'sesso';
+      radio.value = v;
+      radio.checked = valore === v;
+      radio.addEventListener('change', () => alCambio(v));
+      lab.append(radio, el('span', null, testo));
+      barra.append(lab);
+    }
+    gruppo.append(barra);
+    return gruppo;
+  }
+
+  function campoSelect(etichetta, opzioni, valore, alCambio, nomeCampo) {
+    const box = el('div', 'campo');
+    const id = nuovoId();
+    const lab = el('label', null, etichetta);
+    lab.htmlFor = id;
+    const sel = el('select');
+    sel.id = id;
+    if (nomeCampo) sel.dataset.campo = nomeCampo;
+    for (const [v, testo] of opzioni) {
+      const o = el('option', null, tip(testo));
+      o.value = v;
+      sel.append(o);
+    }
+    sel.value = valore;
+    sel.addEventListener('change', () => alCambio(sel.value));
+    box.append(lab, sel);
+    return box;
+  }
+
+  function interruttore(titolo, sotto, riferimento, acceso, alCambio, nomeCampo) {
+    const lab = el('label', 'interruttore');
+    const testo = el('span', 'testo-int');
+    testo.append(el('span', 'titolo-int', tip(titolo)));
+    if (sotto) testo.append(el('span', 'sotto', tip(sotto)));
+    if (riferimento) testo.append(el('span', 'norma', tip(riferimento)));
+    const casella = el('input');
+    casella.type = 'checkbox';
+    casella.setAttribute('role', 'switch');
+    casella.checked = acceso;
+    if (nomeCampo) casella.dataset.campo = nomeCampo;
+    casella.addEventListener('change', () => alCambio(casella.checked));
+    lab.append(testo, casella);
+    return lab;
+  }
+
+  function esitoRiga(classe, etichetta, testo) {
+    const p = el('p', 'esito ' + classe);
+    p.append(el('strong', null, etichetta), el('span', null, testo));
+    return p;
+  }
+
+  function esitoVista(esito) {
+    if (!esito) return null;
+    const p = el('p', 'esito ' + (esito.tipo === 'bloccante' ? 'esito-rosso' : 'esito-arancione'));
+    p.setAttribute('role', 'status');
+    p.append(el('strong', null, (esito.tipo === 'bloccante' ? 'Attenzione' : 'Avviso') + ': '), el('span', null, tip(esito.messaggio)));
+    return p;
+  }
+
+  const AVVISO_DIFENSORE = 'Avviso della facoltà di farsi assistere da un difensore';
+
+  function disegnaDichiarazione(box, s, ridisegna) {
+    const pila = el('div', 'pila');
+    pila.append(interruttore('Ha reso dichiarazioni', null, 'art. 350 CPP', s.haDichiarazione,
+      (v) => { s.haDichiarazione = v; ridisegna('haDichiarazione'); }, 'haDichiarazione'));
+    if (s.haDichiarazione) {
+      pila.append(campoSelect('Modalità',
+        [['', 'Da indicare'], ...NORME.modalita.map((m) => [m.chiave, m.nome])],
+        s.modalita || '', (v) => { s.modalita = v || null; ridisegna('modalita'); }, 'modalita'));
+      if (!s.modalita) {
+        pila.append(el('p', 'avviso-campo', tip('Indica la modalità: senza, la dichiarazione non entra nel riepilogo.')));
+      }
+      if (avvisoNelleSommarie(s)) {
+        pila.append(interruttore(AVVISO_DIFENSORE, null, 'art. 114 disp. att. CPP', s.avvisoDifensore,
+          (v) => { s.avvisoDifensore = v; ridisegna('avviso-sommarie'); }, 'avviso-sommarie'));
+      }
+      const esito = esitoVista(validaDichiarazione(s));
+      if (esito) pila.append(esito);
+    }
+    box.replaceChildren(pila);
+  }
+
+  function disegnaAccertamenti(box, s, ridisegna) {
+    const pila = el('div', 'pila');
+    pila.append(interruttore('Sottoposto ad accertamenti urgenti sulla persona', 'Per esempio alcoltest o accertamenti su sostanze',
+      'art. 354 c.3 CPP; art. 356 CPP', s.sottopostoAccertamento,
+      (v) => { s.sottopostoAccertamento = v; ridisegna('accertamento'); }, 'accertamento'));
+    if (avvisoNegliAccertamenti(s)) {
+      pila.append(interruttore(AVVISO_DIFENSORE, null, 'art. 114 disp. att. CPP', s.avvisoDifensore,
+        (v) => { s.avvisoDifensore = v; ridisegna('avviso'); }, 'avviso'));
+    }
+    const esito = esitoVista(validaAccertamento(s));
+    if (esito) pila.append(esito);
+    box.replaceChildren(pila);
+  }
+
+  // ---- Persone coinvolte: scheda "Generalità"
+  function editorSoggetto(s) {
+    const g = s.generalita;
+    const sezione = el('div', 'editor-sogg');
+    const titolo = el('h3', 'titolo-sez', 'Generalità');
+    titolo.id = 'titolo-editor';
+    titolo.tabIndex = -1;
+    sezione.append(titolo);
+
+    const riga = el('div', 'scheda riga-sigla');
+    const siglaEl = el('span', 'sigla', sigla(s));
+    riga.append(el('span', 'etichetta', 'Sigla assegnata'), siglaEl, el('span', 'ruolo', tip(ruoloDi(s.ruolo).nome)));
+    sezione.append(riga);
+    sezione.append(el('p', 'suggerimento', 'I dati che inserisci qui restano in questa pagina e non vengono inviati a nessun servizio esterno. Se ricarichi la pagina si cancellano: usa solo dati di fantasia.'));
+
+    const aiutoStato = el('p', 'aiuto', tip('Le generalità restano facoltative: inserisci quelle che conosci. Nel riepilogo la persona compare con questa indicazione.'));
+    aiutoStato.hidden = s.stato === 'identificato';
+    const stato = el('div', 'pila');
+    stato.append(
+      campoSelect('Identificazione', NORME.stati.map((x) => [x.chiave, x.nome]), s.stato,
+        (v) => { s.stato = v; aiutoStato.hidden = v === 'identificato'; }),
+      aiutoStato);
+
+    const campi = el('div', 'pila');
+    campi.append(
+      campoTesto('Cognome', g.cognome, (v) => { g.cognome = v; }),
+      campoTesto('Nome', g.nome, (v) => { g.nome = v; }),
+      campoTesto('Luogo di nascita', g.luogoNascita, (v) => { g.luogoNascita = v; }),
+      campoData('Data di nascita', g.dataNascita, (v) => { g.dataNascita = v; }),
+      campoSesso(g.sesso, (v) => { g.sesso = v; }),
+      campoTesto('Residenza', g.residenza, (v) => { g.residenza = v; }, 'Via, civico, comune'),
+      campoTesto('Documento', g.documento, (v) => { g.documento = v; }, 'Tipo e numero'));
+
+    const minore = el('div', 'scheda');
+    minore.append(interruttore('Minore', 'Attiva le tutele rafforzate. La sigla diventa M1, M2… a prescindere dal ruolo.', null, s.minore,
+      (v) => { impostaMinore(ui.rilievo, s, v); siglaEl.textContent = sigla(s); }));
+
+    const boxDich = el('div', 'scheda');
+    const boxAcc = el('div', 'scheda');
+    const ridisegna = (campoFocus) => {
+      disegnaDichiarazione(boxDich, s, ridisegna);
+      disegnaAccertamenti(boxAcc, s, ridisegna);
+      if (campoFocus) {
+        const f = sezione.querySelector('[data-campo="' + campoFocus + '"]');
+        if (f) f.focus();
+      }
+    };
+    ridisegna(null);
+
+    const fatto = el('button', 'tasto primario ampio', 'Fatto');
+    fatto.type = 'button';
+    fatto.addEventListener('click', () => chiudiEditorSoggetto(s.id));
+
+    const rimuovi = el('button', 'tasto-testo pericolo-testo', 'Rimuovi questa persona');
+    rimuovi.type = 'button';
+    const conferma = el('div', 'conferma');
+    conferma.hidden = true;
+    conferma.setAttribute('role', 'alert');
+    conferma.append(el('p', null, 'Rimuovere questa persona?'));
+    conferma.append(el('p', 'aiuto', tip("Le generalità saranno eliminate. L'operazione non è reversibile.")));
+    const azioni = el('div', 'azioni');
+    const si = el('button', 'tasto pericolo', 'Rimuovi');
+    si.type = 'button';
+    const no = el('button', 'tasto', 'Annulla');
+    no.type = 'button';
+    azioni.append(si, no);
+    conferma.append(azioni);
+    rimuovi.addEventListener('click', () => { conferma.hidden = false; no.focus(); });
+    no.addEventListener('click', () => { conferma.hidden = true; rimuovi.focus(); });
+    si.addEventListener('click', () => {
+      rimuoviSoggetto(ui.rilievo, s.id);
+      ui.soggettoAperto = null;
+      mostraPannello();
+      $('aggiungi-persona').focus();
+    });
+    const fine = el('div', 'azioni-fine');
+    fine.append(rimuovi);
+
+    sezione.append(stato, campi, minore, boxDich, boxAcc, fatto, fine, conferma);
+    return sezione;
+  }
+
+  // ---- Luogo e descrizione dei fatti
+  function aggiornaLuogo() {
+    const l = ui.rilievo.luogo.trim();
+    $('luogo-attivo').textContent = l === '' ? 'Luogo non indicato' : l;
+  }
+
+  function sezionePosizione() {
+    const sezione = el('div', 'sez-sotto');
+    sezione.append(el('h3', 'titolo-sez', 'Dove ti trovi'));
+    const scheda = el('div', 'scheda');
+    const campo = el('input', 'campo-libero');
+    campo.type = 'text';
+    campo.value = ui.rilievo.luogo;
+    campo.placeholder = 'Comune, via, riferimento';
+    campo.setAttribute('aria-label', 'Dove ti trovi');
+    campo.setAttribute('autocomplete', 'off');
+    campo.addEventListener('input', () => { ui.rilievo.luogo = campo.value; aggiornaLuogo(); });
+    scheda.append(campo);
+    sezione.append(scheda);
+    return sezione;
+  }
+
+  function sezioneFatti() {
+    const sezione = el('div', 'sez-sotto');
+    sezione.append(el('h3', 'titolo-sez', 'Come si sono svolti i fatti'));
+    const scheda = el('div', 'scheda');
+    const area = el('textarea', 'campo-libero');
+    area.rows = 6;
+    area.value = ui.rilievo.fatti;
+    area.placeholder = tip("Racconta l'accaduto con parole tue. (Dettatura vocale supportata dal dispositivo)");
+    area.setAttribute("capture", "microphone");
+    area.setAttribute('aria-label', 'Come si sono svolti i fatti');
+    area.addEventListener('input', () => { ui.rilievo.fatti = area.value; });
+    scheda.append(area);
+    sezione.append(scheda);
+
+    const avvertenza = el('div', 'avvertenza');
+    const testo = el('div');
+    testo.append(
+      el('p', 'avv-titolo', 'Scrivi le tue osservazioni, non le parole altrui'),
+      el('p', 'avv-corpo', tip('Le notizie raccolte sul posto senza difensore non sono documentabili: trascriverle qui equivarrebbe a documentarle.')),
+      el('span', 'norma', 'art. 350 c.5-6 CPP'));
+    avvertenza.append(el('span', 'filo-oro'), testo);
+    sezione.append(avvertenza);
+    return sezione;
+  }
+
+  // ---- Riepilogo
+  function soloSchermo(nodo) { nodo.classList.add('solo-schermo'); return nodo; }
+
+  function schedaOrari() {
+    const r = ui.rilievo;
+    const scheda = soloSchermo(el('div', 'scheda'));
+    const inizio = el('div', 'riga-orario');
+    inizio.append(el('span', 'etichetta-or', 'Inizio delle operazioni'), el('strong', null, ora(r.apertura)));
+    const fine = el('div', 'riga-orario');
+    fine.append(el('span', 'etichetta-or', 'Fine delle operazioni'));
+    const destra = el('span', 'dx-orario');
+    if (r.fine === null) {
+      const adesso = el('button', 'tasto-testo', 'Adesso');
+      adesso.type = 'button';
+      adesso.id = 'fine-adesso';
+      adesso.addEventListener('click', () => { r.fine = new Date(); ui.copia = null; mostraPannello(); $('campo-fine').focus(); });
+      destra.append(adesso);
+    } else {
+      const campo = el('input');
+      campo.type = 'time';
+      campo.id = 'campo-fine';
+      campo.value = ora(r.fine);
+      campo.setAttribute('aria-label', 'Ora di fine delle operazioni');
+      campo.addEventListener('change', () => {
+        const nuovo = oraSuData(r.fine, campo.value);
+        if (!nuovo) { campo.value = ora(r.fine); return; }
+        r.fine = nuovo; ui.copia = null; mostraPannello(); $('campo-fine').focus();
+      });
+      const togli = el('button', 'tasto-testo', '×');
+      togli.type = 'button';
+      togli.setAttribute('aria-label', "Togli l'ora di fine delle operazioni");
+      togli.addEventListener('click', () => { r.fine = null; ui.copia = null; mostraPannello(); $('fine-adesso').focus(); });
+      destra.append(campo, togli);
+    }
+    fine.append(destra);
+    const nota = r.fine === null
+      ? "Se non la indichi, il riepilogo segnala che l’ora di chiusura manca."
+      : 'Nel riepilogo compaiono soltanto questi due orari: la cronologia degli adempimenti resta nella scheda Cronologia.';
+    scheda.append(inizio, fine, el('p', 'suggerimento', tip(nota)));
+    return scheda;
+  }
+
+  async function copiaRiepilogo() {
+    const testo = testoRiepilogo(bozzaRiepilogo(ui.rilievo, ui.rilievo.fine, ui.adesso));
+    try {
+      if (!(navigator.clipboard && navigator.clipboard.writeText)) throw new Error('copia non disponibile');
+      await navigator.clipboard.writeText(testo);
+      ui.copia = 'ok';
+    } catch (errore) {
+      ui.copia = 'manuale';
+    }
+    mostraPannello();
+    if (ui.copia === 'manuale') { const area = $('testo-da-copiare'); area.focus(); area.select(); } else { $('copia').focus(); }
+  }
+
+  function pannelloRiepilogo() {
+    const r = ui.rilievo;
+    ui.adesso = new Date();
+    const bozza = bozzaRiepilogo(r, r.fine, ui.adesso);
+    const sezione = el('div');
+    sezione.append(soloSchermo(el('h3', 'titolo-sez', 'Riepilogo')), schedaOrari());
+
+    const azioni = soloSchermo(el('div', 'azioni-riep'));
+    const copia = el('button', 'tasto primario', 'Copia il testo');
+    copia.type = 'button';
+    copia.id = 'copia';
+    copia.addEventListener('click', copiaRiepilogo);
+    const esporta = el('button', 'tasto', 'Esporta pagina HTML');
+    esporta.type = 'button';
+    esporta.id = 'esporta';
+    esporta.addEventListener('click', () => {
+      const blob = new Blob([paginaStampabile(bozza)], { type: 'text/html;charset=utf-8' });
+      const indirizzo = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = indirizzo;
+      a.download = 'riepilogo-atti-mo.html';
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(indirizzo), 30000);
+    });
+    const stampa = el('button', 'tasto', 'Stampa o salva in PDF');
+    stampa.type = 'button';
+    stampa.id = 'stampa';
+    stampa.addEventListener('click', () => window.print());
+    azioni.append(copia, esporta, stampa);
+    sezione.append(azioni, soloSchermo(el('p', 'suggerimento', 'Dopo aver verificato la corretta acquisizione nei sistemi autorizzati, usa «Elimina i dati del rilievo» in alto. La cancellazione locale non rimuove i file esportati o le copie esterne.')));
+    sezione.append(soloSchermo(el('p', 'suggerimento', 'Se la stampa non parte, copia il testo e incollalo in Note.')));
+
+    // Esito dell'ultima copia.
+    const messaggi = {
+      ok: ['Testo copiato.', false],
+      manuale: ['Non riesco a copiare in automatico: seleziona il testo qui sotto e copialo.', true],
+    };
+    if (messaggi[ui.copia]) {
+      const [testo, attenzione] = messaggi[ui.copia];
+      const stato = soloSchermo(el('p', attenzione ? 'stato-copia attenzione' : 'stato-copia', testo));
+      stato.setAttribute('role', 'status');
+      sezione.append(stato);
+      if (ui.copia === 'manuale') {
+        const area = soloSchermo(el('textarea', 'campo-libero'));
+        area.id = 'testo-da-copiare';
+        area.readOnly = true;
+        area.value = testoRiepilogo(bozza);
+        area.setAttribute('aria-label', 'Testo del riepilogo');
+        sezione.append(area);
+      }
+    }
+
+    const doc = el('article', 'documento');
+    doc.setAttribute('aria-label', 'Riepilogo dimostrativo');
+    doc.append(el('h3', null, bozza.titolo), el('p', 'doc-tipo', tip(bozza.tipo)), el('p', 'doc-premessa', tip(bozza.premessa)));
+    for (const sez of bozza.sezioni) {
+      const blocco = el('section', 'doc-sez');
+      blocco.append(el('h4', null, sez.titolo));
+      for (const riga of sez.righe) blocco.append(el('p', null, tip(riga)));
+      doc.append(blocco);
+    }
+    doc.append(el('p', 'doc-chiusura', tip(bozza.chiusura)), el('p', 'doc-nota', tip(bozza.nota)));
+    sezione.append(doc);
+    return sezione;
+  }
+  // #endregion vista
+
+  // #region avvio
+  function avvio() {
+    document.title = NORME.app.nome + ' 5.1, demo pubblica offline';
+    $('nome').textContent = NORME.app.nome;
+    riempiAcronimo($('acronimo'), NORME.app.acronimo);
+    $('data-verifica').textContent = NORME.fonte.ultima_verifica;
+    $('indipendenza').textContent = tip(NORME.app.indipendenza);
+    mostraTipi();
+
+    // Tema: parte da quello del dispositivo, il pulsante lo alterna. Nessuna memorizzazione.
+    const radice = document.documentElement;
+    const applicaTema = (tema) => {
+      radice.setAttribute('data-tema', tema);
+      const verso = tema === 'chiaro' ? 'notte' : 'carta';
+      $('toggle-tema').textContent = 'Tema ' + verso;
+      $('toggle-tema').setAttribute('aria-label', 'Passa al tema ' + verso);
+    };
+    applicaTema(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'chiaro' : 'scuro');
+    $('toggle-tema').addEventListener('click', () => applicaTema(radice.getAttribute('data-tema') === 'chiaro' ? 'scuro' : 'chiaro'));
+
+    $('cancella-dati').addEventListener('click', () => { $('conferma-elimina').hidden = false; $('elimina-no').focus(); });
+    $('elimina-si').addEventListener('click', chiudiRilievo);
+    $('elimina-no').addEventListener('click', () => { $('conferma-elimina').hidden = true; $('cancella-dati').focus(); });
+
+    $('feedback').addEventListener('click', async () => {
+      const modello = 'Atti-MO 5.1 — feedback\nDispositivo/browser: \nIntervento provato: \nCosa funziona: \nCosa migliorare: \nEventuali errori (solo dati fittizi): ';
+      try { await navigator.clipboard.writeText(modello); $('feedback-esito').textContent = 'Modello copiato: incollalo nel messaggio al supporto.'; }
+      catch (_) { window.prompt('Copia il modello di feedback:', modello); $('feedback-esito').textContent = 'Copia il testo mostrato nella finestra.'; }
+    });
+    $('cambia').addEventListener('click', chiediCambio);
+    $('conferma-si').addEventListener('click', chiudiRilievo);
+    $('conferma-no').addEventListener('click', () => { $('conferma-cambio').hidden = true; $('cambia').focus(); });
+    for (const b of document.querySelectorAll('[data-scheda]')) {
+      b.addEventListener('click', () => {
+        ui.scheda = b.dataset.scheda; ui.inCorrezione = null; ui.soggettoAperto = null; ui.menuRuoli = false; ui.copia = null;
+        aggiornaSchede(); mostraPannello();
+      });
+    }
+  }
+  avvio();
+  // #endregion avvio
+})();
+
+</script>
+</body>
+</html>
