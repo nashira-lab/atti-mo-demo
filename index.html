@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; font-src data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; media-src blob:; font-src data:; base-uri 'none'; form-action 'none'">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#2A2540">
 <meta name="application-name" content="Atti-MO">
@@ -270,6 +270,22 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
 .documento p { margin: 0 0 .45rem; overflow-wrap: anywhere; }
 .documento .doc-nota { margin-top: 1.1rem; font-size: .875rem; font-style: italic; }
 
+/* Rilievi */
+.blocco-ril { margin-top: 1rem; }
+.blocco-ril h4 { margin: 0 0 .4rem; font-size: 1.0625rem; font-weight: 600; }
+.blocco-ril > p { margin: 0 0 .7rem; font-size: .9375rem; color: var(--testo-tenue); }
+input.nascosto { display: none; }
+.uso-ril { margin: .9rem 0 .5rem; font-size: .8125rem; color: var(--testo-tenue); }
+.allegato { display: grid; grid-template-columns: 4.5rem 1fr; gap: .85rem; align-items: start; }
+.allegato.audio { grid-template-columns: 1fr; }
+.miniatura { display: block; width: 4.5rem; height: 4.5rem; object-fit: cover; border-radius: 8px; background: var(--superficie-alta); }
+.miniatura-testo { display: grid; place-items: center; width: 4.5rem; height: 4.5rem; border-radius: 8px; background: var(--superficie-alta); font-size: .6875rem; text-align: center; color: var(--testo-tenue); }
+.nome-allegato { margin: 0; font-weight: 600; }
+.meta-allegato { margin: .15rem 0 0; font-size: .8125rem; color: var(--testo-tenue); }
+.impronta { margin: .35rem 0 0; font: .75rem/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; overflow-wrap: anywhere; color: var(--testo-tenue); }
+.allegato audio { display: block; width: 100%; margin-top: .45rem; }
+.in-registrazione { font-weight: 600; color: var(--rosso); }
+
 /* Piede e contatti */
 .piede { background: var(--viola); padding: 2rem 1.25rem calc(1.75rem + env(safe-area-inset-bottom, 0px)); font-size: .875rem; line-height: 1.55; }
 .piede p { margin: 0 0 .7rem; color: var(--testo-tenue); }
@@ -359,6 +375,7 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
     <nav class="schede" aria-label="Sezioni del rilievo">
       <button type="button" data-scheda="checklist" aria-current="page">Checklist</button>
       <button type="button" data-scheda="soggetti">Soggetti</button>
+      <button type="button" data-scheda="rilievi">Rilievi</button>
       <button type="button" data-scheda="cronologia">Cronologia</button>
       <button type="button" data-scheda="riepilogo">Riepilogo</button>
     </nav>
@@ -424,6 +441,10 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
       luogo: '',
       fatti: '',
       fine: null,
+      allegati: [],
+      contaFoto: 0,
+      contaAudio: 0,
+      prossimoAllegato: 1,
     };
   }
 
@@ -661,6 +682,7 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
       titolo: 'Stato dei luoghi e descrizione dei fatti',
       righe: fatti === '' ? ['(non compilato)'] : fatti.split('\n').filter((x) => x.trim() !== ''),
     });
+    if (r.allegati && r.allegati.length) sezioni.push({ titolo: 'Allegati e impronte SHA-256', righe: righeAllegati(r) });
     return {
       titolo: 'Riepilogo dimostrativo',
       tipo: r.nomeTipo,
@@ -702,6 +724,151 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
       '<h1>' + t(b.titolo) + '</h1>\n<p class="tipo">' + t(b.tipo) + '</p>\n<p>' + t(b.premessa) + '</p>\n' +
       sezioni + '\n<p>' + t(b.chiusura) + '</p>\n<p class="nota">' + t(b.nota) + '</p>\n</main>\n</body>\n</html>\n';
   }
+
+  // ---- Rilievi: impronta SHA-256, CRC32 e archivio ZIP scritti qui, senza librerie esterne.
+  // Funzionano anche aprendo il file senza rete (la crittografia del browser richiede una pagina sicura).
+  const K256 = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2];
+  function sha256(dati) {
+    const lun = dati.length, blocchi = ((lun + 8) >>> 6) + 1, m = new Uint8Array(blocchi * 64);
+    m.set(dati); m[lun] = 0x80;
+    const dv = new DataView(m.buffer), bit = lun * 8;
+    dv.setUint32(m.length - 8, Math.floor(bit / 0x100000000)); dv.setUint32(m.length - 4, bit >>> 0);
+    let h0 = 0x6a09e667, h1 = 0xbb67ae85, h2 = 0x3c6ef372, h3 = 0xa54ff53a, h4 = 0x510e527f, h5 = 0x9b05688c, h6 = 0x1f83d9ab, h7 = 0x5be0cd19;
+    const w = new Uint32Array(64);
+    for (let o = 0; o < m.length; o += 64) {
+      for (let t = 0; t < 16; t++) w[t] = dv.getUint32(o + t * 4);
+      for (let t = 16; t < 64; t++) {
+        const x = w[t - 15], y = w[t - 2];
+        const s0 = ((x >>> 7) | (x << 25)) ^ ((x >>> 18) | (x << 14)) ^ (x >>> 3);
+        const s1 = ((y >>> 17) | (y << 15)) ^ ((y >>> 19) | (y << 13)) ^ (y >>> 10);
+        w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0;
+      }
+      let a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
+      for (let t = 0; t < 64; t++) {
+        const S1 = ((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7));
+        const t1 = (h + S1 + ((e & f) ^ (~e & g)) + K256[t] + w[t]) | 0;
+        const S0 = ((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10));
+        const t2 = (S0 + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+        h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+      }
+      h0 = (h0 + a) | 0; h1 = (h1 + b) | 0; h2 = (h2 + c) | 0; h3 = (h3 + d) | 0; h4 = (h4 + e) | 0; h5 = (h5 + f) | 0; h6 = (h6 + g) | 0; h7 = (h7 + h) | 0;
+    }
+    return [h0, h1, h2, h3, h4, h5, h6, h7].map((v) => (v >>> 0).toString(16).padStart(8, '0')).join('');
+  }
+
+  const TAB_CRC = (() => {
+    const t = new Uint32Array(256);
+    for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+    return t;
+  })();
+  function crc32(dati) {
+    let c = 0xffffffff;
+    for (let i = 0; i < dati.length; i++) c = TAB_CRC[(c ^ dati[i]) & 0xff] ^ (c >>> 8);
+    return (c ^ 0xffffffff) >>> 0;
+  }
+
+  // Archivio ZIP senza compressione (i file restano byte per byte gli originali). Nomi in UTF-8.
+  function zip(file) {
+    const enc = new TextEncoder(), locali = [], centrali = [];
+    let pos = 0;
+    for (const f of file) {
+      const nome = enc.encode(f.nome), d = f.dati, crc = crc32(d), t = f.data;
+      const oraDos = ((t.getHours() << 11) | (t.getMinutes() << 5) | (t.getSeconds() >> 1)) & 0xffff;
+      const dataDos = (((t.getFullYear() - 1980) << 9) | ((t.getMonth() + 1) << 5) | t.getDate()) & 0xffff;
+      const l = new DataView(new ArrayBuffer(30));
+      l.setUint32(0, 0x04034b50, true); l.setUint16(4, 20, true); l.setUint16(6, 0x0800, true); l.setUint16(8, 0, true);
+      l.setUint16(10, oraDos, true); l.setUint16(12, dataDos, true); l.setUint32(14, crc, true);
+      l.setUint32(18, d.length, true); l.setUint32(22, d.length, true); l.setUint16(26, nome.length, true); l.setUint16(28, 0, true);
+      locali.push(new Uint8Array(l.buffer), nome, d);
+      const c = new DataView(new ArrayBuffer(46));
+      c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true);
+      c.setUint16(12, oraDos, true); c.setUint16(14, dataDos, true); c.setUint32(16, crc, true); c.setUint32(20, d.length, true); c.setUint32(24, d.length, true);
+      c.setUint16(28, nome.length, true); c.setUint32(42, pos, true);
+      centrali.push(new Uint8Array(c.buffer), nome);
+      pos += 30 + nome.length + d.length;
+    }
+    const lunCentrale = centrali.reduce((s, x) => s + x.length, 0);
+    const fine = new DataView(new ArrayBuffer(22));
+    fine.setUint32(0, 0x06054b50, true); fine.setUint16(8, file.length, true); fine.setUint16(10, file.length, true);
+    fine.setUint32(12, lunCentrale, true); fine.setUint32(16, pos, true);
+    const parti = [...locali, ...centrali, new Uint8Array(fine.buffer)];
+    const out = new Uint8Array(parti.reduce((s, x) => s + x.length, 0));
+    let o = 0;
+    for (const x of parti) { out.set(x, o); o += x.length; }
+    return out;
+  }
+
+  // ---- Rilievi: allegati (foto e appunti vocali) con ora, posizione e impronta
+  const LIMITE_ALLEGATI = 30, LIMITE_BYTE = 150 * 1024 * 1024;
+  const ESTENSIONI = { 'image/jpeg': 'jpg', 'image/heic': 'heic', 'image/heif': 'heif', 'image/png': 'png', 'image/webp': 'webp',
+    'audio/mp4': 'm4a', 'audio/x-m4a': 'm4a', 'audio/aac': 'aac', 'audio/webm': 'webm', 'audio/ogg': 'ogg', 'audio/mpeg': 'mp3', 'audio/wav': 'wav' };
+  const estensione = (mime) => ESTENSIONI[String(mime || '').split(';')[0].trim().toLowerCase()] || 'bin';
+
+  function aggiungiAllegato(r, a) {
+    if (r.allegati.length >= LIMITE_ALLEGATI) return { errore: 'Limite di ' + LIMITE_ALLEGATI + ' allegati raggiunto: esporta il pacchetto o elimina qualche file.' };
+    const occupati = r.allegati.reduce((s, x) => s + x.byte, 0);
+    if (occupati + a.dati.length > LIMITE_BYTE) return { errore: 'Spazio esaurito: gli allegati di un rilievo non possono superare 150 MB.' };
+    const n = a.tipo === 'foto' ? ++r.contaFoto : ++r.contaAudio;
+    const al = {
+      id: r.prossimoAllegato++, tipo: a.tipo, nome: (a.tipo === 'foto' ? 'foto_' : 'audio_') + pad(n) + '.' + estensione(a.mime),
+      mime: String(a.mime || 'application/octet-stream'), dati: a.dati, byte: a.dati.length, sha256: sha256(a.dati),
+      istante: a.istante, posizione: a.posizione || null, statoPosizione: a.posizione ? 'ok' : (a.statoPosizione || 'non rilevata'),
+    };
+    r.allegati.push(al);
+    return al;
+  }
+
+  function rimuoviAllegato(r, id) {
+    const prima = r.allegati.length;
+    r.allegati = r.allegati.filter((a) => a.id !== id);
+    return r.allegati.length !== prima;
+  }
+
+  function testoPosizione(a) {
+    if (!a.posizione) return 'non disponibile (' + a.statoPosizione + ')';
+    const p = a.posizione;
+    return Math.abs(p.lat).toFixed(5) + (p.lat >= 0 ? ' N' : ' S') + ', ' + Math.abs(p.lon).toFixed(5) + (p.lon >= 0 ? ' E' : ' O') + ' (± ' + Math.round(p.accuratezza) + ' m)';
+  }
+
+  const NOTA_IMPRONTE = "Le impronte attestano l'integrità dei file dal momento del calcolo. Ora e posizione sono quelle rilevate dal dispositivo e non sono certificate.";
+  function righeAllegati(r) {
+    return r.allegati.map((a) => '• ' + a.nome + ' (' + (a.tipo === 'foto' ? 'fotografia' : 'appunto vocale') + '), acquisito alle ' + ora(a.istante) + ' del ' + dataLunga(a.istante) +
+      '; posizione ' + testoPosizione(a) + '; SHA-256 ' + a.sha256).concat([NOTA_IMPRONTE]);
+  }
+
+  function isoLocale(d) {
+    const o = -d.getTimezoneOffset(), s = o >= 0 ? '+' : '-', a = Math.abs(o);
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()) + s + pad(Math.floor(a / 60)) + ':' + pad(a % 60);
+  }
+
+  function manifesto(r, generato) {
+    return {
+      programma: 'Atti-MO 5.1, demo pubblica', generato_il: isoLocale(generato), intervento: r.nomeTipo,
+      avvertenza: 'Dati dimostrativi. ' + NOTA_IMPRONTE,
+      allegati: r.allegati.map((a) => ({
+        nome: a.nome, tipo: a.tipo, mime: a.mime, byte: a.byte, sha256: a.sha256, acquisito_il: isoLocale(a.istante), fonte_ora: 'orologio del dispositivo',
+        posizione: a.posizione ? { latitudine: Number(a.posizione.lat.toFixed(6)), longitudine: Number(a.posizione.lon.toFixed(6)), accuratezza_m: Math.round(a.posizione.accuratezza), rilevata_il: isoLocale(a.posizione.rilevata) } : null,
+        stato_posizione: a.statoPosizione,
+      })),
+    };
+  }
+
+  // Pacchetto: riepilogo, allegati originali, manifest e IMPRONTE.txt (verificabile con «sha256sum -c IMPRONTE.txt»).
+  function pacchetto(r, bozza, generato) {
+    const enc = new TextEncoder();
+    const file = [
+      { nome: 'riepilogo.html', dati: enc.encode(paginaStampabile(bozza)), data: generato },
+      { nome: 'riepilogo.txt', dati: enc.encode(testoRiepilogo(bozza) + '\n'), data: generato },
+      ...r.allegati.map((a) => ({ nome: 'allegati/' + a.nome, dati: a.dati, data: a.istante })),
+      { nome: 'manifest.json', dati: enc.encode(JSON.stringify(manifesto(r, generato), null, 2) + '\n'), data: generato },
+    ];
+    const impronte = file.map((f) => sha256(f.dati) + '  ' + f.nome).join('\n') + '\n';
+    file.push({ nome: 'IMPRONTE.txt', dati: enc.encode(impronte), data: generato });
+    return zip(file);
+  }
   // #endregion logica
 
   // #region vista
@@ -718,7 +885,7 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
 
   // Stato della schermata. Il rilievo nasce solo quando l'utente sceglie un tipo,
   // mai durante il disegno della pagina.
-  const ui = { rilievo: null, scheda: 'checklist', espansa: false, inCorrezione: null, soggettoAperto: null, menuRuoli: false, copia: null, adesso: null };
+  const ui = { rilievo: null, scheda: 'checklist', espansa: false, inCorrezione: null, soggettoAperto: null, menuRuoli: false, copia: null, adesso: null, avvisoRilieviVisto: false, statoRilievi: null, registrazione: null, dettatura: null, trascrizione: 'verifica' };
 
   // Evidenzia le maiuscole di "ATTi IMmediati sul pOsto": sono le lettere che formano il nome.
   function riempiAcronimo(p, testo) {
@@ -780,6 +947,9 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
   }
 
   function chiudiRilievo() {
+    fermaRegistrazione(true);
+    fermaDettatura();
+    liberaTuttiUrl();
     ui.rilievo = null;
     $('pannello').replaceChildren();          // niente resti dei dati nella pagina dopo l'uscita
     $('conferma-cambio').hidden = true;
@@ -801,7 +971,7 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
   }
 
   function mostraPannello() {
-    const costruisci = { checklist: pannelloChecklist, soggetti: pannelloSoggetti, cronologia: pannelloCronologia, riepilogo: pannelloRiepilogo };
+    const costruisci = { checklist: pannelloChecklist, soggetti: pannelloSoggetti, rilievi: pannelloRilievi, cronologia: pannelloCronologia, riepilogo: pannelloRiepilogo };
     $('pannello').replaceChildren(costruisci[ui.scheda]());
   }
 
@@ -1425,7 +1595,15 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
     stampa.type = 'button';
     stampa.id = 'stampa';
     stampa.addEventListener('click', () => window.print());
-    azioni.append(copia, esporta, stampa);
+    const pac = el('button', 'tasto', 'Esporta pacchetto con impronte (ZIP)');
+    pac.type = 'button';
+    pac.id = 'esporta-zip';
+    pac.addEventListener('click', () => {
+      const adesso = new Date();
+      scarica('atti-mo-rilievo-' + adesso.getFullYear() + pad(adesso.getMonth() + 1) + pad(adesso.getDate()) + '-' + pad(adesso.getHours()) + pad(adesso.getMinutes()) + '.zip',
+        pacchetto(r, bozza, adesso), 'application/zip');
+    });
+    azioni.append(copia, esporta, pac, stampa);
     sezione.append(azioni, soloSchermo(el('p', 'suggerimento', 'Dopo aver verificato la corretta acquisizione nei sistemi autorizzati, usa «Elimina i dati del rilievo» in alto. La cancellazione locale non rimuove i file esportati o le copie esterne.')));
     sezione.append(soloSchermo(el('p', 'suggerimento', 'Se la stampa non parte, copia il testo e incollalo in Note.')));
 
@@ -1462,6 +1640,228 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
     sezione.append(doc);
     return sezione;
   }
+
+  // ---- Rilievi: interfaccia
+  const urlAllegati = new Map();
+  function urlDi(a) {
+    if (!urlAllegati.has(a.id)) urlAllegati.set(a.id, URL.createObjectURL(new Blob([a.dati], { type: a.mime })));
+    return urlAllegati.get(a.id);
+  }
+  function liberaUrl(id) { if (urlAllegati.has(id)) { URL.revokeObjectURL(urlAllegati.get(id)); urlAllegati.delete(id); } }
+  function liberaTuttiUrl() { for (const id of [...urlAllegati.keys()]) liberaUrl(id); }
+
+  function scarica(nome, dati, mime) {
+    const indirizzo = URL.createObjectURL(new Blob([dati], { type: mime }));
+    const a = document.createElement('a');
+    a.href = indirizzo; a.download = nome;
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(indirizzo), 60000);
+  }
+
+  // Posizione dal GPS al momento dell'acquisizione, con l'accuratezza dichiarata dal dispositivo.
+  function rilevaPosizione() {
+    return new Promise((ok) => {
+      if (!navigator.geolocation) { ok({ posizione: null, stato: 'non disponibile su questo dispositivo' }); return; }
+      navigator.geolocation.getCurrentPosition(
+        (p) => ok({ posizione: { lat: p.coords.latitude, lon: p.coords.longitude, accuratezza: p.coords.accuracy, rilevata: new Date(p.timestamp) }, stato: 'ok' }),
+        (e) => ok({ posizione: null, stato: e && e.code === 1 ? 'permesso negato' : e && e.code === 3 ? 'tempo scaduto' : 'non disponibile' }),
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+    });
+  }
+
+  function aggiornaRilievi() { if (ui.rilievo && ui.scheda === 'rilievi') mostraPannello(); }
+
+  async function acquisisciFoto(file) {
+    const r = ui.rilievo, istante = new Date();
+    ui.statoRilievi = { testo: 'Lettura del file, posizione e calcolo dell’impronta…', attenzione: false };
+    aggiornaRilievi();
+    try {
+      const [buf, pos] = await Promise.all([file.arrayBuffer(), rilevaPosizione()]);
+      if (ui.rilievo !== r) return;
+      const esito = aggiungiAllegato(r, { tipo: 'foto', mime: file.type || 'application/octet-stream', dati: new Uint8Array(buf), istante, posizione: pos.posizione, statoPosizione: pos.stato });
+      ui.statoRilievi = esito.errore ? { testo: esito.errore, attenzione: true } : { testo: esito.nome + ' acquisita: impronta calcolata.', attenzione: false };
+    } catch (e) {
+      ui.statoRilievi = { testo: 'Non riesco a leggere la foto.', attenzione: true };
+    }
+    aggiornaRilievi();
+  }
+
+  // Appunto vocale: registrazione sul dispositivo, al massimo 5 minuti.
+  const DURATA_MAX = 300;
+  async function avviaRegistrazione() {
+    const r = ui.rilievo;
+    if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || typeof MediaRecorder === 'undefined') {
+      ui.statoRilievi = { testo: 'La registrazione audio non è disponibile su questo browser.', attenzione: true }; aggiornaRilievi(); return;
+    }
+    let flusso;
+    try { flusso = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+    catch (e) { ui.statoRilievi = { testo: 'Microfono non disponibile o permesso negato.', attenzione: true }; aggiornaRilievi(); return; }
+    if (ui.rilievo !== r) { flusso.getTracks().forEach((x) => x.stop()); return; }
+    const tipi = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm'];
+    const mime = tipi.find((x) => typeof MediaRecorder.isTypeSupported === 'function' && MediaRecorder.isTypeSupported(x)) || '';
+    const rec = mime ? new MediaRecorder(flusso, { mimeType: mime }) : new MediaRecorder(flusso);
+    const pezzi = [], inizio = new Date(), posP = rilevaPosizione();
+    const stato = { rec, flusso, inizio, annullata: false, timer: null };
+    rec.ondataavailable = (e) => { if (e.data && e.data.size) pezzi.push(e.data); };
+    rec.onstop = async () => {
+      clearInterval(stato.timer); flusso.getTracks().forEach((x) => x.stop());
+      if (ui.registrazione === stato) ui.registrazione = null;
+      if (stato.annullata) { aggiornaRilievi(); return; }
+      const blob = new Blob(pezzi, { type: rec.mimeType || mime || 'audio/webm' });
+      const [buf, pos] = await Promise.all([blob.arrayBuffer(), posP]);
+      if (ui.rilievo !== r) return;
+      const esito = aggiungiAllegato(r, { tipo: 'audio', mime: blob.type, dati: new Uint8Array(buf), istante: inizio, posizione: pos.posizione, statoPosizione: pos.stato });
+      ui.statoRilievi = esito.errore ? { testo: esito.errore, attenzione: true } : { testo: esito.nome + ' registrato: impronta calcolata.', attenzione: false };
+      aggiornaRilievi();
+    };
+    rec.start();
+    ui.registrazione = stato;
+    stato.timer = setInterval(() => {
+      const sec = Math.round((Date.now() - inizio.getTime()) / 1000);
+      const t = $('tempo-registrazione'); if (t) t.textContent = pad(Math.floor(sec / 60)) + ':' + pad(sec % 60);
+      if (sec >= DURATA_MAX) fermaRegistrazione(false);
+    }, 1000);
+    ui.statoRilievi = null;
+    aggiornaRilievi();
+  }
+  function fermaRegistrazione(annulla) {
+    const st = ui.registrazione;
+    if (!st) return;
+    st.annullata = !!annulla;
+    if (st.rec.state !== 'inactive') st.rec.stop();
+  }
+
+  // Trascrizione: solo se il browser garantisce l'elaborazione sul dispositivo. Altrimenti resta disattivata.
+  const Riconoscimento = window.SpeechRecognition || window.webkitSpeechRecognition;
+  async function verificaTrascrizione() {
+    if (!Riconoscimento || !('processLocally' in Riconoscimento.prototype) || typeof Riconoscimento.available !== 'function') return 'no';
+    try { return (await Riconoscimento.available({ langs: ['it-IT'], processLocally: true })) === 'available' ? 'si' : 'no'; }
+    catch (e) { return 'no'; }
+  }
+  function avviaDettatura() {
+    const r = ui.rilievo, rec = new Riconoscimento();
+    rec.lang = 'it-IT'; rec.processLocally = true; rec.continuous = true; rec.interimResults = false;
+    rec.onresult = (e) => {
+      const testo = Array.from(e.results).slice(e.resultIndex).filter((x) => x.isFinal).map((x) => x[0].transcript).join(' ').trim();
+      if (!testo || ui.rilievo !== r) return;
+      r.fatti = (r.fatti.trim() === '' ? '' : r.fatti.replace(/\s+$/, '') + ' ') + testo;
+      ui.statoRilievi = { testo: 'Testo aggiunto a «Come si sono svolti i fatti».', attenzione: false };
+      aggiornaRilievi();
+    };
+    rec.onerror = () => { ui.statoRilievi = { testo: 'Trascrizione interrotta.', attenzione: true }; };
+    rec.onend = () => { if (ui.dettatura === rec) ui.dettatura = null; aggiornaRilievi(); };
+    rec.start();
+    ui.dettatura = rec;
+    aggiornaRilievi();
+  }
+  function fermaDettatura() { if (ui.dettatura) { try { ui.dettatura.stop(); } catch (e) { /* già ferma */ } ui.dettatura = null; } }
+
+  function cardAllegato(a) {
+    const voce = el('li', 'scheda allegato' + (a.tipo === 'audio' ? ' audio' : ''));
+    voce.dataset.allegato = String(a.id);
+    if (a.tipo === 'foto') {
+      const img = el('img', 'miniatura');
+      img.alt = 'Anteprima di ' + a.nome;
+      img.addEventListener('error', () => img.replaceWith(el('span', 'miniatura-testo', 'Anteprima non disponibile')));
+      img.src = urlDi(a);
+      voce.append(img);
+    }
+    const corpo = el('div');
+    corpo.append(el('p', 'nome-allegato', a.nome + (a.tipo === 'audio' ? ', appunto vocale' : '')),
+      el('p', 'meta-allegato', 'Acquisito alle ' + ora(a.istante) + ' (ora del dispositivo), ' + Math.max(1, Math.round(a.byte / 1024)) + ' KB'),
+      el('p', 'meta-allegato', 'Posizione: ' + testoPosizione(a)),
+      el('p', 'impronta', 'SHA-256 ' + a.sha256));
+    if (a.tipo === 'audio') { const au = el('audio'); au.controls = true; au.preload = 'none'; au.src = urlDi(a); corpo.append(au); }
+    const rimuovi = el('button', 'tasto-testo pericolo-testo', 'Rimuovi');
+    rimuovi.type = 'button';
+    const conferma = el('div', 'azioni');
+    conferma.hidden = true;
+    const si = el('button', 'tasto pericolo', 'Rimuovi ' + a.nome), no = el('button', 'tasto', 'Annulla');
+    si.type = 'button'; no.type = 'button';
+    conferma.append(si, no);
+    rimuovi.addEventListener('click', () => { conferma.hidden = false; no.focus(); });
+    no.addEventListener('click', () => { conferma.hidden = true; rimuovi.focus(); });
+    si.addEventListener('click', () => {
+      rimuoviAllegato(ui.rilievo, a.id); liberaUrl(a.id);
+      ui.statoRilievi = { testo: a.nome + ' rimosso.', attenzione: false }; aggiornaRilievi();
+    });
+    corpo.append(rimuovi, conferma);
+    voce.append(corpo);
+    return voce;
+  }
+
+  function pannelloRilievi() {
+    const r = ui.rilievo, sezione = el('div');
+    sezione.append(el('h3', 'titolo-sez', 'Rilievi'));
+    if (!ui.avvisoRilieviVisto) {
+      const box = el('div', 'avviso');
+      box.setAttribute('role', 'note');
+      box.append(el('p', null, 'Fotocamera, microfono e posizione raccolgono dati reali: volti, targhe, voci, luoghi. Nella demo restano solo su questo dispositivo e si cancellano chiudendo la pagina; il pacchetto esportato invece li porta fuori.'),
+        el('p', null, 'Usa questa funzione solo per provarla. In servizio si usano i dispositivi e i sistemi autorizzati dalla propria amministrazione.'));
+      const ok = el('button', 'tasto primario', 'Ho capito');
+      ok.type = 'button'; ok.id = 'rilievi-ok';
+      ok.addEventListener('click', () => { ui.avvisoRilieviVisto = true; mostraPannello(); $('scatta-foto').focus(); });
+      box.append(ok);
+      sezione.append(box);
+      return sezione;
+    }
+    // foto
+    const foto = el('div', 'scheda blocco-ril');
+    foto.append(el('h4', null, 'Foto'), el('p', null, 'Con ogni foto la demo registra l’ora e la posizione del telefono e calcola l’impronta SHA-256 del file, senza modificarlo.'));
+    const input = el('input', 'nascosto');
+    input.type = 'file'; input.accept = 'image/*'; input.setAttribute('capture', 'environment'); input.id = 'file-foto';
+    input.addEventListener('change', () => { const f = input.files && input.files[0]; if (f) acquisisciFoto(f); input.value = ''; });
+    const scatta = el('button', 'tasto primario', 'Scatta foto');
+    scatta.type = 'button'; scatta.id = 'scatta-foto';
+    scatta.addEventListener('click', () => input.click());
+    foto.append(scatta, input);
+    sezione.append(foto);
+    // appunto vocale
+    const voce = el('div', 'scheda blocco-ril');
+    voce.append(el('h4', null, 'Appunto vocale'));
+    const avv = el('div', 'avvertenza'), testoAvv = el('div');
+    testoAvv.append(el('p', 'avv-titolo', 'Registra solo le tue osservazioni, non le persone'),
+      el('p', 'avv-corpo', 'Delle notizie assunte sul posto dall’indagato senza difensore è vietata ogni documentazione: una registrazione lo sarebbe.'),
+      el('span', 'norma', 'art. 350 c.6 CPP'));
+    avv.append(el('span', 'filo-oro'), testoAvv);
+    voce.append(avv);
+    const az = el('div', 'azioni'); az.style.marginTop = '.8rem';
+    if (ui.registrazione) {
+      const ferma = el('button', 'tasto pericolo', 'Ferma e salva'); ferma.type = 'button'; ferma.id = 'ferma-registrazione';
+      ferma.addEventListener('click', () => fermaRegistrazione(false));
+      const annulla = el('button', 'tasto', 'Annulla'); annulla.type = 'button'; annulla.id = 'annulla-registrazione';
+      annulla.addEventListener('click', () => fermaRegistrazione(true));
+      const tempo = el('p', 'in-registrazione'); tempo.setAttribute('role', 'status');
+      tempo.append(document.createTextNode('In registrazione '), el('span', null, '00:00'));
+      tempo.lastChild.id = 'tempo-registrazione';
+      az.append(ferma, annulla); voce.append(az, tempo);
+    } else {
+      const reg = el('button', 'tasto primario', 'Registra appunto vocale'); reg.type = 'button'; reg.id = 'registra';
+      reg.addEventListener('click', avviaRegistrazione);
+      az.append(reg); voce.append(az);
+    }
+    if (ui.trascrizione === 'si') {
+      const det = el('button', 'tasto', ui.dettatura ? 'Ferma la dettatura' : 'Detta nei fatti (sul dispositivo)'); det.type = 'button'; det.id = 'detta';
+      det.addEventListener('click', () => (ui.dettatura ? fermaDettatura() : avviaDettatura()));
+      voce.append(el('p', 'suggerimento', 'La trascrizione avviene sul dispositivo: l’audio non lascia il telefono.'), det);
+    } else if (ui.trascrizione === 'no') {
+      voce.append(el('p', 'suggerimento', 'Trascrizione in testo non disponibile: su questo browser avverrebbe su un server esterno, quindi resta disattivata. Puoi usare la dettatura della tastiera del telefono nel campo dei fatti.'));
+    }
+    sezione.append(voce);
+    if (ui.statoRilievi) {
+      const st = el('p', ui.statoRilievi.attenzione ? 'stato-copia attenzione' : 'stato-copia', ui.statoRilievi.testo);
+      st.setAttribute('role', 'status'); sezione.append(st);
+    }
+    const occupati = r.allegati.reduce((s, x) => s + x.byte, 0);
+    sezione.append(el('p', 'uso-ril', r.allegati.length + (r.allegati.length === 1 ? ' allegato, ' : ' allegati, ') + (occupati / 1048576).toFixed(1).replace('.', ',') + ' MB su 150'));
+    if (r.allegati.length) {
+      const elenco = el('ul', 'elenco');
+      for (const a of r.allegati) elenco.append(cardAllegato(a));
+      sezione.append(elenco);
+    }
+    sezione.append(el('p', 'suggerimento', tip(NOTA_IMPRONTE) + ' Il riepilogo riporta le impronte; il pacchetto ZIP contiene file originali e un elenco verificabile.'));
+    return sezione;
+  }
   // #endregion vista
 
   // #region avvio
@@ -1479,6 +1879,7 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
     $('data-verifica').textContent = NORME.fonte.ultima_verifica;
     $('indipendenza').textContent = tip(NORME.app.indipendenza);
     mostraTipi();
+    verificaTrascrizione().then((v) => { ui.trascrizione = v; aggiornaRilievi(); });
 
     // Tema: parte da quello del dispositivo, il pulsante lo alterna. Nessuna memorizzazione.
     const radice = document.documentElement;
@@ -1505,7 +1906,7 @@ textarea.campo-libero { min-height: 8rem; resize: vertical; }
     $('conferma-no').addEventListener('click', () => { $('conferma-cambio').hidden = true; $('cambia').focus(); });
     for (const b of document.querySelectorAll('[data-scheda]')) {
       b.addEventListener('click', () => {
-        ui.scheda = b.dataset.scheda; ui.inCorrezione = null; ui.soggettoAperto = null; ui.menuRuoli = false; ui.copia = null;
+        ui.scheda = b.dataset.scheda; ui.inCorrezione = null; ui.soggettoAperto = null; ui.menuRuoli = false; ui.copia = null; ui.statoRilievi = null;
         aggiornaSchede(); mostraPannello();
       });
     }
